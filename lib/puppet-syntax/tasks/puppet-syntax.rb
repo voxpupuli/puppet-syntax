@@ -15,16 +15,24 @@ module PuppetSyntax
         desc 'Syntax check Puppet manifests'
         task :manifests do |t|
           $stderr.puts "---> #{t.name}"
+          files = FileList["**/*.pp"]
+          files.reject! { |f| File.directory?(f) }
+          files = files.exclude(*PuppetSyntax.exclude_paths)
+
           c = PuppetSyntax::Manifests.new
-          errors = c.check
+          errors = c.check(files)
           fail errors.join("\n") unless errors.empty?
         end
 
         desc 'Syntax check Puppet templates'
         task :templates do |t|
           $stderr.puts "---> #{t.name}"
+          files = FileList["**/templates/**/*"]
+          files.reject! { |f| File.directory?(f) }
+          files = files.exclude(*PuppetSyntax.exclude_paths)
+
           c = PuppetSyntax::Templates.new
-          errors = c.check
+          errors = c.check(files)
           fail errors.join("\n") unless errors.empty?
         end
       end

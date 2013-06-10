@@ -1,14 +1,11 @@
-require 'rake'
 require 'puppet'
 require 'puppet/face'
 
 module PuppetSyntax
   class Manifests
-    def validate_manifest(file)
-      Puppet::Face[:parser, '0.0.1'].validate(file)
-    end
+    def check(filelist)
+      raise "Expected an array of files" unless filelist.is_a?(Array)
 
-    def check
       errors = []
 
       # FIXME: We shouldn't need to do this. puppet/face should. See:
@@ -22,8 +19,7 @@ module PuppetSyntax
       Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(errors))
       Puppet::Util::Log.level = :warning
 
-      matched_files = FileList["**/*.pp"].exclude(*PuppetSyntax.exclude_paths)
-      matched_files.each do |puppet_file|
+      filelist.each do |puppet_file|
         begin
           validate_manifest(puppet_file)
         rescue => error
@@ -38,6 +34,11 @@ module PuppetSyntax
       }
 
       errors
+    end
+
+    private
+    def validate_manifest(file)
+      Puppet::Face[:parser, '0.0.1'].validate(file)
     end
   end
 end
