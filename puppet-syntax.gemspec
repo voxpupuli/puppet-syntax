@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = PuppetSyntax::VERSION
   spec.authors       = ["Dan Carley"]
   spec.email         = ["dan.carley@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Syntax checks for Puppet manifests and templates}
+  spec.summary       = spec.summary
   spec.homepage      = ""
   spec.license       = "MIT"
 

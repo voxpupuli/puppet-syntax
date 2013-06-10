@@ -1,6 +1,6 @@
 # Puppet::Syntax
 
-TODO: Write a gem description
+Syntax checks for Puppet manifests and templates
 
 ## Installation
 
