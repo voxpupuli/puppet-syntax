@@ -1,3 +1,4 @@
+require 'rake'
 require 'puppet'
 require 'puppet/face'
 

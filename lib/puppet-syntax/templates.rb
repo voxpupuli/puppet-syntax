@@ -1,3 +1,4 @@
+require 'rake'
 require 'erb'
 require 'stringio'
 
