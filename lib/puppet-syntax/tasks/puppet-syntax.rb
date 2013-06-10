@@ -7,8 +7,8 @@ module PuppetSyntax
     def initialize(*args)
       desc 'Syntax check Puppet manifests and templates'
       task :syntax => [
-        :manifests,
-        :templates,
+        'syntax:manifests',
+        'syntax:templates',
       ]
 
       namespace :syntax do
