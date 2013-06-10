@@ -7,16 +7,24 @@ module PuppetSyntax
     def initialize(*args)
       desc 'Syntax check Puppet manifests and templates'
       task :syntax => [
-        :syntax_manifests,
-        :syntax_templates,
+        :manifests,
+        :templates,
       ]
 
-      desc 'Syntax check Puppet manifests'
-      task :syntax_manifests do
-      end
+      namespace :syntax do
+        desc 'Syntax check Puppet manifests'
+        task :manifests do
+          c = PuppetSyntax::Manifests.new
+          errors = c.check
+          fail errors.join("\n") unless errors.empty?
+        end
 
-      desc 'Syntax check Puppet templates'
-      task :syntax_templates do
+        desc 'Syntax check Puppet templates'
+        task :templates do
+          c = PuppetSyntax::Templates.new
+          errors = c.check
+          fail errors.join("\n") unless errors.empty?
+        end
       end
     end
   end

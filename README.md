@@ -2,6 +2,16 @@
 
 Syntax checks for Puppet manifests and templates
 
+## Usage
+
+Include the following in your `Rakefile`:
+
+    require 'puppet-syntax/tasks/puppet-syntax'
+
+Paths can be excluded with:
+
+    PuppetSyntax.exclude_paths = ["vendor/**/*"]
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -15,10 +25,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install puppet-syntax
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
