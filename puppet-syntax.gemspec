@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'puppet/syntax/version'
+require 'puppet-syntax/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "puppet-syntax"
-  spec.version       = Puppet::Syntax::VERSION
+  spec.version       = PuppetSyntax::VERSION
   spec.authors       = ["Dan Carley"]
   spec.email         = ["dan.carley@gmail.com"]
   spec.description   = %q{TODO: Write a gem description}
