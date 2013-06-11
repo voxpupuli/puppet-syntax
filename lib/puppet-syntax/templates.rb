@@ -10,7 +10,7 @@ module PuppetSyntax
       errors = []
 
       # Templates don't have to have a .erb extension
-      matched_files = FileList["*/templates/**/*"].exclude(*PuppetSyntax.exclude_paths)
+      matched_files = FileList["**/templates/**/*"].exclude(*PuppetSyntax.exclude_paths)
       matched_files.reject! { |f| File.directory?(f) }
       matched_files.each do |erb_file|
         begin
