@@ -13,14 +13,16 @@ module PuppetSyntax
 
       namespace :syntax do
         desc 'Syntax check Puppet manifests'
-        task :manifests do
+        task :manifests do |t|
+          $stderr.puts "---> #{t.name}"
           c = PuppetSyntax::Manifests.new
           errors = c.check
           fail errors.join("\n") unless errors.empty?
         end
 
         desc 'Syntax check Puppet templates'
-        task :templates do
+        task :templates do |t|
+          $stderr.puts "---> #{t.name}"
           c = PuppetSyntax::Templates.new
           errors = c.check
           fail errors.join("\n") unless errors.empty?
