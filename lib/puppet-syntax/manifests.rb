@@ -11,6 +11,13 @@ module PuppetSyntax
     def check
       errors = []
 
+      # FIXME: We shouldn't need to do this. puppet/face should. See:
+      # - http://projects.puppetlabs.com/issues/15529
+      # - https://groups.google.com/forum/#!topic/puppet-dev/Yk0WC1JZCg8/discussion
+      if (Puppet::PUPPETVERSION.to_i >= 3 && !Puppet.settings.app_defaults_initialized?)
+        Puppet.initialize_settings
+      end
+
       # Catch syntax warnings.
       Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(errors))
       Puppet::Util::Log.level = :warning
