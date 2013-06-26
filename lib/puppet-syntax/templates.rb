@@ -25,6 +25,8 @@ module PuppetSyntax
 
       $stderr = STDERR
       errors << warnings.string unless warnings.string.empty?
+      errors.map! { |e| e.to_s }
+
       errors
     end
   end

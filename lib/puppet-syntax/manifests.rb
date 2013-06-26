@@ -27,10 +27,12 @@ module PuppetSyntax
         end
       end
 
-      # Exported resources will raise warnings when outside a puppetmaster.
       Puppet::Util::Log.close_all
+      errors.map! { |e| e.to_s }
+
+      # Exported resources will raise warnings when outside a puppetmaster.
       errors.reject! { |e|
-        e.to_s =~ /^You cannot collect( exported resources)? without storeconfigs being set/
+        e =~ /^You cannot collect( exported resources)? without storeconfigs being set/
       }
 
       errors
