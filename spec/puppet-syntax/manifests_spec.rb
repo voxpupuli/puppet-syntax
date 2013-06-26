@@ -4,14 +4,14 @@ describe PuppetSyntax::Manifests do
   let(:subject) { PuppetSyntax::Manifests.new }
 
   it 'should return nothing from a valid file' do
-    files = fixture_files('pass.pp')
+    files = fixture_manifests('pass.pp')
     res = subject.check(files)
 
     res.should == []
   end
 
   it 'should return an error from an invalid file' do
-    files = fixture_files('fail_error.pp')
+    files = fixture_manifests('fail_error.pp')
     res = subject.check(files)
 
     res.should have(1).items
@@ -19,7 +19,7 @@ describe PuppetSyntax::Manifests do
   end
 
   it 'should return a warning from an invalid file' do
-    files = fixture_files('fail_warning.pp')
+    files = fixture_manifests('fail_warning.pp')
     res = subject.check(files)
 
     res.should have(2).items
@@ -28,21 +28,21 @@ describe PuppetSyntax::Manifests do
   end
 
   it 'should ignore warnings about storeconfigs' do
-    files = fixture_files('pass_storeconfigs.pp')
+    files = fixture_manifests('pass_storeconfigs.pp')
     res = subject.check(files)
 
     res.should == []
   end
 
   it 'should read more than one valid file' do
-    files = fixture_files(['pass.pp', 'pass_storeconfigs.pp'])
+    files = fixture_manifests(['pass.pp', 'pass_storeconfigs.pp'])
     res = subject.check(files)
 
     res.should == []
   end
 
   it 'should continue after finding an error in the first file' do
-    files = fixture_files(['fail_error.pp', 'fail_warning.pp'])
+    files = fixture_manifests(['fail_error.pp', 'fail_warning.pp'])
     res = subject.check(files)
 
     res.should have(3).items
