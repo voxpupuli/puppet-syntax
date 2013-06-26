@@ -1,29 +1,53 @@
 require 'spec_helper'
 
 describe PuppetSyntax::Manifests do
+  let(:subject) { PuppetSyntax::Manifests.new }
+
   it 'should return nothing from a valid file' do
-    pending
+    files = fixture_files('pass.pp')
+    res = subject.check(files)
+
+    res.should == []
   end
 
   it 'should return an error from an invalid file' do
-    pending
+    files = fixture_files('fail_error.pp')
+    res = subject.check(files)
+
+    res.should have(1).items
+    res.first.should match(/Syntax error at '}' .*:3$/)
   end
 
   it 'should return a warning from an invalid file' do
-    # "Unrecognised escape sequence \[\]"
-    pending
+    files = fixture_files('fail_warning.pp')
+    res = subject.check(files)
+
+    res.should have(2).items
+    res[0].should match(/Unrecognised escape sequence '\\\[' .* at line 3$/)
+    res[1].should match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
   end
 
   it 'should ignore warnings about storeconfigs' do
-    # @@notify { 'foo': }
-    pending
+    files = fixture_files('pass_storeconfigs.pp')
+    res = subject.check(files)
+
+    res.should == []
   end
 
   it 'should read more than one valid file' do
-    pending
+    files = fixture_files(['pass.pp', 'pass_storeconfigs.pp'])
+    res = subject.check(files)
+
+    res.should == []
   end
 
   it 'should continue after finding an error in the first file' do
-    pending
+    files = fixture_files(['fail_error.pp', 'fail_warning.pp'])
+    res = subject.check(files)
+
+    res.should have(3).items
+    res[0].should match(/Syntax error at '}' .*:3$/)
+    res[1].should match(/Unrecognised escape sequence '\\\[' .* at line 3$/)
+    res[2].should match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
   end
 end
