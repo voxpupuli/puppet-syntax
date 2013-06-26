@@ -9,10 +9,6 @@ describe PuppetSyntax::Templates do
     pending
   end
 
-  it 'should catch StandardError' do
-    pending
-  end
-
   it 'should catch SyntaxError' do
     pending
   end
