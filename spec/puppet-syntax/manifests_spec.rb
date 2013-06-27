@@ -3,6 +3,10 @@ require 'spec_helper'
 describe PuppetSyntax::Manifests do
   let(:subject) { PuppetSyntax::Manifests.new }
 
+  it 'should expect an array of files' do
+    expect { subject.check(nil) }.to raise_error(/Expected an array of files/)
+  end
+
   it 'should return nothing from a valid file' do
     files = fixture_manifests('pass.pp')
     res = subject.check(files)
