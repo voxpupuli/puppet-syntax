@@ -1,3 +1,10 @@
+2013-07-04 Release 1.0.0
+- Refactor code to make it easier to test.
+- Implement spec tests for syntax checks.
+- Pending spec tests for FileList matching.
+- Matrix tests for other Ruby/Puppet versions.
+- Improve usage example in README.
+
 2013-06-14 Release 0.0.4
 - Fix `$confdir` error for Puppet 3.x
 
