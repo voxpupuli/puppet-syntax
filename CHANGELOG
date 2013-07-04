@@ -1,0 +1,14 @@
+2013-06-14 Release 0.0.4
+- Fix `$confdir` error for Puppet 3.x
+
+2013-06-11 Release 0.0.3
+- List rake as a dependency.
+- Output names of tasks to STDERR.
+- Match template paths correctly.
+- Add pending spec tests, not yet working.
+
+2013-06-10 Release 0.0.2
+- Fix namespacing of rake tasks.
+
+2013-06-10 Release 0.0.1
+- Initial release
