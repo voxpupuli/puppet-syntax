@@ -8,6 +8,23 @@ Include the following in your `Rakefile`:
 
     require 'puppet-syntax/tasks/puppet-syntax'
 
+Test all manifests and templates relative to your `Rakefile`:
+
+    ➜  puppet git:(master) bundle exec rake syntax
+    ---> syntax:manifests
+    ---> syntax:templates
+
+A non-zero exit code and error message will be returned for any failures:
+
+    ➜  puppet git:(master) bundle exec rake syntax
+    ---> syntax:manifests
+    rake aborted!
+    Could not parse for environment production: Syntax error at end of file at demo.pp:2
+    Tasks: TOP => syntax => syntax:manifests
+    (See full trace by running task with --trace)
+
+## Configuration
+
 Paths can be excluded with:
 
     PuppetSyntax.exclude_paths = ["vendor/**/*"]
