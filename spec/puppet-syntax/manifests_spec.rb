@@ -19,7 +19,7 @@ describe PuppetSyntax::Manifests do
     res = subject.check(files)
 
     res.should have(1).items
-    res.first.should match(/Syntax error at '}' .*:3$/)
+    res.first.should match(/Syntax error at '\}' .*:3$/)
   end
 
   it 'should return a warning from an invalid file' do
@@ -50,7 +50,7 @@ describe PuppetSyntax::Manifests do
     res = subject.check(files)
 
     res.should have(3).items
-    res[0].should match(/Syntax error at '}' .*:3$/)
+    res[0].should match(/Syntax error at '\}' .*:3$/)
     res[1].should match(/Unrecognised escape sequence '\\\[' .* at line 3$/)
     res[2].should match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
   end
