@@ -31,6 +31,14 @@ A non-zero exit code and error message will be returned for any failures:
     Tasks: TOP => syntax => syntax:manifests
     (See full trace by running task with --trace)
 
+Use in conjunction with lint and spec tests for Continuous Integration:
+
+    task :test => [
+      :syntax,
+      :lint,
+      :spec,
+    ]
+
 ## Configuration
 
 Paths can be excluded with:
