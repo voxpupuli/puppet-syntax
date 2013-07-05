@@ -1,6 +1,14 @@
 # Puppet::Syntax
 
-Syntax checks for Puppet manifests and templates
+Syntax checks for Puppet manifests and templates.
+
+## Version support
+
+This should work on any version of Puppet >= 2.7 that provides the
+`validate` face and `erb` from Ruby >= 1.8 core.
+
+You can see the matrix of specific versions that we currently test against
+in the [TravisCI config](.travis.yml).
 
 ## Usage
 
