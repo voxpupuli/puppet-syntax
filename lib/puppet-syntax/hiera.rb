@@ -10,7 +10,7 @@ module PuppetSyntax
       filelist.each do |hiera_file|
         begin
           YAML.load_file(hiera_file)
-        rescue Psych::SyntaxError => error
+        rescue Exception => error
           errors << error
         end
        end
