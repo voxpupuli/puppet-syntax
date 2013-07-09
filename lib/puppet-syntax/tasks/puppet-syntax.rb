@@ -36,6 +36,24 @@ module PuppetSyntax
           fail errors.join("\n") unless errors.empty?
         end
       end
+
+      desc 'Syntax check Hiera config'
+      task :hiera => [
+        'hiera:yaml',
+      ]
+
+      namespace :hiera do
+        task :yaml do |t|
+          $stderr.puts "---> #{t.name}"
+          files = FileList["hieradata/**/*.yaml", "hiera*.yaml"]
+          files.reject! { |f| File.directory?(f) }
+          files = files.exclude(*PuppetSyntax.exclude_paths)
+
+          c = PuppetSyntax::Hiera.new
+          errors = c.check(files)
+          fail errors.join("\n") unless errors.empty?
+        end
+      end
     end
   end
 end
