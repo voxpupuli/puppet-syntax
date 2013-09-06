@@ -1,3 +1,7 @@
+2013-09-06 Release 1.1.0
+- Syntax checks for Hiera YAML files.
+- Improved documentation.
+
 2013-07-04 Release 1.0.0
 - Refactor code to make it easier to test.
 - Implement spec tests for syntax checks.
