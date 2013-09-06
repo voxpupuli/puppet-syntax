@@ -1,6 +1,6 @@
 # Puppet::Syntax
 
-Syntax checks for Puppet manifests and templates.
+Syntax checks for Puppet manifests, templates, and Hiera YAML.
 
 ## Version support
 
@@ -23,6 +23,7 @@ Test all manifests and templates relative to your `Rakefile`:
     ➜  puppet git:(master) bundle exec rake syntax
     ---> syntax:manifests
     ---> syntax:templates
+    ---> syntax:hiera:yaml
 
 A non-zero exit code and error message will be returned for any failures:
 
