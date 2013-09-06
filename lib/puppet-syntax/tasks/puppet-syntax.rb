@@ -9,6 +9,7 @@ module PuppetSyntax
       task :syntax => [
         'syntax:manifests',
         'syntax:templates',
+        'syntax:hiera',
       ]
 
       namespace :syntax do
@@ -34,6 +35,24 @@ module PuppetSyntax
           c = PuppetSyntax::Templates.new
           errors = c.check(files)
           fail errors.join("\n") unless errors.empty?
+        end
+
+        desc 'Syntax check Hiera config files'
+        task :hiera => [
+          'syntax:hiera:yaml',
+        ]
+
+        namespace :hiera do
+          task :yaml do |t|
+            $stderr.puts "---> #{t.name}"
+            files = FileList["hieradata/**/*.yaml", "hiera*.yaml"]
+            files.reject! { |f| File.directory?(f) }
+            files = files.exclude(*PuppetSyntax.exclude_paths)
+
+            c = PuppetSyntax::Hiera.new
+            errors = c.check(files)
+            fail errors.join("\n") unless errors.empty?
+          end
         end
       end
     end
