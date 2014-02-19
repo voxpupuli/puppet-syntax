@@ -22,6 +22,8 @@ module PuppetSyntax
       filelist.each do |puppet_file|
         begin
           validate_manifest(puppet_file)
+        rescue Exception => error
+          errors << error
         rescue => error
           errors << error
         end
