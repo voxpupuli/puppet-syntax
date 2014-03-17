@@ -48,6 +48,11 @@ Paths can be excluded with:
 
     PuppetSyntax.exclude_paths = ["vendor/**/*"]
 
+When you are using a Puppet version greater then 3.2, you can select the future parse by specifying
+
+    PuppetSyntax.future_parser = true
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
