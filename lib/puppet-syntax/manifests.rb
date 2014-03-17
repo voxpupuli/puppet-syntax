@@ -22,6 +22,8 @@ module PuppetSyntax
       filelist.each do |puppet_file|
         begin
           validate_manifest(puppet_file)
+        rescue SystemExit
+          # Disregard exit(1) from face.
         rescue => error
           errors << error
         end
