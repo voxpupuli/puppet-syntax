@@ -42,7 +42,7 @@ module PuppetSyntax
 
     private
     def validate_manifest(file)
-      Puppet::Face[:parser, '0.0.1'].validate(file)
+      Puppet::Face[:parser, :current].validate(file)
     end
   end
 end
