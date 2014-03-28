@@ -55,7 +55,7 @@ describe PuppetSyntax::Manifests do
     res[2].should match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
   end
 
-  if Puppet.version >= "3.2"
+  if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0
     it 'should fail without setting future option to true on future manifest' do
       PuppetSyntax.future_parser = false
       files = fixture_manifests(['future_syntax.pp'])
