@@ -18,11 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  if RUBY_VERSION < "1.8.7"
-    spec.add_development_dependency "rake"
-  else
-    spec.add_development_dependency "rake", "10.1.1" # Latest version to support ruby 1.8.7
-  end
+  spec.add_dependency "rake"
   spec.add_dependency "puppet", ">= 2.7.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
