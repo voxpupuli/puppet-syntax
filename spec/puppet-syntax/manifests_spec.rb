@@ -74,11 +74,23 @@ describe PuppetSyntax::Manifests do
       }
 
       if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0
-        it 'should pass with future option set to true on future manifest' do
-          files = fixture_manifests(['future_syntax.pp'])
-          res = subject.check(files)
+        context 'Puppet >= 3.2' do
+          it 'should pass with future option set to true on future manifest' do
+            files = fixture_manifests(['future_syntax.pp'])
+            res = subject.check(files)
 
-          res.should have(0).items
+            res.should have(0).items
+          end
+        end
+      else
+        context 'Puppet <= 3.2' do
+          it 'should return an error that the parser option is not supported' do
+            files = fixture_manifests(['future_syntax.pp'])
+            res = subject.check(files)
+
+            res.should have(1).items
+            res[0].should == "Attempt to assign a value to unknown configuration parameter :parser"
+          end
         end
       end
     end
