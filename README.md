@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gds-operations/puppet-syntax.svg?branch=master)](https://travis-ci.org/gds-operations/puppet-syntax)
+
 # Puppet::Syntax
 
 Syntax checks for Puppet manifests, templates, and Hiera YAML.
