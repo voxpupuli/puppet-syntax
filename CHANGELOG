@@ -1,3 +1,6 @@
+2014-03-28 Release 1.2.0
+- Optional support for Puppet's future parser.
+
 2014-03-17 Release 1.1.1
 - Ignore exit(1) from Puppet 3.4
 - Don't use hardcoded version of parser face.
