@@ -54,4 +54,26 @@ describe PuppetSyntax::Manifests do
     res[1].should match(/Unrecognised escape sequence '\\\[' .* at line 3$/)
     res[2].should match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
   end
+
+  if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0
+    it 'should fail without setting future option to true on future manifest' do
+      PuppetSyntax.future_parser = false
+      files = fixture_manifests(['future_syntax.pp'])
+      res = subject.check(files)
+
+      res.should have(1).items
+      res[0].should match(/Syntax error at '='; expected '\}' .*:2$/)
+    end
+
+
+    it 'should pass with future option set to true on future manifest' do
+      PuppetSyntax.future_parser = true
+      files = fixture_manifests(['future_syntax.pp'])
+      res = subject.check(files)
+
+      res.should have(0).items
+    end
+  end
+
+
 end

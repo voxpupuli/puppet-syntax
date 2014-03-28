@@ -42,6 +42,7 @@ module PuppetSyntax
 
     private
     def validate_manifest(file)
+      Puppet[:parser] = 'future' if PuppetSyntax.future_parser
       Puppet::Face[:parser, :current].validate(file)
     end
   end
