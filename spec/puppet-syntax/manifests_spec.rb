@@ -55,25 +55,45 @@ describe PuppetSyntax::Manifests do
     res[2].should match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
   end
 
-  if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0
-    it 'should fail without setting future option to true on future manifest' do
-      PuppetSyntax.future_parser = false
-      files = fixture_manifests(['future_syntax.pp'])
-      res = subject.check(files)
+  describe 'future_parser' do
+    context 'future_parser = false (default)' do
+      it 'should fail without setting future option to true on future manifest' do
+        PuppetSyntax.future_parser.should == false
 
-      res.should have(1).items
-      res[0].should match(/Syntax error at '='; expected '\}' .*:2$/)
+        files = fixture_manifests(['future_syntax.pp'])
+        res = subject.check(files)
+
+        res.should have(1).items
+        res[0].should match(/Syntax error at '='; expected '\}' .*:2$/)
+      end
     end
 
+    context 'future_parser = true' do
+      before(:each) {
+        PuppetSyntax.future_parser = true
+      }
 
-    it 'should pass with future option set to true on future manifest' do
-      PuppetSyntax.future_parser = true
-      files = fixture_manifests(['future_syntax.pp'])
-      res = subject.check(files)
+      if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0
+        context 'Puppet >= 3.2' do
+          it 'should pass with future option set to true on future manifest' do
+            files = fixture_manifests(['future_syntax.pp'])
+            res = subject.check(files)
 
-      res.should have(0).items
+            res.should have(0).items
+          end
+        end
+      else
+        context 'Puppet <= 3.2' do
+          it 'should return an error that the parser option is not supported' do
+            files = fixture_manifests(['future_syntax.pp'])
+            res = subject.check(files)
+
+            res.should have(1).items
+            res[0].should == "Attempt to assign a value to unknown configuration parameter :parser"
+          end
+        end
+      end
     end
   end
-
 
 end
