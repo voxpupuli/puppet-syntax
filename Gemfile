@@ -4,6 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 # Override gemspec for CI matrix builds.
-if ENV['PUPPET_VERSION']
-  gem 'puppet', ENV['PUPPET_VERSION']
-end
+puppet_version = ENV['PUPPET_VERSION'] || '>2.7.0'
+gem 'puppet', puppet_version

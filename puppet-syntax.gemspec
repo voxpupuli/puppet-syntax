@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Dan Carley"]
   spec.email         = ["dan.carley@gmail.com"]
   spec.description   = %q{Syntax checks for Puppet manifests and templates}
-  spec.summary       = spec.summary
-  spec.homepage      = ""
+  spec.summary       = %q{Syntax checks for Puppet manifests, templates, and Hiera YAML}
+  spec.homepage      = "https://github.com/gds-operations/puppet-syntax"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rake"
-  spec.add_dependency "puppet", ">= 2.7.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rspec", "< 2.99.0"
