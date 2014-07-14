@@ -52,4 +52,11 @@ describe PuppetSyntax::Templates do
     res[0].should match(/2: syntax error, unexpected/)
     res[1].should match(/2: warning: found = in conditional/)
   end
+
+  it 'should ignore a TypeError' do
+    files = fixture_templates('typeerror_shouldwin.erb')
+    res = subject.check(files)
+
+    res.should == []
+  end
 end

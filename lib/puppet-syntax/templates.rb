@@ -18,6 +18,9 @@ module PuppetSyntax
         rescue NameError
           # This is normal because we don't have the variables that would
           # ordinarily be bound by the parent Puppet manifest.
+        rescue TypeError
+          # This is normal because we don't have the variables that would
+          # ordinarily be bound by the parent Puppet manifest.
         rescue SyntaxError => error
           errors << error
         end
