@@ -1,3 +1,6 @@
+2014-07-31 Release 1.2.2
+- Check and document conflicts with puppetlabs_spec_helper <= 0.7.0
+
 2014-07-23 Release 1.2.1
 - Remove dependency on Puppet from Gemspec (for Puppet Entreprise users).
 
