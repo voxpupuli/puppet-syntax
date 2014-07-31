@@ -14,6 +14,13 @@ This should work on any version of:
 You can see the matrix of specific versions that we currently test against
 in the [TravisCI config](.travis.yml).
 
+If you're using `puppetlabs_spec_helper/rake_tasks` and getting unexpected
+non-zero exit codes then you should upgrade to [puppetlabs_spec_helper][psh]
+\>= 0.8.0 which no longer has a conflicting rake task and now depends on
+this project.
+
+[psh]: https://github.com/puppetlabs/puppetlabs_spec_helper
+
 ## Usage
 
 Include the following in your `Rakefile`:
