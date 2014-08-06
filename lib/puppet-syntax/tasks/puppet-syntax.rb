@@ -59,7 +59,7 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
         namespace :hiera do
           task :yaml do |t|
             $stderr.puts "---> #{t.name}"
-            files = FileList["data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
+            files = FileList.new(PuppetSyntax.hieradata_paths)
             files.reject! { |f| File.directory?(f) }
             files = files.exclude(*PuppetSyntax.exclude_paths)
 

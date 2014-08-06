@@ -61,6 +61,9 @@ When you are using a Puppet version greater then 3.2, you can select the future 
 
     PuppetSyntax.future_parser = true
 
+If you are using some form of hiera data inside your module, you can configure where the `syntax:hiera:yaml` task looks for data with:
+
+    PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
 
 ## Installation
 
