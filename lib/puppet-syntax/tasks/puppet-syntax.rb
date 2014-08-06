@@ -16,8 +16,9 @@ module PuppetSyntax
       namespace :syntax do
         task :check_puppetlabs_spec_helper do
           psh_present = Rake::Task[:syntax].actions.any? { |a|
-            a.source_location.first.end_with?('puppetlabs_spec_helper/rake_tasks.rb')
+            a.inspect.match(/puppetlabs_spec_helper\/rake_tasks\.rb:\d+/)
           }
+
           if psh_present
             warn <<-EOS
 [WARNING] A conflicting :syntax rake task has been defined by
