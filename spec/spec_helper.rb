@@ -1,5 +1,6 @@
 require 'rspec'
 require 'puppet-syntax'
+require 'puppet'
 
 def fixture_hiera(list)
   fixture_files(list, 'hiera')
