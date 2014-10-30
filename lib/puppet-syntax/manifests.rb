@@ -1,10 +1,9 @@
-require 'puppet'
-require 'puppet/face'
-
 module PuppetSyntax
   class Manifests
     def check(filelist)
       raise "Expected an array of files" unless filelist.is_a?(Array)
+      require 'puppet'
+      require 'puppet/face'
 
       errors = []
 
