@@ -8,6 +8,7 @@ module PuppetSyntax
       desc 'Syntax check Puppet manifests and templates'
       task :syntax => [
         'syntax:check_puppetlabs_spec_helper',
+        'syntax:utf8',
         'syntax:manifests',
         'syntax:templates',
         'syntax:hiera',
@@ -26,6 +27,18 @@ puppetlabs_spec_helper/rake_tasks. You should either disable this or upgrade
 to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
             EOS
           end
+        end
+
+        desc 'Check manifests and templates for non-ASCII characters'
+        task :utf8 do |t|
+          $stderr.puts "---> #{t.name}"
+          files = FileList["**/*.pp", "**/templates/**/*"]
+          files.reject! { |f| File.directory?(f) }
+          files = files.exclude(*PuppetSyntax.exclude_paths)
+
+          c = PuppetSyntax::NonASCII.new
+          errors = c.check(files)
+          fail errors.join("\n") unless errors.empty?
         end
 
         desc 'Syntax check Puppet manifests'

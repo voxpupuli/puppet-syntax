@@ -2,6 +2,7 @@ require "puppet-syntax/version"
 require "puppet-syntax/manifests"
 require "puppet-syntax/templates"
 require "puppet-syntax/hiera"
+require "puppet-syntax/nonascii"
 
 module PuppetSyntax
   class << self
