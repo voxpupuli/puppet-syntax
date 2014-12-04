@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'puppet'
 
 describe PuppetSyntax::Manifests do
   let(:subject) { PuppetSyntax::Manifests.new }
