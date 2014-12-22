@@ -76,8 +76,8 @@ describe PuppetSyntax::Manifests do
           expect(output[1]).to match(/Deprecation notice:/)
         end
       end
-    else
-      context 'on puppet < 3.7' do
+    elsif Puppet::Util::Package.versioncmp(Puppet.version, '3.5') < 0
+      context 'on puppet < 3.5' do
         it 'should not print deprecation notices' do
           files = fixture_manifests('deprecation_notice.pp')
           output, has_errors = subject.check(files)
