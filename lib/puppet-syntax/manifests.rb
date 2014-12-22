@@ -41,7 +41,7 @@ module PuppetSyntax
       }
 
       # Errors exist if there is any output that isn't a warning.
-      has_errors = (not output == warnings)
+      has_errors = (output != warnings)
 
       return output, has_errors
     end
