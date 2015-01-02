@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe PuppetSyntax do
+  after do
+    PuppetSyntax.exclude_paths = []
+  end
+
   it 'should default exclude_paths to empty array' do
     expect(PuppetSyntax.exclude_paths).to be_empty
   end
@@ -8,6 +12,11 @@ describe PuppetSyntax do
   it 'should support setting exclude_paths' do
     PuppetSyntax.exclude_paths = ["foo", "bar/baz"]
     expect(PuppetSyntax.exclude_paths).to eq(["foo", "bar/baz"])
+  end
+
+  it 'should support appending exclude_paths' do
+    PuppetSyntax.exclude_paths << "foo"
+    expect(PuppetSyntax.exclude_paths).to eq(["foo"])
   end
 
   it 'should support future parser setting' do
