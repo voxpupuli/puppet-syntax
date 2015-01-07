@@ -24,4 +24,9 @@ describe PuppetSyntax do
     expect(PuppetSyntax.future_parser).to eq(true)
   end
 
+  it 'should support a fail_on_warnings setting' do
+    PuppetSyntax.fail_on_warnings = false
+    expect(PuppetSyntax.fail_on_warnings).to eq(false)
+  end
+
 end
