@@ -123,7 +123,7 @@ describe PuppetSyntax::Manifests do
         context 'Puppet >= 3.7' do
           # Certain elements of the future parser weren't added until 3.7
           if Puppet::Util::Package.versioncmp(Puppet.version, '3.7') >= 0
-            it 'should fail on what were deprecation notices in the < 4.0 parser' do
+            it 'should fail on what were deprecation notices in the non-future parser' do
               files = fixture_manifests('deprecation_notice.pp')
               output, has_errors = subject.check(files)
 
