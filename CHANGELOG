@@ -1,3 +1,6 @@
+2015-01-08 Release 1.4.1
+- Support appending to config arrays, thanks @domcleal
+
 2014-12-04 Release 1.4.0
 - Rspec 3 is now supported, thanks @tuxmea
 - Build error fixed where gem_publisher was used prematurely
