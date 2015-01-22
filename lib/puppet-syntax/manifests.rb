@@ -42,6 +42,7 @@ module PuppetSyntax
       has_validator_errors = validator_errors.any?
 
       has_errors = has_log_errors || has_validator_errors
+      has_warnings = log_collector.collect { |e| e.level == :warning }.any?
 
       output_log = log_collector.map { |e| e.to_s }
       output_validator = validator_errors .map { |e| e.to_s }
@@ -49,7 +50,7 @@ module PuppetSyntax
       output.concat(output_validator)
       output.concat(output_log)
 
-      return output, has_errors
+      return output, has_errors, has_warnings
     end
 
     private
