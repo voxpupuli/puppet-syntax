@@ -32,7 +32,7 @@ describe PuppetSyntax::Manifests do
     expect(output.size).to eq(2)
     expect(output[0]).to match(/Unrecognised escape sequence '\\\[' .* at line 3$/)
     expect(output[1]).to match(/Unrecognised escape sequence '\\\]' .* at line 3$/)
-    expect(has_errors).to eq(true)
+    expect(has_errors).to eq(false)
   end
 
   it 'should ignore warnings about storeconfigs' do

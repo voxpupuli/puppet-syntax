@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rake"
 
+  spec.add_dependency "pry"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "gem_publisher", "~> 1.3"
 end

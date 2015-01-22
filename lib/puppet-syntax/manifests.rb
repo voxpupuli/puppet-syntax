@@ -1,3 +1,4 @@
+require 'pry'
 module PuppetSyntax
   class Manifests
     def check(filelist)
@@ -6,6 +7,8 @@ module PuppetSyntax
       require 'puppet/face'
 
       output = []
+      log_collector = []
+      validator_errors = []
 
       # FIXME: We shouldn't need to do this. puppet/face should. See:
       # - http://projects.puppetlabs.com/issues/15529
@@ -15,7 +18,7 @@ module PuppetSyntax
       end
 
       # Catch syntax warnings.
-      Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(output))
+      Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(log_collector))
       Puppet::Util::Log.level = :warning
 
       filelist.each do |puppet_file|
@@ -24,24 +27,27 @@ module PuppetSyntax
         rescue SystemExit
           # Disregard exit(1) from face.
         rescue => error
-          output << error
+          validator_errors << error
         end
       end
 
       Puppet::Util::Log.close_all
-      output.map! { |e| e.to_s }
 
       # Exported resources will raise warnings when outside a puppetmaster.
-      output.reject! { |e|
-        e =~ /^You cannot collect( exported resources)? without storeconfigs being set/
+      log_collector.reject! { |e|
+        e.message =~ /^You cannot collect( exported resources)? without storeconfigs being set/
       }
 
-      warnings = output.select { |e|
-        e =~ /^Deprecation notice:|is deprecated/
-      }
+      has_log_errors = log_collector.collect { |e| e.level == :err }.any?
+      has_validator_errors = validator_errors.any?
 
-      # Errors exist if there is any output that isn't a warning.
-      has_errors = (output != warnings)
+      has_errors = has_log_errors || has_validator_errors
+
+      output_log = log_collector.map { |e| e.to_s }
+      output_validator = validator_errors .map { |e| e.to_s }
+
+      output.concat(output_validator)
+      output.concat(output_log)
 
       return output, has_errors
     end

@@ -17,13 +17,13 @@ shared_context "rake" do
 end
 
 shared_examples_for "a successful rake task" do
-  it "passes" do
+  it "does not raise an exception" do
     expect { subject.invoke }.not_to raise_exception
   end
 end
 
 shared_examples_for "a failing rake task" do
-  it "fails" do
+  it "raises a RuntimeError exception" do
     expect { subject.invoke }.to raise_exception(RuntimeError)
   end
 end
@@ -37,6 +37,22 @@ describe "syntax:manifests" do
     end
 
     it_behaves_like "a successful rake task"
+  end
+
+  context "manifest with errors" do
+    before(:each) do
+      expect(FileList).to receive(:new).and_return(FileList[fixture_manifests('fail_error.pp').first])
+    end
+
+    describe "always fails regardless that fail_on_warnings is set to true" do
+      PuppetSyntax.fail_on_warnings = true
+      it_behaves_like "a failing rake task"
+    end
+
+    describe "always fails regardless that fail_on_warnings is set to false" do
+      PuppetSyntax.fail_on_warnings = false
+      it_behaves_like "a failing rake task"
+    end
   end
 
   context "manifest with deprecation notices" do
