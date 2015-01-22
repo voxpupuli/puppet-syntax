@@ -55,12 +55,13 @@ describe "syntax:manifests" do
     end
   end
 
+  # Note: deprecation notices are errors
   context "manifest with deprecation notices" do
     before(:each) do
       expect(FileList).to receive(:new).and_return(FileList[fixture_manifests('deprecation_notice.pp').first])
     end
 
-    describe "and fail_on_warnings is set to default" do
+    describe "and fail_on_warnings is set to aefault" do
       it_behaves_like "a failing rake task"
     end
 
@@ -71,7 +72,7 @@ describe "syntax:manifests" do
 
     describe "and fail_on_warnings is set to false" do
       PuppetSyntax.fail_on_warnings = false
-      it_behaves_like "a successful rake task"
+      it_behaves_like "a failing rake task"
     end
   end
 end
