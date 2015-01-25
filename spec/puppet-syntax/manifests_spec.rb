@@ -138,5 +138,4 @@ describe PuppetSyntax::Manifests do
       end
     end
   end
-
 end
