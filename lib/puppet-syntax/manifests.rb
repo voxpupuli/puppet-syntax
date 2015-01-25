@@ -36,14 +36,11 @@ module PuppetSyntax
         e =~ /^You cannot collect( exported resources)? without storeconfigs being set/
       }
 
-      warnings = output.select { |e|
-        e =~ /^Deprecation notice:|is deprecated/
-      }
+      output
+    end
 
-      # Errors exist if there is any output that isn't a warning.
-      has_errors = (output != warnings)
-
-      return output, has_errors
+    def has_deprecation_notices(output)
+      output.collect { |e| e =~ /^Deprecation notice:|is deprecated/ }.any?
     end
 
     private

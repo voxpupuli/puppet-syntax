@@ -36,9 +36,12 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
           files = files.exclude(*PuppetSyntax.exclude_paths)
 
           c = PuppetSyntax::Manifests.new
-          output, has_errors = c.check(files)
+          output = c.check(files)
+          has_deprecation_notices = c.has_deprecation_notices(output)
           print "#{output.join("\n")}\n" unless output.empty?
-          fail if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
+
+          fail if (!has_deprecation_notices && output.any?) \
+            || (PuppetSyntax.fail_on_deprecation_notices && has_deprecation_notices)
         end
 
         desc 'Syntax check Puppet templates'
