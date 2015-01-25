@@ -61,7 +61,7 @@ describe PuppetSyntax::Manifests do
     # before we'll know exactly how to test it.
     if Puppet::Util::Package.versioncmp(Puppet.version, '3.7') >= 0
       context 'on puppet >= 3.7' do
-        it 'should return deprecation notices as warnings' do
+        it 'should output deprecation notices' do
           files = fixture_manifests('deprecation_notice.pp')
           output = subject.check(files)
           has_deprecation_notices = subject.has_deprecation_notices(output)
@@ -74,7 +74,7 @@ describe PuppetSyntax::Manifests do
       end
     elsif Puppet::Util::Package.versioncmp(Puppet.version, '3.5') < 0
       context 'on puppet < 3.5' do
-        it 'should not print deprecation notices' do
+        it 'no deprecation notices are output because none are issued by Puppet' do
           files = fixture_manifests('deprecation_notice.pp')
           output = subject.check(files)
           has_deprecation_notices = subject.has_deprecation_notices(output)
