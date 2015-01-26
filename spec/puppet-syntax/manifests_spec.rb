@@ -80,7 +80,7 @@ describe PuppetSyntax::Manifests do
           has_deprecation_notices = subject.has_deprecation_notices(output)
 
           expect(output).to eq([])
-          expect(has_deprecation_notices).to eq(true)
+          expect(has_deprecation_notices).to eq(false)
         end
       end
     end
