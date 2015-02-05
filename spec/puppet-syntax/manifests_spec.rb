@@ -134,7 +134,7 @@ describe PuppetSyntax::Manifests do
           end
         end
       else
-        context 'Puppet <= 3.2' do
+        context 'Puppet < 3.2' do
           it 'should return an error that the parser option is not supported' do
             files = fixture_manifests(['future_syntax.pp'])
             output, has_errors = subject.check(files)
