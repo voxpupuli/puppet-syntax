@@ -78,6 +78,17 @@ describe PuppetSyntax::Manifests do
           expect(output[1]).to match(/Deprecation notice:/)
         end
       end
+    elsif Puppet::Util::Package.versioncmp(Puppet.version, '3.5') >= 0
+      context 'on puppet 3.5 and 3.6' do
+        it 'should return deprecation notices as warnings' do
+          files = fixture_manifests('deprecation_notice.pp')
+          output, has_errors = subject.check(files)
+
+          expect(has_errors).to eq(false)
+          expect(output.size).to eq(1)
+          expect(output[0]).to match(/The use of 'import' is deprecated/)
+        end
+      end
     elsif Puppet::Util::Package.versioncmp(Puppet.version, '3.5') < 0
       context 'on puppet < 3.5' do
         it 'should not print deprecation notices' do
