@@ -5,7 +5,7 @@ module PuppetSyntax
       require 'puppet'
       require 'puppet/face'
 
-      errors = []
+      output = []
 
       # FIXME: We shouldn't need to do this. puppet/face should. See:
       # - http://projects.puppetlabs.com/issues/15529
@@ -15,7 +15,7 @@ module PuppetSyntax
       end
 
       # Catch syntax warnings.
-      Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(errors))
+      Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(output))
       Puppet::Util::Log.level = :warning
 
       filelist.each do |puppet_file|
@@ -24,19 +24,26 @@ module PuppetSyntax
         rescue SystemExit
           # Disregard exit(1) from face.
         rescue => error
-          errors << error
+          output << error
         end
       end
 
       Puppet::Util::Log.close_all
-      errors.map! { |e| e.to_s }
+      output.map! { |e| e.to_s }
 
       # Exported resources will raise warnings when outside a puppetmaster.
-      errors.reject! { |e|
+      output.reject! { |e|
         e =~ /^You cannot collect( exported resources)? without storeconfigs being set/
       }
 
-      errors
+      deprecations = output.select { |e|
+        e =~ /^Deprecation notice:|is deprecated/
+      }
+
+      # Errors exist if there is any output that isn't a deprecation notice.
+      has_errors = (output != deprecations)
+
+      return output, has_errors
     end
 
     private
