@@ -1,3 +1,9 @@
+2015-02-25 Release 2.0.0
+- Removed support for Puppet version 2.7.x
+- New option, fail_on_deprecation_notices, which defaults to true (compatible
+with previous behaviour); thanks @pcfens
+- PuppetSyntax::Manifests#check now has two return arguments
+
 2015-01-08 Release 1.4.1
 - Support appending to config arrays, thanks @domcleal
 
