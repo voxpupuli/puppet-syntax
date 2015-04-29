@@ -11,7 +11,7 @@ module PuppetSyntax
         begin
           YAML.load_file(hiera_file)
         rescue Exception => error
-          errors << error
+          errors << "ERROR: Failed to parse #{hiera_file}: #{error}"
         end
        end
 
