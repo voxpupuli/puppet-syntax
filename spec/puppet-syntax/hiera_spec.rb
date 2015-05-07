@@ -17,10 +17,10 @@ describe PuppetSyntax::Hiera do
     case RUBY_VERSION
     when /1.8/
       files = fixture_hiera('hiera_bad_18.yaml')
-      expected = /ERROR: Failed to parse/
+      expected = /ERROR: Failed to parse #{files[0]}:/
     else
       files = fixture_hiera('hiera_bad.yaml')
-      expected = /ERROR: Failed to parse/
+      expected = /ERROR: Failed to parse #{files[0]}:/
     end
     res = subject.check(files)
     expect(res.size).to be == 1
