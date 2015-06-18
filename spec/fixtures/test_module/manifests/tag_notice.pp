@@ -1,5 +1,5 @@
 class tag_parameter_test ($tag=undef){
-  notify { 'should should pass':
+  notify { 'tag_should pass':
     message => 'with flying colours',
   }
 }
