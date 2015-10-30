@@ -157,15 +157,16 @@ describe PuppetSyntax::Manifests do
           expect(output[0]).to match(/Syntax error at '='; expected '\}' .*:2$/)
           expect(has_errors).to eq(true)
         end
-      end
-      it 'should succeed on Puppet >= 4.0.0' do
-        expect(PuppetSyntax.future_parser).to eq(false)
+      else
+        it 'should succeed on Puppet >= 4.0.0' do
+          expect(PuppetSyntax.future_parser).to eq(false)
 
-        files = fixture_manifests(['future_syntax.pp'])
-        output, has_errors = subject.check(files)
+          files = fixture_manifests(['future_syntax.pp'])
+          output, has_errors = subject.check(files)
 
-        expect(output.size).to eq(0)
-        expect(has_errors).to eq(false)
+          expect(output.size).to eq(0)
+          expect(has_errors).to eq(false)
+        end
       end
     end
 
