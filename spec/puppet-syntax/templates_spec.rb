@@ -59,4 +59,39 @@ describe PuppetSyntax::Templates do
 
     expect(res).to match([])
   end
+
+  if Puppet::PUPPETVERSION.to_i >= 4
+    context 'on Puppet >= 4.0.0' do
+      it 'should return nothing from a valid file' do
+        files = fixture_templates('pass.epp')
+        res = subject.check(files)
+
+        expect(res).to match([])
+      end
+
+      it 'should catch SyntaxError' do
+        files = fixture_templates('fail_error.epp')
+        res = subject.check(files)
+
+        expect(res.size).to eq(1)
+        expect(res[0]).to match(/This Type-Name has no effect/)
+      end
+
+      it 'should read more than one valid file' do
+        files = fixture_templates(['pass.epp', 'pass_also.epp'])
+        res = subject.check(files)
+
+        expect(res).to match([])
+      end
+
+      it 'should continue after finding an error in the first file' do
+        files = fixture_templates(['fail_error.epp', 'fail_error_also.epp'])
+        res = subject.check(files)
+
+        expect(res.size).to eq(2)
+        expect(res[0]).to match(/This Type-Name has no effect/)
+        expect(res[1]).to match(/Syntax error at '}' at \S*\/fail_error_also.epp:2:4/)
+      end
+    end
+  end
 end

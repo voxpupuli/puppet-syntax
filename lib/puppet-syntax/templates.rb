@@ -1,5 +1,6 @@
 require 'erb'
 require 'stringio'
+require 'puppet'
 
 module PuppetSyntax
   class Templates
@@ -10,25 +11,51 @@ module PuppetSyntax
       $stderr = warnings = StringIO.new()
       errors = []
 
-      filelist.each do |erb_file|
-        begin
-          erb = ERB.new(File.read(erb_file), nil, '-')
-          erb.filename = erb_file
-          erb.result
-        rescue NameError
-          # This is normal because we don't have the variables that would
-          # ordinarily be bound by the parent Puppet manifest.
-        rescue TypeError
-          # This is normal because we don't have the variables that would
-          # ordinarily be bound by the parent Puppet manifest.
-        rescue SyntaxError => error
-          errors << error
+      filelist.each do |file|
+        if File.extname(file) == '.epp' or PuppetSyntax.epp_only
+          errors.concat validate_epp(file)
+        else
+          errors.concat validate_erb(file)
         end
       end
 
       $stderr = STDERR
       errors << warnings.string unless warnings.string.empty?
       errors.map! { |e| e.to_s }
+
+      errors
+    end
+
+    def validate_epp(filename)
+      raise "Cannot validate EPP without Puppet 4" unless Puppet::PUPPETVERSION.to_i >= 4
+      require 'puppet/pops'
+      errors = []
+      begin
+        parser = Puppet::Pops::Parser::EvaluatingParser::EvaluatingEppParser.new()
+        parser.parse_file(filename)
+      rescue => detail
+        errors << detail
+      end
+
+      errors
+    end
+
+    def validate_erb(filename)
+      errors = []
+
+      begin
+        erb = ERB.new(File.read(filename), nil, '-')
+        erb.filename = filename
+        erb.result
+      rescue NameError => error
+        # This is normal because we don't have the variables that would
+        # ordinarily be bound by the parent Puppet manifest.
+      rescue TypeError
+        # This is normal because we don't have the variables that would
+        # ordinarily be bound by the parent Puppet manifest.
+      rescue SyntaxError => error
+        errors << error
+      end
 
       errors
     end
