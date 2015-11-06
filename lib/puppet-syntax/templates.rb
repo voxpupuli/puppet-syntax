@@ -27,7 +27,10 @@ module PuppetSyntax
     end
 
     def validate_epp(filename)
-      raise "Cannot validate EPP without Puppet 4" unless Puppet::PUPPETVERSION.to_i >= 4
+      if Puppet::PUPPETVERSION.to_i < 4
+        raise "Cannot validate EPP without Puppet 4"
+      end
+
       require 'puppet/pops'
       errors = []
       begin

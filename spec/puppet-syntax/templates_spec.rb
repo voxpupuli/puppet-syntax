@@ -60,6 +60,15 @@ describe PuppetSyntax::Templates do
     expect(res).to match([])
   end
 
+  if Puppet::PUPPETVERSION.to_i < 4
+    context 'on Puppet < 4.0.0' do
+      it 'should fail when parsing EPP files' do
+        file = fixture_templates('pass.epp')
+        expect{ subject.check(file) }.to raise_error(/Cannot validate EPP without Puppet 4/)
+      end
+    end
+  end
+
   if Puppet::PUPPETVERSION.to_i >= 4
     context 'on Puppet >= 4.0.0' do
       it 'should return nothing from a valid file' do
