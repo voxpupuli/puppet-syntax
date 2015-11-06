@@ -62,9 +62,20 @@ describe PuppetSyntax::Templates do
 
   if Puppet::PUPPETVERSION.to_i < 4
     context 'on Puppet < 4.0.0' do
-      it 'should fail when parsing EPP files' do
+      it 'should throw an exception when parsing EPP files' do
         file = fixture_templates('pass.epp')
         expect{ subject.check(file) }.to raise_error(/Cannot validate EPP without Puppet 4/)
+      end
+
+      context "when the 'epp_only' options is set" do
+        before(:each) {
+          PuppetSyntax.epp_only = true
+        }
+
+        it 'should throw an exception for any file' do
+          file = fixture_templates('pass.erb')
+          expect{ subject.check(file) }.to raise_error(/Cannot validate EPP without Puppet 4/)
+        end
       end
     end
   end
@@ -100,6 +111,19 @@ describe PuppetSyntax::Templates do
         expect(res.size).to eq(2)
         expect(res[0]).to match(/This Type-Name has no effect/)
         expect(res[1]).to match(/Syntax error at '}' at \S*\/fail_error_also.epp:2:4/)
+      end
+
+      context "when the 'epp_only' options is set" do
+        before(:each) {
+          PuppetSyntax.epp_only = true
+        }
+
+        it 'should process an ERB as EPP and find an error' do
+          files = fixture_templates('pass.erb')
+          res = subject.check(files)
+
+          expect(res.size).to eq(1)
+        end
       end
     end
   end
