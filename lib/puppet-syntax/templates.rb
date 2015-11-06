@@ -1,6 +1,6 @@
 require 'erb'
-require 'stringio'
 require 'puppet'
+require 'stringio'
 
 module PuppetSyntax
   class Templates
