@@ -88,44 +88,43 @@ describe PuppetSyntax::Manifests do
   end
 
   describe 'deprecation notices' do
-    # These tests should fail in Puppet 4, but we need to wait for the release
-    # before we'll know exactly how to test it.
-    if Puppet::PUPPETVERSION.to_i < 4
-      if Puppet::Util::Package.versioncmp(Puppet.version, '3.7') >= 0
-        context 'on puppet >= 3.7' do
-          it 'should return deprecation notices as warnings' do
-            files = fixture_manifests('deprecation_notice.pp')
-            output, has_errors = subject.check(files)
+    case Puppet.version.to_f
+    when 3.7, 3.8
+      context 'on puppet 3.7 and 3.8' do
+        it 'should return deprecation notices as warnings' do
+          files = fixture_manifests('deprecation_notice.pp')
+          output, has_errors = subject.check(files)
 
-            expect(has_errors).to eq(false)
-            expect(output.size).to eq(2)
-            expect(output[0]).to match(/The use of 'import' is deprecated/)
-            expect(output[1]).to match(/Deprecation notice:/)
-          end
-        end
-      elsif Puppet::Util::Package.versioncmp(Puppet.version, '3.5') >= 0
-        context 'on puppet 3.5 and 3.6' do
-          it 'should return deprecation notices as warnings' do
-            files = fixture_manifests('deprecation_notice.pp')
-            output, has_errors = subject.check(files)
-
-            expect(has_errors).to eq(false)
-            expect(output.size).to eq(1)
-            expect(output[0]).to match(/The use of 'import' is deprecated/)
-          end
-        end
-      elsif Puppet::Util::Package.versioncmp(Puppet.version, '3.5') < 0
-        context 'on puppet < 3.5' do
-          it 'should not print deprecation notices' do
-            files = fixture_manifests('deprecation_notice.pp')
-            output, has_errors = subject.check(files)
-
-            expect(output).to eq([])
-            expect(has_errors).to eq(false)
-          end
+          expect(has_errors).to eq(false)
+          expect(output.size).to eq(2)
+          expect(output[0]).to match(/The use of 'import' is deprecated/)
+          expect(output[1]).to match(/Deprecation notice:/)
         end
       end
-    else
+    when 3.5, 3.6
+      context 'on puppet 3.5 and 3.6' do
+        it 'should return deprecation notices as warnings' do
+          files = fixture_manifests('deprecation_notice.pp')
+          output, has_errors = subject.check(files)
+
+          expect(has_errors).to eq(false)
+          expect(output.size).to eq(1)
+          expect(output[0]).to match(/The use of 'import' is deprecated/)
+        end
+      end
+    when 3.0..3.4
+      context 'on puppet 3.0 to 3.4' do
+        it 'should not print deprecation notices' do
+          files = fixture_manifests('deprecation_notice.pp')
+          output, has_errors = subject.check(files)
+
+          expect(output).to eq([])
+          expect(has_errors).to eq(false)
+        end
+      end
+    end
+
+    if Puppet.version.to_i == 4
       context 'on puppet 4.0.0 and above' do
         it 'should instead be failures' do
           files = fixture_manifests('deprecation_notice.pp')
