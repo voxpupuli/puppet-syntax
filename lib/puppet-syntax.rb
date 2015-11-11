@@ -10,6 +10,6 @@ module PuppetSyntax
   @fail_on_deprecation_notices = true
 
   class << self
-    attr_accessor :exclude_paths, :future_parser, :hieradata_paths, :fail_on_deprecation_notices
+    attr_accessor :exclude_paths, :future_parser, :hieradata_paths, :fail_on_deprecation_notices, :epp_only
   end
 end

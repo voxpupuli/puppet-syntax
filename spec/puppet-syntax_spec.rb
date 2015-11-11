@@ -29,4 +29,9 @@ describe PuppetSyntax do
     expect(PuppetSyntax.fail_on_deprecation_notices).to eq(false)
   end
 
+  it 'should support forcing EPP only templates' do
+    PuppetSyntax.epp_only = true
+    expect(PuppetSyntax.epp_only).to eq(true)
+  end
+
 end
