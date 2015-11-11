@@ -89,6 +89,17 @@ describe PuppetSyntax::Manifests do
 
   describe 'deprecation notices' do
     case Puppet.version.to_f
+    when 4.0..4.99
+      context 'on puppet 4.0.0 and above' do
+        it 'should instead be failures' do
+          files = fixture_manifests('deprecation_notice.pp')
+          output, has_errors = subject.check(files)
+
+          expect(has_errors).to eq(true)
+          expect(output.size).to eq(1)
+          expect(output[0]).to match (/Node inheritance is not supported in Puppet >= 4.0.0/)
+        end
+      end
     when 3.7, 3.8
       context 'on puppet 3.7 and 3.8' do
         it 'should return deprecation notices as warnings' do
@@ -120,19 +131,6 @@ describe PuppetSyntax::Manifests do
 
           expect(output).to eq([])
           expect(has_errors).to eq(false)
-        end
-      end
-    end
-
-    if Puppet.version.to_i == 4
-      context 'on puppet 4.0.0 and above' do
-        it 'should instead be failures' do
-          files = fixture_manifests('deprecation_notice.pp')
-          output, has_errors = subject.check(files)
-
-          expect(has_errors).to eq(true)
-          expect(output.size).to eq(1)
-          expect(output[0]).to match (/Node inheritance is not supported in Puppet >= 4.0.0/)
         end
       end
     end
