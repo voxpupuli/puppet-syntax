@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'puppet-syntax/tasks/puppet-syntax'
 
 describe 'PuppetSyntax rake tasks' do
   it 'should generate FileList of manifests relative to Rakefile' do

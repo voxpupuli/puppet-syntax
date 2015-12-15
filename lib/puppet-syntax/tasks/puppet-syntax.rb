@@ -35,6 +35,7 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
 [INFO] Puppet 4 has been detected and `future_parser` has been set to
 'true'. The `future_parser setting will be ignored.
             EOS
+          end
           $stderr.puts "---> #{t.name}"
           files = FileList["**/*.pp"]
           files.reject! { |f| File.directory?(f) }
