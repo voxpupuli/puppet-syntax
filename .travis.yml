@@ -11,6 +11,7 @@ env:
   - PUPPET_VERSION="~> 3.4.0"
   - PUPPET_VERSION="~> 3.7.3"
   - PUPPET_VERSION="~> 4.2.0"
+  - PUPPET_VERSION="~> 4.3.0"
   - PUPPET_VERSION=">= 0"
 matrix:
   exclude:
