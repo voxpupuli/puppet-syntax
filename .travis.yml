@@ -1,5 +1,7 @@
 ---
 language: ruby
+# Workaround https://github.com/bundler/bundler/issues/3558
+before_install: gem install bundler
 script: bundle exec rake
 rvm:
   - 1.9.3
@@ -11,6 +13,7 @@ env:
   - PUPPET_VERSION="~> 3.4.0"
   - PUPPET_VERSION="~> 3.7.3"
   - PUPPET_VERSION="~> 4.2.0"
+  - PUPPET_VERSION="~> 4.3.0"
   - PUPPET_VERSION=">= 0"
 matrix:
   exclude:
