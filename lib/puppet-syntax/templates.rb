@@ -11,10 +11,13 @@ module PuppetSyntax
       $stderr = warnings = StringIO.new()
       errors = []
 
+      initial_directory = Dir.pwd
+
       filelist.each do |file|
         if File.extname(file) == '.epp' or PuppetSyntax.epp_only
           errors.concat validate_epp(file)
         else
+          Dir.chdir(initial_directory)
           errors.concat validate_erb(file)
         end
       end
