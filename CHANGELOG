@@ -1,3 +1,10 @@
+2016-01-18 Release 2.1.0
+- Support Puppet 4. Many thanks to @DavidS
+- Support validation of EPP templates. Thanks to @trlinkin
+- Test improvements and refactoring, including Travis CI tests against Puppet 4. Thanks to @trlinkin
+- Don't error when a tag metaparameter is present. Thank you @dhardy92
+- Report the filename of invalid hiera data files. Thanks @danzilio
+
 2015-02-25 Release 2.0.0
 - Removed support for Puppet version 2.7.x
 - New option, fail_on_deprecation_notices, which defaults to true (compatible
