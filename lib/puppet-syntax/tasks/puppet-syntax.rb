@@ -20,7 +20,7 @@ module PuppetSyntax
           }
 
           if psh_present
-            warn <<-EOS
+            puts <<-EOS
 [WARNING] A conflicting :syntax rake task has been defined by
 puppetlabs_spec_helper/rake_tasks. You should either disable this or upgrade
 to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
@@ -31,7 +31,7 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
         desc 'Syntax check Puppet manifests'
         task :manifests do |t|
           if Puppet::PUPPETVERSION.to_i >= 4 and PuppetSyntax.future_parser
-            info <<-EOS
+            puts <<-EOS
 [INFO] Puppet 4 has been detected and `future_parser` has been set to
 'true'. The `future_parser setting will be ignored.
             EOS
