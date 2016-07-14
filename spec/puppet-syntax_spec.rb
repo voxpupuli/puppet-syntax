@@ -24,6 +24,11 @@ describe PuppetSyntax do
     expect(PuppetSyntax.future_parser).to eq(true)
   end
 
+  it 'should support check eyaml setting' do
+    PuppetSyntax.check_eyaml = true
+    expect(PuppetSyntax.check_eyaml).to eq(true)
+  end
+
   it 'should support a fail_on_deprecation_notices setting' do
     PuppetSyntax.fail_on_deprecation_notices = false
     expect(PuppetSyntax.fail_on_deprecation_notices).to eq(false)

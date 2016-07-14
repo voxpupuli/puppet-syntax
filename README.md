@@ -65,6 +65,11 @@ If you are using some form of hiera data inside your module, you can configure w
 
     PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
 
+The above path will be checked once more with .eyaml suffix if you set
+
+    PuppetSyntax.check_eyaml = true
+
+
 ## Installation
 
 Add this line to your application's Gemfile:

@@ -21,4 +21,14 @@ describe PuppetSyntax::Hiera do
     expect(res.size).to be == 1
     expect(res.first).to match(expected)
   end
+
+  it "should check eyaml file" do
+    PuppetSyntax.check_eyaml = true
+    hiera_eyaml = ['hiera_ebad.eyaml']
+    files = fixture_hiera(hiera_eyaml)
+    expected = /ERROR: Failed to parse #{files[0]}:/
+    res = subject.check(files)
+    expect(res.size).to be == 1
+    expect(res.first).to match(expected)
+  end
 end

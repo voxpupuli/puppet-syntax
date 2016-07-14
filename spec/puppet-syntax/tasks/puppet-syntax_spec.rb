@@ -4,6 +4,7 @@ require 'puppet-syntax/tasks/puppet-syntax'
 known_pp = 'spec/fixtures/test_module/manifests/pass.pp'
 known_erb = 'spec/fixtures/test_module/templates/pass.erb'
 known_yaml = 'spec/fixtures/hiera/hiera_good.yaml'
+known_eyaml = 'spec/fixtures/hiera/hiera_egood.eyaml'
 
 describe 'PuppetSyntax rake tasks' do
   it 'should filter directories' do
@@ -30,6 +31,13 @@ describe 'PuppetSyntax rake tasks' do
     list = PuppetSyntax::RakeTask.new.filelist_hiera_yaml
     expect(list).to include(known_yaml)
     expect(list.count).to be >= 3
+  end
+
+  it 'should generate FileList of Hiera eyaml files relative to Rakefile' do
+    # hieradata_paths is still set
+    list = PuppetSyntax::RakeTask.new.filelist_hiera_eyaml
+    expect(list).to include(known_eyaml)
+    expect(list.count).to be >= 1
   end
 
   it 'should check manifests relative to Rakefile' do

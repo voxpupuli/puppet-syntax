@@ -22,6 +22,11 @@ module PuppetSyntax
       filelist(PuppetSyntax.hieradata_paths)
     end
 
+    def filelist_hiera_eyaml
+      filelist(PuppetSyntax.hieradata_paths
+                .map { |p| p.sub(/\.yaml$/, '.eyaml') } )
+    end
+
     def initialize(*args)
       desc 'Syntax check Puppet manifests and templates'
       task :syntax => [
@@ -74,6 +79,7 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
         desc 'Syntax check Hiera config files'
         task :hiera => [
           'syntax:hiera:yaml',
+          'syntax:hiera:eyaml',
         ]
 
         namespace :hiera do
@@ -82,6 +88,15 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
             c = PuppetSyntax::Hiera.new
             errors = c.check(filelist_hiera_yaml)
             fail errors.join("\n") unless errors.empty?
+          end
+
+          task :eyaml do |t|
+            if PuppetSyntax.check_eyaml
+              $stderr.puts "---> #{t.name}"
+              c = PuppetSyntax::Hiera.new
+              errors = c.check(filelist_hiera_eyaml)
+              fail errors.join("\n") unless errors.empty?
+            end
           end
         end
       end
