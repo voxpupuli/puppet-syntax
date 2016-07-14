@@ -22,13 +22,33 @@ describe PuppetSyntax::Hiera do
     expect(res.first).to match(expected)
   end
 
+  it "should return warnings for invalid keys" do
+    hiera_yaml = 'hiera_badkey.yaml'
+    examples = 5
+    files = fixture_hiera(hiera_yaml)
+    res = subject.check(files)
+    (1..examples).each do |n|
+      expect(res).to include(/::warning#{n}/)
+    end
+    expect(res.size).to be == examples
+  end
+
   it "should check eyaml file" do
     PuppetSyntax.check_eyaml = true
-    hiera_eyaml = ['hiera_ebad.eyaml']
-    files = fixture_hiera(hiera_eyaml)
-    expected = /ERROR: Failed to parse #{files[0]}:/
+    files = fixture_hiera('hiera_egood.eyaml')
     res = subject.check(files)
-    expect(res.size).to be == 1
-    expect(res.first).to match(expected)
+    expect(res.size).to be == 0
   end
+
+  it "should report malformed eyaml blob" do
+    # PuppetSyntax.check_eyaml is still true
+    files = fixture_hiera('hiera_ebad.eyaml')
+    examples = 7
+    res = subject.check(files)
+    (1..examples).each do |n|
+      expect(res).to include(/::bad#{n}/)
+    end
+    expect(res.size).to be == examples
+  end
+
 end

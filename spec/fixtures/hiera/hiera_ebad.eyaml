@@ -1,1 +1,67 @@
-%YAMLBAD
+---
+foo::encrypted::good1: >
+    ENC[PKCS7,
+    MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+    sRQvHaCPV42rB8CocTgmrazbf9Zokpgr/JRVuZIGtnOyfBCnlfUGfmKVMyMm
+    uIIYgFqVyL6ahjm/DplfQ6mQaQq93uD1pnWtRTqgM3TpWgphvkoFLMr/TWpk
+    OkNFj6oiqKa4W8r3ciikPgnhRqZtvEveeY2+tFgZv1XLD84fJWVTg44QOJ7t
+    pGhBG8KS1qcy32vwAe7KtUJKaVDIcpZji7Et0SHGaOzGot121HArwBojTvOh
+    KDzS3NC5s78qow26D7+Jj1tcxORU4U/LjP5VQyKWXRx5vt2qOCEMAddVE2Hk
+    u/1SdTA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCeEJFrY2rSmM+ULBfd
+    TmSogBDWs3pMsPAzKglYAmCdcNoN]
+foo::encrypted::good2: >
+    ENC[MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+    sRQvHaCPV42rB8CocTgmrazbf9Zokpgr/JRVuZIGtnOyfBCnlfUGfmKVMyMm
+    uIIYgFqVyL6ahjm/DplfQ6mQaQq93uD1pnWtRTqgM3TpWgphvkoFLMr/TWpk
+    OkNFj6oiqKa4W8r3ciikPgnhRqZtvEveeY2+tFgZv1XLD84fJWVTg44QOJ7t
+    pGhBG8KS1qcy32vwAe7KtUJKaVDIcpZji7Et0SHGaOzGot121HArwBojTvOh
+    KDzS3NC5s78qow26D7+Jj1tcxORU4U/LjP5VQyKWXRx5vt2qOCEMAddVE2Hk
+    u/1SdTA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCeEJFrY2rSmM+ULBfd
+    TmSogBDWs3pMsPAzKglYAmCdcNoN]
+
+foo::encrypted::bad1: >
+    ENC[PKCS7,
+    MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+foo::encrypted::bad2: >
+    ENC[JUNK42,
+    MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+    TmSogBDWs3pMsPAzKglYAmCdcNoN]
+foo::encrypted::bad3: >
+    ENC[PKCS7,
+    MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gd
+    TmSogBDWs3pMsPAzKglYAmCdcNoN]
+foo::encrypted::bad4: >
+    ENC[PKCS7,
+    %%IBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+    TmSogBDWs3pMsPAzKglYAmCdcNoN]
+foo::encrypted::bad5:
+  array:
+    - "normal string"
+    - >
+      ENC[PKCS7,
+      %%IBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+      TmSogBDWs3pMsPAzKglYAmCdcNoN]
+foo::encrypted::bad6:
+  hash:
+    one: "normal string"
+    two: >
+      ENC[PKCS7,
+      %%IBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+      TmSogBDWs3pMsPAzKglYAmCdcNoN]
+foo::encrypted::bad7:
+  hash:
+    one: "normal string"
+    two:
+      - >
+        ENC[PKCS7,
+        %%IBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+        DQYJKoZIhvcNAQEBBQAEggEAqWM/YS2dEuAYEGVGHu8SC1mYAJ5Kfr+W2gdl
+        TmSogBDWs3pMsPAzKglYAmCdcNoN]

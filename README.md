@@ -69,6 +69,11 @@ The above path will be checked once more with .eyaml suffix if you set
 
     PuppetSyntax.check_eyaml = true
 
+Enabling `check_eyaml` will also do rudimentary syntax checking on eyaml blobs in both .yaml and .eyaml files.
+
+By default, common mistakes in key names in Hiera files will be reported.  This can be disabled by setting
+
+    PuppetSyntax.check_hiera_keys = false
 
 ## Installation
 
