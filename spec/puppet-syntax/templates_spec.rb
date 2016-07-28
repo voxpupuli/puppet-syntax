@@ -60,8 +60,8 @@ describe PuppetSyntax::Templates do
     expect(res).to match([])
   end
 
-  if Puppet::PUPPETVERSION.to_i < 4
-    context 'on Puppet < 4.0.0' do
+  if Puppet::PUPPETVERSION.to_f < 3.7
+    context 'on Puppet < 3.7' do
       it 'should throw an exception when parsing EPP files' do
         file = fixture_templates('pass.epp')
         expect{ subject.check(file) }.to raise_error(/Cannot validate EPP without Puppet 4/)
@@ -80,8 +80,8 @@ describe PuppetSyntax::Templates do
     end
   end
 
-  if Puppet::PUPPETVERSION.to_i >= 4
-    context 'on Puppet >= 4.0.0' do
+  if Puppet::PUPPETVERSION.to_f >= 3.7
+    context 'on Puppet >= 3.7' do
       it 'should return nothing from a valid file' do
         files = fixture_templates('pass.epp')
         res = subject.check(files)
