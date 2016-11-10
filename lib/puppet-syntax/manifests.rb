@@ -4,27 +4,30 @@ module PuppetSyntax
       raise "Expected an array of files" unless filelist.is_a?(Array)
       require 'puppet'
       require 'puppet/face'
+      require 'puppet/test/test_helper'
 
       output = []
 
-      # FIXME: We shouldn't need to do this. puppet/face should. See:
-      # - http://projects.puppetlabs.com/issues/15529
-      # - https://groups.google.com/forum/#!topic/puppet-dev/Yk0WC1JZCg8/discussion
-      if (Puppet::PUPPETVERSION.to_i >= 3 && !Puppet.settings.app_defaults_initialized?)
-        Puppet.initialize_settings
+      if Puppet::Test::TestHelper.respond_to?(:initialize) # 3.1+
+        Puppet::Test::TestHelper.initialize
       end
+      Puppet::Test::TestHelper.before_all_tests
+      called_before_all_tests = true
 
       # Catch syntax warnings.
       Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(output))
       Puppet::Util::Log.level = :warning
 
       filelist.each do |puppet_file|
+        Puppet::Test::TestHelper.before_each_test
         begin
           validate_manifest(puppet_file)
         rescue SystemExit
           # Disregard exit(1) from face.
         rescue => error
           output << error
+        ensure
+          Puppet::Test::TestHelper.after_each_test
         end
       end
 
@@ -49,6 +52,8 @@ module PuppetSyntax
       has_errors = (output != deprecations)
 
       return output, has_errors
+    ensure
+      Puppet::Test::TestHelper.after_all_tests if called_before_all_tests
     end
 
     private
