@@ -1,3 +1,7 @@
+2016-12-02 Release 2.2.0
+- Replace Puppet.initialize_settings with Puppet::Test::TestHelper. Thanks @domcleal #60
+  This clears out caches on every test so increases runtime.
+
 2016-10-21 Release 2.1.1
 - Use `$stderr.puts` rather than `warn` and `info` (thanks @mmckinst)
 - Allow latest 3.x to validate EPP files (thanks @DavidS)
