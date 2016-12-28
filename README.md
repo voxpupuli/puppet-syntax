@@ -59,9 +59,9 @@ Checks `.yaml` files for syntax errors.
 
 By default, the rake task will look for all `.yaml` files under:
 
-* **/data/**/*.yaml
-* hieradata/**/*.yaml
-* hiera*.yaml
+* `**/data/**/*.yaml`
+* `hieradata/**/*.yaml`
+* `hiera*.yaml`
 
 ### manifests
 
