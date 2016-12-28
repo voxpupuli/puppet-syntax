@@ -51,6 +51,34 @@ Use in conjunction with lint and spec tests for Continuous Integration:
       :spec,
     ]
 
+## Checks
+
+### hiera
+
+Checks `.yaml` files for syntax errors.
+
+By default, the rake task will look for all `.yaml` files under:
+
+* **/data/**/*.yaml
+* hieradata/**/*.yaml
+* hiera*.yaml
+
+### manifests
+
+Checks `.pp` files for syntax errors
+
+### templates
+
+#### erb
+
+Checks `.erb` files for syntax errors
+
+#### epp
+
+Checks `.epp` files for syntax errors.
+
+Note: This will only occur when Puppet version specified is Puppet 4+ or Puppet 3 with the future parser enabled
+
 ## Configuration
 
 Paths can be excluded with:
