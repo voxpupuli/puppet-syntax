@@ -6,22 +6,20 @@ script: bundle exec rake
 rvm:
   - 1.9.3
   - 2.1.6
+  - 2.2.6
+  - 2.3.3
+  - 2.4.0
 env:
-  - PUPPET_VERSION="~> 3.0.0"
-  - PUPPET_VERSION="~> 3.1.0"
-  - PUPPET_VERSION="~> 3.2.0"
-  - PUPPET_VERSION="~> 3.4.0"
-  - PUPPET_VERSION="~> 3.7.3"
-  - PUPPET_VERSION="~> 4.2.0"
-  - PUPPET_VERSION="~> 4.3.0"
+  - PUPPET_VERSION="~> 3.8.7"
+  - PUPPET_VERSION="~> 4.8.0"
   - PUPPET_VERSION=">= 0"
 matrix:
   exclude:
-    - rvm: 2.1.6
-      env: PUPPET_VERSION="~> 3.2.0"
-    - rvm: 2.1.6
-      env: PUPPET_VERSION="~> 3.1.0"
-    - rvm: 2.1.6
-      env: PUPPET_VERSION="~> 3.0.0"
+    - env: PUPPET_VERSION="~> 3.8.7"
+      rvm: 2.2.6
+    - env: PUPPET_VERSION="~> 3.8.7"
+      rvm: 2.3.3
+    - env: PUPPET_VERSION="~> 3.8.7"
+      rvm: 2.4.0
   allow_failures:
     - env: PUPPET_VERSION=">= 0"
