@@ -4,6 +4,29 @@ require 'rake/tasklib'
 
 module PuppetSyntax
   class RakeTask < ::Rake::TaskLib
+    def filelist(paths)
+      files = FileList[paths]
+      files.reject! { |f| File.directory?(f) }
+      files.exclude(*PuppetSyntax.exclude_paths)
+    end
+
+    def filelist_manifests
+      filelist("**/*.pp")
+    end
+
+    def filelist_templates
+      filelist("**/templates/**/*")
+    end
+
+    def filelist_hiera_yaml
+      filelist(PuppetSyntax.hieradata_paths)
+    end
+
+    def filelist_hiera_eyaml
+      filelist(PuppetSyntax.hieradata_paths
+                .map { |p| p.sub(/\.yaml$/, '.eyaml') } )
+    end
+
     def initialize(*args)
       desc 'Syntax check Puppet manifests and templates'
       task :syntax => [
@@ -37,12 +60,9 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
             EOS
           end
           $stderr.puts "---> #{t.name}"
-          files = FileList["**/*.pp"]
-          files.reject! { |f| File.directory?(f) }
-          files = files.exclude(*PuppetSyntax.exclude_paths)
 
           c = PuppetSyntax::Manifests.new
-          output, has_errors = c.check(files)
+          output, has_errors = c.check(filelist_manifests)
           print "#{output.join("\n")}\n" unless output.empty?
           fail if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
         end
@@ -50,30 +70,33 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
         desc 'Syntax check Puppet templates'
         task :templates do |t|
           $stderr.puts "---> #{t.name}"
-          files = FileList["**/templates/**/*"]
-          files.reject! { |f| File.directory?(f) }
-          files = files.exclude(*PuppetSyntax.exclude_paths)
 
           c = PuppetSyntax::Templates.new
-          errors = c.check(files)
+          errors = c.check(filelist_templates)
           fail errors.join("\n") unless errors.empty?
         end
 
         desc 'Syntax check Hiera config files'
         task :hiera => [
           'syntax:hiera:yaml',
+          'syntax:hiera:eyaml',
         ]
 
         namespace :hiera do
           task :yaml do |t|
             $stderr.puts "---> #{t.name}"
-            files = FileList.new(PuppetSyntax.hieradata_paths)
-            files.reject! { |f| File.directory?(f) }
-            files = files.exclude(*PuppetSyntax.exclude_paths)
-
             c = PuppetSyntax::Hiera.new
-            errors = c.check(files)
+            errors = c.check(filelist_hiera_yaml)
             fail errors.join("\n") unless errors.empty?
+          end
+
+          task :eyaml do |t|
+            if PuppetSyntax.check_eyaml
+              $stderr.puts "---> #{t.name}"
+              c = PuppetSyntax::Hiera.new
+              errors = c.check(filelist_hiera_eyaml)
+              fail errors.join("\n") unless errors.empty?
+            end
           end
         end
       end
