@@ -37,7 +37,7 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
             EOS
           end
           $stderr.puts "---> #{t.name}"
-          files = FileList["**/*.pp"]
+          files = FileList["manifests/**/*.pp"]
           files.reject! { |f| File.directory?(f) }
           files = files.exclude(*PuppetSyntax.exclude_paths)
 
@@ -50,7 +50,7 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
         desc 'Syntax check Puppet templates'
         task :templates do |t|
           $stderr.puts "---> #{t.name}"
-          files = FileList["**/templates/**/*"]
+          files = FileList["templates/**/*"]
           files.reject! { |f| File.directory?(f) }
           files = files.exclude(*PuppetSyntax.exclude_paths)
 
