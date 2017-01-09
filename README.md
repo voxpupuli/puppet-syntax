@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gds-operations/puppet-syntax.svg?branch=master)](https://travis-ci.org/gds-operations/puppet-syntax)
+[![Build Status](https://travis-ci.org/voxpupuli/puppet-syntax.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-syntax)
 
 # Puppet::Syntax
 
