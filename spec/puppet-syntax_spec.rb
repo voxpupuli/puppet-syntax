@@ -24,6 +24,11 @@ describe PuppetSyntax do
     expect(PuppetSyntax.future_parser).to eq(true)
   end
 
+  it 'should support app_management setting setting' do
+    PuppetSyntax.app_management = true
+    expect(PuppetSyntax.app_management).to eq(true)
+  end
+
   it 'should support a fail_on_deprecation_notices setting' do
     PuppetSyntax.fail_on_deprecation_notices = false
     expect(PuppetSyntax.fail_on_deprecation_notices).to eq(false)

@@ -136,6 +136,46 @@ describe PuppetSyntax::Manifests do
     end
   end
 
+  describe 'app_management' do
+    context 'app_management = false (default)' do
+      it 'should fail to parse an application manifest' do
+
+        files = fixture_manifests(['test_app.pp'])
+        output,has_errors = subject.check(files)
+
+        expect(has_errors).to eq(true)
+        expect(output).to include(/error/)
+      end
+    end
+    context 'app_management = true' do
+      before(:each) {
+        PuppetSyntax.app_management = true
+      }
+      if Puppet::PUPPETVERSION.to_f >= 4.3
+        it 'should successfully parse an application manifest on Puppet >= 4.3.0' do
+          expect(PuppetSyntax.app_management).to eq(true)
+
+          files = fixture_manifests(['test_app.pp'])
+          output,has_errors = subject.check(files)
+
+          expect(output.size).to eq(0)
+          expect(has_errors).to eq(false)
+        end
+      else
+        it 'should fail to parse an application manifest on Puppet < 4.3.0' do
+          expect(PuppetSyntax.app_management).to eq(true)
+
+          files = fixture_manifests(['test_app.pp'])
+          output,has_errors = subject.check(files)
+
+          expect(output).to include(/error/)
+          expect(has_errors).to eq(true)
+        end
+      end
+    end
+  end
+
+
   describe 'future_parser' do
     context 'future_parser = false (default)' do
       if Puppet::Util::Package.versioncmp(Puppet.version, '4.0') < 0

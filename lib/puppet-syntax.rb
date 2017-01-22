@@ -8,8 +8,9 @@ module PuppetSyntax
   @future_parser = false
   @hieradata_paths = ["**/data/**/*.*yaml", "hieradata/**/*.*yaml", "hiera*.*yaml"]
   @fail_on_deprecation_notices = true
+  @app_management = false
 
   class << self
-    attr_accessor :exclude_paths, :future_parser, :hieradata_paths, :fail_on_deprecation_notices, :epp_only
+    attr_accessor :exclude_paths, :future_parser, :hieradata_paths, :fail_on_deprecation_notices, :epp_only, :app_management
   end
 end
