@@ -137,6 +137,10 @@ describe PuppetSyntax::Manifests do
   end
 
   describe 'app_management' do
+    after do
+      PuppetSyntax.app_management = false
+    end
+
     context 'app_management = false (default)' do
       it 'should fail to parse an application manifest' do
 

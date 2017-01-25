@@ -3,6 +3,7 @@ require 'spec_helper'
 describe PuppetSyntax do
   after do
     PuppetSyntax.exclude_paths = []
+    PuppetSyntax.app_management = false
   end
 
   it 'should default exclude_paths to empty array' do
