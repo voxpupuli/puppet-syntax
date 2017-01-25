@@ -15,7 +15,7 @@ module PuppetSyntax
     end
 
     def filelist_templates
-      filelist("**/templates/**/*")
+      filelist(["**/templates/**/*.erb", "**/templates/**/*.epp"])
     end
 
     def filelist_hiera_yaml
