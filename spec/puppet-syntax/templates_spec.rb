@@ -60,6 +60,13 @@ describe PuppetSyntax::Templates do
     expect(res).to match([])
   end
 
+  it 'should ignore files without .erb extension' do
+    files = fixture_templates('ignore.tpl')
+    res = subject.check(files)
+
+    expect(res).to match([])
+  end
+
   if Puppet::PUPPETVERSION.to_f < 3.7
     context 'on Puppet < 3.7' do
       it 'should throw an exception when parsing EPP files' do
