@@ -14,7 +14,7 @@ module PuppetSyntax
       filelist.each do |file|
         if File.extname(file) == '.epp' or PuppetSyntax.epp_only
           errors.concat validate_epp(file)
-        else
+        elsif File.extname(file) == '.erb'
           errors.concat validate_erb(file)
         end
       end
