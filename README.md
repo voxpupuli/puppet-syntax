@@ -93,6 +93,10 @@ If you are using some form of hiera data inside your module, you can configure w
 
     PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
 
+If you are trying to validate the syntax of code written for application orchestration, you can enable the `app_management` setting:
+
+    PuppetSyntax.app_management = true
+
 ## Installation
 
 Add this line to your application's Gemfile:
