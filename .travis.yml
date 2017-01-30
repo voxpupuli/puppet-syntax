@@ -23,3 +23,15 @@ matrix:
       rvm: 2.4.0
   allow_failures:
     - env: PUPPET_VERSION=">= 0"
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: "kwxryZZ/t9EkWuYxhz3G1v+U3ZK4WdsiN0UFHDjijnAGPxqe/n+oBcNA8hOiNhjZeTFo8bADEZkL7JtdKQo9RvgStipyaS5gDHB/C1c4LOBWv4Tga21NNCAuBcE2CDtAH3+TzrZV5vv2+SpOrhKZpzZoAoR6PR1MWVWMUie/rE0="
+  gem: puppet-syntax
+  on:
+    rvm: 2.4.0
+    condition: '"$PUPPET_VERSION" = "~> 4.8.0"'
+    tags: true
+    all_branches: true
+    repo: voxpupuli/puppet-syntax
