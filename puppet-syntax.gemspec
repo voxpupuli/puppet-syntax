@@ -6,8 +6,7 @@ require 'puppet-syntax/version'
 Gem::Specification.new do |spec|
   spec.name          = "puppet-syntax"
   spec.version       = PuppetSyntax::VERSION
-  spec.authors       = ["Dan Carley"]
-  spec.email         = ["dan.carley@gmail.com"]
+  spec.authors       = ["Government Digital Service"]
   spec.description   = %q{Syntax checks for Puppet manifests and templates}
   spec.summary       = %q{Syntax checks for Puppet manifests, templates, and Hiera YAML}
   spec.homepage      = "https://github.com/gds-operations/puppet-syntax"
