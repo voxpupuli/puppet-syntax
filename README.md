@@ -97,6 +97,10 @@ If you are trying to validate the syntax of code written for application orchest
 
     PuppetSyntax.app_management = true
 
+Deprecation notices will cause a failure by default, you can override this functionality by setting:
+
+    PuppetSyntax.fail_on_deprecation_notices = false
+
 ## Installation
 
 Add this line to your application's Gemfile:
