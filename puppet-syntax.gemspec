@@ -6,11 +6,11 @@ require 'puppet-syntax/version'
 Gem::Specification.new do |spec|
   spec.name          = "puppet-syntax"
   spec.version       = PuppetSyntax::VERSION
-  spec.authors       = ["Dan Carley"]
-  spec.email         = ["dan.carley@gmail.com"]
+  spec.authors       = ["Vox Pupuli"]
+  spec.email         = ["voxpupuli@groups.io"]
   spec.description   = %q{Syntax checks for Puppet manifests and templates}
   spec.summary       = %q{Syntax checks for Puppet manifests, templates, and Hiera YAML}
-  spec.homepage      = "https://github.com/gds-operations/puppet-syntax"
+  spec.homepage      = "https://github.com/voxpupuli/puppet-syntax"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

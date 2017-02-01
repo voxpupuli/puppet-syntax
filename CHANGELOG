@@ -1,3 +1,10 @@
+2017-01-30 Release 2.3.0
+- Add app_management flag for Puppet application orchestration support. Thanks @ipcrm.
+- Check all *yaml file extensions, including eyaml. thanks @kjetilho, @rjw1.
+- Only test ERB syntax in files with an *.erb extension. Thanks @alexiri.
+- Extend README to list specific files and checks implemented. Thanks @petems.
+- Refactor Rake filelist generation, add tests. Thanks @kjetilho, @rjw1.
+
 2016-12-02 Release 2.2.0
 - Replace Puppet.initialize_settings with Puppet::Test::TestHelper. Thanks @domcleal #60
   This clears out caches on every test so increases runtime.
