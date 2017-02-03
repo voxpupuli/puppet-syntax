@@ -30,7 +30,7 @@ describe PuppetSyntax::Manifests do
 
     if Puppet::PUPPETVERSION.to_i >= 4
       expect(output.size).to eq(3)
-      expect(output[2]).to match(/Found 2 errors. Giving up/)
+      expect(output[2]).to match(/2 errors. Giving up/)
       expect(has_errors).to eq(true)
     else
       expect(output.size).to eq(1)
@@ -76,7 +76,7 @@ describe PuppetSyntax::Manifests do
       expect(output.size).to eq(5)
       expect(output[0]).to match(/This Name has no effect. A Host Class Definition can not end with a value-producing expression without other effect at \S*\/fail_error.pp:2:32$/)
       expect(output[1]).to match(/This Name has no effect. A value(-producing expression without other effect may only be placed last in a block\/sequence| was produced and then forgotten.*) at \S*\/fail_error.pp:2:3$/)
-      expect(output[2]).to match('Found 2 errors. Giving up')
+      expect(output[2]).to match('2 errors. Giving up')
       expect(output[3]).to match(/Unrecogni(s|z)ed escape sequence '\\\['/)
       expect(output[4]).to match(/Unrecogni(s|z)ed escape sequence '\\\]'/)
     else
