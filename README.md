@@ -97,6 +97,8 @@ If you are trying to validate the syntax of code written for application orchest
 
     PuppetSyntax.app_management = true
 
+`app_management` is supported on Puppet 4.3 or higher, defaulting to off. On Puppet 5, it is always enabled.
+
 Deprecation notices will cause a failure by default, you can override this functionality by setting:
 
     PuppetSyntax.fail_on_deprecation_notices = false

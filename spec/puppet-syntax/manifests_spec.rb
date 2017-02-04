@@ -138,10 +138,10 @@ describe PuppetSyntax::Manifests do
 
   describe 'app_management' do
     after do
-      PuppetSyntax.app_management = false
+      PuppetSyntax.app_management = false if Puppet::PUPPETVERSION.to_i < 5
     end
 
-    context 'app_management = false (default)' do
+    context 'app_management = false (default)', :if => (Puppet::PUPPETVERSION.to_i < 5) do
       it 'should fail to parse an application manifest' do
 
         files = fixture_manifests(['test_app.pp'])
