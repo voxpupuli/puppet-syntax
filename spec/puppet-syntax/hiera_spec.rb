@@ -21,4 +21,34 @@ describe PuppetSyntax::Hiera do
     expect(res.size).to be == 1
     expect(res.first).to match(expected)
   end
+
+  context 'check_hiera_keys = true' do
+    before(:each) {
+      PuppetSyntax.check_hiera_keys = true
+    }
+
+    it "should return warnings for invalid keys" do
+      hiera_yaml = 'hiera_badkey.yaml'
+      examples = 5
+      files = fixture_hiera(hiera_yaml)
+      res = subject.check(files)
+      (1..examples).each do |n|
+        expect(res).to include(/::warning#{n}/)
+      end
+      expect(res.size).to be == examples
+      expect(res[0]).to match('Key :typical:typo::warning1: Looks like a missing colon')
+      expect(res[1]).to match('Key ::notsotypical::warning2: Puppet automatic lookup will not use leading \'::\'')
+      expect(res[2]).to match('Key :noCamelCase::warning3: Not a valid Puppet variable name for automatic lookup')
+      expect(res[3]).to match('Key :no-hyphens::warning4: Not a valid Puppet variable name for automatic lookup')
+      expect(res[4]).to match('Key :picky::warning5: Puppet automatic lookup will not look up symbols')
+    end
+
+    it "should handle empty files" do
+      hiera_yaml = 'hiera_key_empty.yaml'
+      files = fixture_hiera(hiera_yaml)
+      res = subject.check(files)
+      expect(res).to be_empty
+    end
+
+  end
 end

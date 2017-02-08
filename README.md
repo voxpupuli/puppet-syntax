@@ -103,6 +103,17 @@ Deprecation notices will cause a failure by default, you can override this funct
 
     PuppetSyntax.fail_on_deprecation_notices = false
 
+Common mistakes in key names in Hiera files will be reported:
+
+- Leading :: in keys eg. `::notsotypical::warning2: true`
+- Single colon scope seperators eg. `:picky::warning5: true`
+- Invalid camel casing eg. `noCamelCase::warning3: true`
+- Use of hyphens eg. `no-hyphens::warning4: true`
+
+This can be enabled by setting
+
+    PuppetSyntax.check_hiera_keys = true
+
 ## Installation
 
 Add this line to your application's Gemfile:
