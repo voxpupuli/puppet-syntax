@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PuppetSyntax do
   after do
     PuppetSyntax.exclude_paths = []
-    PuppetSyntax.app_management = false if Puppet::PUPPETVERSION.to_i < 5
+    PuppetSyntax.app_management = false if Puppet.version.to_i < 5
   end
 
   it 'should default exclude_paths to empty array' do
@@ -30,7 +30,7 @@ describe PuppetSyntax do
     expect(PuppetSyntax.app_management).to eq(true)
   end
 
-  it 'should raise error when app_management is disabled on 5.x', :if => (Puppet::PUPPETVERSION.to_i >= 5) do
+  it 'should raise error when app_management is disabled on 5.x', :if => (Puppet.version.to_i >= 5) do
     expect { PuppetSyntax.app_management = false }.to raise_error(/app_management cannot be disabled on Puppet 5 or higher/)
   end
 

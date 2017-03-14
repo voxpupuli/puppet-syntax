@@ -48,13 +48,13 @@ to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
 
         desc 'Syntax check Puppet manifests'
         task :manifests do |t|
-          if Puppet::PUPPETVERSION.to_i >= 4 and PuppetSyntax.future_parser
+          if Puppet.version.to_i >= 4 and PuppetSyntax.future_parser
             $stderr.puts <<-EOS
 [INFO] Puppet 4 has been detected and `future_parser` has been set to
 'true'. The `future_parser setting will be ignored.
             EOS
           end
-          if Puppet::PUPPETVERSION.to_f < 4.3 and PuppetSyntax.app_management
+          if Puppet::Util::Package.versioncmp(Puppet.version, '4.3.0') < 0 and PuppetSyntax.app_management
             $stderr.puts <<-EOS
 [WARNING] Puppet `app_management` has been detected but the Puppet
 version is less then 4.3.  The `app_management` setting will be ignored.

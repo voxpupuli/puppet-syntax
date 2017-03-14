@@ -13,7 +13,7 @@ module PuppetSyntax
     "hiera*.*yaml"
   ]
   @fail_on_deprecation_notices = true
-  @app_management = Puppet::PUPPETVERSION.to_i >= 5 ? true : false
+  @app_management = Puppet.version.to_i >= 5 ? true : false
   @check_hiera_keys = false
 
   class << self
@@ -26,7 +26,7 @@ module PuppetSyntax
     attr_reader :app_management
 
     def app_management=(app_management)
-      raise 'app_management cannot be disabled on Puppet 5 or higher' if Puppet::PUPPETVERSION.to_i >= 5 && !app_management
+      raise 'app_management cannot be disabled on Puppet 5 or higher' if Puppet.version.to_i >= 5 && !app_management
       @app_management = app_management
     end
   end
