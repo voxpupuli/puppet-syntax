@@ -155,7 +155,7 @@ describe PuppetSyntax::Manifests do
       before(:each) {
         PuppetSyntax.app_management = true
       }
-      if Puppet::PUPPETVERSION.to_f >= 4.3
+      if Puppet::Util::Package.versioncmp(Puppet.version, '4.3.0') >= 0
         it 'should successfully parse an application manifest on Puppet >= 4.3.0' do
           expect(PuppetSyntax.app_management).to eq(true)
 
