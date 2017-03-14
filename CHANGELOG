@@ -1,3 +1,9 @@
+2017-03-14 Release 2.4.0
+- Add check_hiera_keys flag for deep checking of Hiera key name correctness. Thanks @petems.
+- Fix Puppet version comparisons for compatibility with Puppet 4.10.
+- Fix app_management setting compatibility with Puppet 5.
+- Refactor PUPPETVERSION usage to Puppet.version public API.
+
 2017-01-30 Release 2.3.0
 - Add app_management flag for Puppet application orchestration support. Thanks @ipcrm.
 - Check all *yaml file extensions, including eyaml. thanks @kjetilho, @rjw1.
