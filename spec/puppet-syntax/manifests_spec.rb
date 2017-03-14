@@ -28,7 +28,7 @@ describe PuppetSyntax::Manifests do
     files = fixture_manifests('fail_error.pp')
     output, has_errors = subject.check(files)
 
-    if Puppet::PUPPETVERSION.to_i >= 4
+    if Puppet.version.to_i >= 4
       expect(output.size).to eq(3)
       expect(output[2]).to match(/2 errors. Giving up/)
       expect(has_errors).to eq(true)
@@ -72,7 +72,7 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(has_errors).to eq(true)
-    if Puppet::PUPPETVERSION.to_i >= 4
+    if Puppet.version.to_i >= 4
       expect(output.size).to eq(5)
       expect(output[0]).to match(/This Name has no effect. A Host Class Definition can not end with a value-producing expression without other effect at \S*\/fail_error.pp:2:32$/)
       expect(output[1]).to match(/This Name has no effect. A value(-producing expression without other effect may only be placed last in a block\/sequence| was produced and then forgotten.*) at \S*\/fail_error.pp:2:3$/)
@@ -138,10 +138,10 @@ describe PuppetSyntax::Manifests do
 
   describe 'app_management' do
     after do
-      PuppetSyntax.app_management = false if Puppet::PUPPETVERSION.to_i < 5
+      PuppetSyntax.app_management = false if Puppet.version.to_i < 5
     end
 
-    context 'app_management = false (default)', :if => (Puppet::PUPPETVERSION.to_i < 5) do
+    context 'app_management = false (default)', :if => (Puppet.version.to_i < 5) do
       it 'should fail to parse an application manifest' do
 
         files = fixture_manifests(['test_app.pp'])
@@ -211,7 +211,7 @@ describe PuppetSyntax::Manifests do
         PuppetSyntax.future_parser = true
       }
 
-      if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0 and Puppet::PUPPETVERSION.to_i < 4
+      if Puppet::Util::Package.versioncmp(Puppet.version, '3.2') >= 0 and Puppet.version.to_i < 4
         context 'Puppet >= 3.2 < 4' do
           it 'should pass with future option set to true on future manifest' do
             files = fixture_manifests(['future_syntax.pp'])

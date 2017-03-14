@@ -27,7 +27,7 @@ module PuppetSyntax
     end
 
     def validate_epp(filename)
-      if Puppet::PUPPETVERSION.to_f < 3.7
+      if Puppet.version.to_f < 3.7
         raise "Cannot validate EPP without Puppet 4 or future parser (3.7+)"
       end
 
