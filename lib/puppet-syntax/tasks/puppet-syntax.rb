@@ -33,7 +33,7 @@ module PuppetSyntax
 
       namespace :syntax do
         task :check_puppetlabs_spec_helper do
-          psh_present = Rake::Task[:syntax].actions.any? { |a|
+          psh_present = task(:syntax).actions.any? { |a|
             a.inspect.match(/puppetlabs_spec_helper\/rake_tasks\.rb:\d+/)
           }
 
