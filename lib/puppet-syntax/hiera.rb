@@ -44,6 +44,12 @@ module PuppetSyntax
 
       errors.map! { |e| e.to_s }
 
+      #this check will fail when embedding heira lookups in heira
+      #rejecting this error is not great but functional
+      errors.reject! { |e|
+        e =~ /found character that cannot start any token while scanning for the next token/
+      }
+
       errors
     end
   end
