@@ -1,0 +1,38 @@
+build: off
+
+branches:
+  only:
+    - master
+
+# ruby versions under test
+environment:
+  matrix:
+    - RUBY_VERSION: 21
+      PUPPET_VERSION: "~> 3.8.7"
+    - RUBY_VERSION: 21
+      PUPPET_VERSION: "~> 4.8.0"
+    - RUBY_VERSION: 23-x64
+      PUPPET_VERSION: "~> 4.9.0"
+    - RUBY_VERSION: 23-x64
+      PUPPET_VERSION: "> 0"
+    - RUBY_VERSION: 23-x64
+      PUPPET_VERSION: "git://github.com/puppetlabs/puppet.git#master"
+
+matrix:
+  allow_failures:
+    - RUBY_VERSION: 23-x64
+      PUPPET_VERSION: "git://github.com/puppetlabs/puppet.git#master"
+      
+install:
+  - SET PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - SET LOG_SPEC_ORDER=true
+  - bundle install --jobs 4 --retry 2 --without development
+
+before_test:
+  - type Gemfile.lock
+  - ruby -v
+  - gem -v
+  - bundle -v
+
+test_script:
+  - bundle exec rake spec

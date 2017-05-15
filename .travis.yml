@@ -2,6 +2,7 @@
 language: ruby
 # Workaround https://github.com/bundler/bundler/issues/3558
 before_install: gem install bundler
+install: bundle install --jobs 4 --retry 2 --without development
 script: bundle exec rake
 rvm:
   - 1.9.3
