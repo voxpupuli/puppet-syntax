@@ -65,8 +65,8 @@ version is less then 4.3.  The `app_management` setting will be ignored.
 
           c = PuppetSyntax::Manifests.new
           output, has_errors = c.check(filelist_manifests)
-          print "#{output.join("\n")}\n" unless output.empty?
-          fail if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
+          $stdout.puts "#{output.join("\n")}\n" unless output.empty?
+          exit 1 if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
         end
 
         desc 'Syntax check Puppet templates'
@@ -74,8 +74,9 @@ version is less then 4.3.  The `app_management` setting will be ignored.
           $stderr.puts "---> #{t.name}"
 
           c = PuppetSyntax::Templates.new
-          errors = c.check(filelist_templates)
-          fail errors.join("\n") unless errors.empty?
+          output, has_errors = c.check(filelist_templates)
+          $stdout.puts "#{output.join("\n")}\n" unless output.empty?
+          exit 1 if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
         end
 
         desc 'Syntax check Hiera config files'
@@ -87,8 +88,9 @@ version is less then 4.3.  The `app_management` setting will be ignored.
           task :yaml do |t|
             $stderr.puts "---> #{t.name}"
             c = PuppetSyntax::Hiera.new
-            errors = c.check(filelist_hiera_yaml)
-            fail errors.join("\n") unless errors.empty?
+            output, has_errors = c.check(filelist_hiera_yaml)
+            $stdout.puts "#{output.join("\n")}\n" unless output.empty?
+            exit 1 if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
           end
         end
       end
