@@ -1,3 +1,7 @@
+2017-06-29 Release 2.4.1
+- Fix to ensure namespace scope is inherited.
+- Cleanly exits when syntax warnings/errors are found instead of failing.
+
 2017-03-14 Release 2.4.0
 - Add check_hiera_keys flag for deep checking of Hiera key name correctness. Thanks @petems.
 - Fix Puppet version comparisons for compatibility with Puppet 4.10.
