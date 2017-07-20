@@ -13,11 +13,11 @@ module PuppetSyntax
     end
 
     def filelist_manifests
-      filelist("**/*.pp")
+      filelist(PuppetSyntax.manifests_paths)
     end
 
     def filelist_templates
-      filelist(["**/templates/**/*.erb", "**/templates/**/*.epp"])
+      filelist(PuppetSyntax.templates_paths)
     end
 
     def filelist_hiera_yaml
