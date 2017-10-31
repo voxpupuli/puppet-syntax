@@ -61,7 +61,8 @@ module PuppetSyntax
 
         # Base64#decode64 will silently ignore characters outside the alphabet,
         # so we check resulting length of binary data instead
-        if Base64.decode64(base64).length != base64.length * 3 / 4
+        pad_length = base64.gsub(/[^=]/, '').length
+        if Base64.decode64(base64).length != base64.length * 3/4 - pad_length
           return "has corrupt base64 data"
         end
       end
