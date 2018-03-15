@@ -6,8 +6,8 @@ describe PuppetSyntax do
     PuppetSyntax.app_management = false if Puppet.version.to_i < 5
   end
 
-  it 'should default exclude_paths to empty array' do
-    expect(PuppetSyntax.exclude_paths).to be_empty
+  it 'should default exclude_paths to include the pkg directory' do
+    expect(PuppetSyntax.exclude_paths).to include('pkg/**/*')
   end
 
   it 'should support setting exclude_paths' do
