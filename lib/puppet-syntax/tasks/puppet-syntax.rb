@@ -5,9 +5,11 @@ require 'rake/tasklib'
 module PuppetSyntax
   class RakeTask < ::Rake::TaskLib
     def filelist(paths)
+      excludes = PuppetSyntax.exclude_paths
+      excludes.push('pkg/**/*')
       files = FileList[paths]
       files.reject! { |f| File.directory?(f) }
-      files.exclude(*PuppetSyntax.exclude_paths)
+      files.exclude(*excludes)
     end
 
     def filelist_manifests
