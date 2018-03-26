@@ -1,3 +1,6 @@
+2018-03-25 Release 2.4.2
+- Ensure the Puppet Module pkg build directory is automatically excluded.
+
 2017-06-29 Release 2.4.1
 - Fix to ensure namespace scope is inherited.
 - Cleanly exits when syntax warnings/errors are found instead of failing.
