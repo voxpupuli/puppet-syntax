@@ -13,7 +13,11 @@ module PuppetSyntax
     end
 
     def filelist_manifests
-      filelist("**/*.pp")
+      filelist("**/*.pp").exclude('plans/**/*')
+    end
+
+    def filelist_plans
+      filelist("plans/**/*.pp")
     end
 
     def filelist_templates
@@ -29,6 +33,7 @@ module PuppetSyntax
       task :syntax => [
         'syntax:check_puppetlabs_spec_helper',
         'syntax:manifests',
+        'syntax:plans',
         'syntax:templates',
         'syntax:hiera',
       ]
@@ -67,6 +72,16 @@ version is less then 4.3.  The `app_management` setting will be ignored.
 
           c = PuppetSyntax::Manifests.new
           output, has_errors = c.check(filelist_manifests)
+          $stdout.puts "#{output.join("\n")}\n" unless output.empty?
+          exit 1 if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
+        end
+
+        desc 'Syntax check Puppet Plans'
+        task :plans do |t|
+          $stderr.puts "---> #{t.name}"
+
+          c = PuppetSyntax::Plans.new
+          output, has_errors = c.check(filelist_plans)
           $stdout.puts "#{output.join("\n")}\n" unless output.empty?
           exit 1 if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
         end
