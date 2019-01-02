@@ -8,9 +8,9 @@ module PuppetSyntax
   @exclude_paths = []
   @future_parser = false
   @hieradata_paths = [
-    "**/data/**/*.*yaml",
-    "hieradata/**/*.*yaml",
-    "hiera*.*yaml"
+    "**/data/**/*.*{yaml,yml}",
+    "hieradata/**/*.*{yaml,yml}",
+    "hiera*.*{yaml,yml}"
   ]
   @fail_on_deprecation_notices = true
   @app_management = Puppet.version.to_i >= 5 ? true : false
