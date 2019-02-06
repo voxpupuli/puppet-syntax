@@ -35,21 +35,4 @@ describe 'PuppetSyntax rake tasks' do
     expect(list).to include(known_eyaml_subdir)
     expect(list.count).to eq 4
   end
-
-  it 'should check manifests relative to Rakefile' do
-    if RSpec::Version::STRING < '3'
-      pending
-    else
-      skip('needs to be done')
-    end
-  end
-
-  it 'should check templates relative to Rakefile' do
-    if RSpec::Version::STRING < '3'
-      pending
-    else
-      skip('needs to be done')
-    end
-  end
-
 end
