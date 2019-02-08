@@ -117,7 +117,7 @@ describe PuppetSyntax::Templates do
 
         expect(res.size).to eq(2)
         expect(res[0]).to match(/This Type-Name has no effect/)
-        expect(res[1]).to match(/Syntax error at '}' at \S*\/fail_error_also.epp:2:4/)
+        expect(res[1]).to match(/Syntax error at '}' \(file: \S*\/fail_error_also.epp, line: 2, column: 4\)/)
       end
 
       context "when the 'epp_only' options is set" do
