@@ -13,7 +13,7 @@ module PuppetSyntax
     end
 
     def filelist_manifests
-      filelist("**/manifests/**/*.pp")
+      filelist("**/*.pp")
     end
 
     def filelist_templates
