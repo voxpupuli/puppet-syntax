@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/voxpupuli/puppet-syntax.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-syntax)
+[![Gem Version](https://img.shields.io/gem/v/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
+[![Gem Downloads](https://img.shields.io/gem/dt/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
 
 # Puppet::Syntax
 
