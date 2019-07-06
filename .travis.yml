@@ -11,6 +11,7 @@ env:
   - PUPPET_VERSION="~> 5.5.10"
   - PUPPET_VERSION="~> 6.1.0"
   - PUPPET_VERSION="~> 6.2.0"
+  - PUPPET_VERSION="~> 6.5.0"
   - PUPPET_VERSION=">= 0"
   - PUPPET_VERSION="git://github.com/puppetlabs/puppet.git#master"
 matrix:

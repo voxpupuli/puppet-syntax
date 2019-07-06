@@ -21,9 +21,13 @@ module PuppetSyntax
       filelist.each do |puppet_file|
         Puppet::Test::TestHelper.before_each_test
         begin
-          validate_manifest(puppet_file)
+          error = validate_manifest(puppet_file)
+          if error.is_a?(Hash) # Puppet 6.5.0 onwards
+            output << error.values.first unless error.empty?
+          end
         rescue SystemExit
           # Disregard exit(1) from face.
+          # This is how puppet < 6.5.0 `validate_manifest` worked.
         rescue => error
           output << error
         ensure
