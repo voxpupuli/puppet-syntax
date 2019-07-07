@@ -1,3 +1,3 @@
 module PuppetSyntax
-  VERSION = '2.4.4.rc0'
+  VERSION = '2.5.0'
 end

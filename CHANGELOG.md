@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.5.0](https://github.com/voxpupuli/puppet-syntax/tree/v2.5.0) (2019-07-07)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.4.3...v2.5.0)
+
+**Implemented enhancements:**
+
+- Support puppet 6.5 [\#106](https://github.com/voxpupuli/puppet-syntax/pull/106) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v2.4.3](https://github.com/voxpupuli/puppet-syntax/tree/v2.4.3) (2019-02-09)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.4.2...v2.4.3)
