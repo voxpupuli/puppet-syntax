@@ -2,40 +2,24 @@ module PuppetSyntax
   class Manifests
     def check(filelist)
       raise "Expected an array of files" unless filelist.is_a?(Array)
-      require 'puppet'
-      require 'puppet/face'
-      require 'puppet/test/test_helper'
+      require 'puppet_pal'
 
       output = []
 
-      if Puppet::Test::TestHelper.respond_to?(:initialize) # 3.1+
-        Puppet::Test::TestHelper.initialize
-      end
-      Puppet::Test::TestHelper.before_all_tests
-      called_before_all_tests = true
-
-      # Catch syntax warnings.
-      Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(output))
-      Puppet::Util::Log.level = :warning
-
-      filelist.each do |puppet_file|
-        Puppet::Test::TestHelper.before_each_test
-        begin
-          error = validate_manifest(puppet_file)
-          if error.is_a?(Hash) # Puppet 6.5.0 onwards
-            output << error.values.first unless error.empty?
+      Puppet::Pal.in_tmp_environment('pal_env', modulepath: [], facts: {}) do |pal|
+        pal.with_script_compiler do |compiler|
+          filelist.each do |puppet_file|
+            begin
+              unless compiler.parse_file(puppet_file)
+                output << "Empty AST for #{puppet_file}"
+              end
+            rescue Exception => ex
+              output << ex
+            end
           end
-        rescue SystemExit
-          # Disregard exit(1) from face.
-          # This is how puppet < 6.5.0 `validate_manifest` worked.
-        rescue => error
-          output << error
-        ensure
-          Puppet::Test::TestHelper.after_each_test
         end
       end
 
-      Puppet::Util::Log.close_all
       output.map! { |e| e.to_s }
 
       # Exported resources will raise warnings when outside a puppetmaster.
@@ -56,15 +40,6 @@ module PuppetSyntax
       has_errors = (output != deprecations)
 
       return output, has_errors
-    ensure
-      Puppet::Test::TestHelper.after_all_tests if called_before_all_tests
-    end
-
-    private
-    def validate_manifest(file)
-      Puppet[:parser] = 'future' if PuppetSyntax.future_parser and Puppet.version.to_i < 4
-      Puppet[:app_management] = true if PuppetSyntax.app_management && (Puppet::Util::Package.versioncmp(Puppet.version, '4.3.0') >= 0 && Puppet.version.to_i < 5)
-      Puppet::Face[:parser, :current].validate(file)
     end
   end
 end

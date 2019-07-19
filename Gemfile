@@ -18,10 +18,7 @@ end
 gemspec
 
 # Override gemspec for CI matrix builds.
-gem 'puppet', *location_for(ENV['PUPPET_VERSION'] || '>2.7.0')
-
-# older version required for ruby 1.9 compat, as it is pulled in as dependency of puppet, this has to be carried by the module
-gem 'json_pure', '<= 2.0.1'
+gem 'puppet', *location_for(ENV['PUPPET_VERSION'] || '>5.0.0')
 
 group :test do
   gem 'rspec'
