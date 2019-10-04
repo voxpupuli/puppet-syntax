@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe PuppetSyntax::Templates do
   let(:subject) { PuppetSyntax::Templates.new }
+  let(:conditional_warning_regex) do
+    if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.6.0')
+      %r{2: warning: found `= literal' in conditional}
+    else
+      %r{2: warning: found = in conditional}
+    end
+  end
 
   it 'should expect an array of files' do
     expect { subject.check(nil) }.to raise_error(/Expected an array of files/)
@@ -34,7 +41,7 @@ describe PuppetSyntax::Templates do
     res = subject.check(files)
 
     expect(res.size).to eq(1)
-    expect(res[0]).to match(/2: warning: found = in conditional/)
+    expect(res[0]).to match(conditional_warning_regex)
   end
 
   it 'should read more than one valid file' do
@@ -50,7 +57,7 @@ describe PuppetSyntax::Templates do
 
     expect(res.size).to eq(2)
     expect(res[0]).to match(/2: syntax error, unexpected/)
-    expect(res[1]).to match(/2: warning: found = in conditional/)
+    expect(res[1]).to match(conditional_warning_regex)
   end
 
   it 'should ignore a TypeError' do
