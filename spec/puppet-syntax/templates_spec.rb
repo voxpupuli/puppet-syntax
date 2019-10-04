@@ -34,7 +34,7 @@ describe PuppetSyntax::Templates do
     res = subject.check(files)
 
     expect(res.size).to eq(1)
-    expect(res[0]).to match(/2: warning: found = in conditional/)
+    expect(res[0]).to match(/2: warning: found.*=.* in conditional/)
   end
 
   it 'should read more than one valid file' do
@@ -50,7 +50,7 @@ describe PuppetSyntax::Templates do
 
     expect(res.size).to eq(2)
     expect(res[0]).to match(/2: syntax error, unexpected/)
-    expect(res[1]).to match(/2: warning: found = in conditional/)
+    expect(res[1]).to match(/2: warning: found.*=.* in conditional/)
   end
 
   it 'should ignore a TypeError' do
