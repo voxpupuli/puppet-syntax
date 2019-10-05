@@ -1,6 +1,18 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [v2.6.0](https://github.com/voxpupuli/puppet-syntax/tree/v2.6.0) (2019-10-05)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.5.0...v2.6.0)
+
+**Implemented enhancements:**
+
+- add support for validating puppet plans \(fixes \#95, fixes \#96\) [\#97](https://github.com/voxpupuli/puppet-syntax/pull/97) ([slauger](https://github.com/slauger))
+- Allow specifying file paths for manifests and templates too [\#87](https://github.com/voxpupuli/puppet-syntax/pull/87) ([lavagetto](https://github.com/lavagetto))
+
+**Merged pull requests:**
+
+- Test on ruby 2.6 [\#111](https://github.com/voxpupuli/puppet-syntax/pull/111) ([alexjfisher](https://github.com/alexjfisher))
+- Adding KMS tags to allowed EYAML methods [\#105](https://github.com/voxpupuli/puppet-syntax/pull/105) ([craigwatson](https://github.com/craigwatson))
 
 ## [v2.5.0](https://github.com/voxpupuli/puppet-syntax/tree/v2.5.0) (2019-07-07)
 
@@ -9,6 +21,10 @@ All notable changes to this project will be documented in this file.
 **Implemented enhancements:**
 
 - Support puppet 6.5 [\#106](https://github.com/voxpupuli/puppet-syntax/pull/106) ([alexjfisher](https://github.com/alexjfisher))
+
+**Fixed bugs:**
+
+- search manifests outside of manifests directory [\#104](https://github.com/voxpupuli/puppet-syntax/issues/104)
 
 ## [v2.4.3](https://github.com/voxpupuli/puppet-syntax/tree/v2.4.3) (2019-02-09)
 
