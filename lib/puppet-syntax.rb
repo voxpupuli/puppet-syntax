@@ -12,6 +12,13 @@ module PuppetSyntax
     "hieradata/**/*.*{yaml,yml}",
     "hiera*.*{yaml,yml}"
   ]
+  @manifests_paths = [
+    '**/*.pp'
+  ]
+  @templates_paths = [
+    '**/templates/**/*.erb',
+    '**/templates/**/*.epp'
+  ]
   @fail_on_deprecation_notices = true
   @app_management = Puppet.version.to_i >= 5 ? true : false
   @check_hiera_keys = false
@@ -20,6 +27,8 @@ module PuppetSyntax
     attr_accessor :exclude_paths,
                   :future_parser,
                   :hieradata_paths,
+                  :manifests_paths,
+                  :templates_paths,
                   :fail_on_deprecation_notices,
                   :epp_only,
                   :check_hiera_keys

@@ -44,4 +44,12 @@ describe PuppetSyntax do
     expect(PuppetSyntax.epp_only).to eq(true)
   end
 
+  it 'should support setting paths for manifests, templates and hiera' do
+    PuppetSyntax.hieradata_paths = []
+    expect(PuppetSyntax.hieradata_paths).to eq([])
+    PuppetSyntax.manifests_paths = ["**/environments/production/**/*.pp"]
+    expect(PuppetSyntax.manifests_paths).to eq(["**/environments/production/**/*.pp"])
+    PuppetSyntax.templates_paths = []
+    expect(PuppetSyntax.templates_paths).to eq([])
+  end
 end

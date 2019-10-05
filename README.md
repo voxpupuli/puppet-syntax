@@ -51,6 +51,11 @@ To configure Puppet::Syntax, add any of the following settings to your `Rakefile
 
         PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
 
+* To configure specific paths for the Puppet syntax checks or for the templates checks, specify `manifests_paths` or `templates_paths` respectively. This is useful if you want to check specific paths only.
+
+        PuppetSyntax.manifests_paths = ["**/environments/future/*.pp"]
+        PuppetSyntax.templates_paths = ["**/modules/**/templates/*.erb"]
+
 * To validate the syntax of code written for application orchestration, enable `app_management`:
 
         PuppetSyntax.app_management = true
