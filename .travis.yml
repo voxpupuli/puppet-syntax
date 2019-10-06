@@ -30,3 +30,10 @@ deploy:
     tags: true
     all_branches: true
     repo: voxpupuli/puppet-syntax
+notifications:
+  email: false
+  irc:
+    on_success: always
+    on_failure: always
+    channels:
+      - "chat.freenode.org#voxpupuli-notifications"
