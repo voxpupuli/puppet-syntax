@@ -1,4 +1,5 @@
 ---
+dist: bionic
 language: ruby
 # Workaround https://github.com/bundler/bundler/issues/3558
 before_install: gem install bundler
