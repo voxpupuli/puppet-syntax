@@ -1,5 +1,20 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+## [v2.6.1](https://github.com/voxpupuli/puppet-syntax/tree/v2.6.1) (2020-01-11)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.6.0...v2.6.1)
+
+**Fixed bugs:**
+
+- Add `puppet` gem as runtime dependency [\#116](https://github.com/voxpupuli/puppet-syntax/pull/116) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- traivs: run tests on Ubuntu 18.04 [\#117](https://github.com/voxpupuli/puppet-syntax/pull/117) ([bastelfreak](https://github.com/bastelfreak))
+- travis: enable irc / disable email notifications [\#114](https://github.com/voxpupuli/puppet-syntax/pull/114) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v2.6.0](https://github.com/voxpupuli/puppet-syntax/tree/v2.6.0) (2019-10-05)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.5.0...v2.6.0)
@@ -21,10 +36,6 @@
 **Implemented enhancements:**
 
 - Support puppet 6.5 [\#106](https://github.com/voxpupuli/puppet-syntax/pull/106) ([alexjfisher](https://github.com/alexjfisher))
-
-**Fixed bugs:**
-
-- search manifests outside of manifests directory [\#104](https://github.com/voxpupuli/puppet-syntax/issues/104)
 
 ## [v2.4.3](https://github.com/voxpupuli/puppet-syntax/tree/v2.4.3) (2019-02-09)
 
