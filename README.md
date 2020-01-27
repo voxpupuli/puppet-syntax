@@ -15,10 +15,6 @@ Puppet::Syntax is supported with:
 
 For the specific versions that we test against, see the [TravisCI config](.travis.yml).
 
-If you're using `puppetlabs_spec_helper/rake_tasks` and getting unexpected non-zero exit codes, upgrade to [puppetlabs_spec_helper][psh] version 0.8.0 or greater. Versions of `puppetlabs_spec_helper` prior to 0.8.0 conflicted with Puppet::Syntax.
-
-[psh]: https://github.com/puppetlabs/puppetlabs_spec_helper
-
 ## Installation
 
 To install Puppet::Syntax, either add it to your module's Gemfile or install the gem manually.

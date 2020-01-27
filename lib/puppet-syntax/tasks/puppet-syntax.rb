@@ -27,27 +27,12 @@ module PuppetSyntax
     def initialize(*args)
       desc 'Syntax check Puppet manifests and templates'
       task :syntax => [
-        'syntax:check_puppetlabs_spec_helper',
         'syntax:manifests',
         'syntax:templates',
         'syntax:hiera',
       ]
 
       namespace :syntax do
-        task :check_puppetlabs_spec_helper do
-          psh_present = task(:syntax).actions.any? { |a|
-            a.inspect.match(/puppetlabs_spec_helper\/rake_tasks\.rb:\d+/)
-          }
-
-          if psh_present
-            $stderr.puts <<-EOS
-[WARNING] A conflicting :syntax rake task has been defined by
-puppetlabs_spec_helper/rake_tasks. You should either disable this or upgrade
-to puppetlabs_spec_helper >= 0.8.0 which now uses puppet-syntax.
-            EOS
-          end
-        end
-
         desc 'Syntax check Puppet manifests'
         task :manifests do |t|
           if Puppet.version.to_i >= 4 and PuppetSyntax.future_parser
