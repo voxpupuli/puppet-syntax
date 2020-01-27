@@ -39,10 +39,6 @@ To configure Puppet::Syntax, add any of the following settings to your `Rakefile
 
         PuppetSyntax.exclude_paths = ["vendor/**/*"]
 
-* To use the Puppet 4 ("future") parser in Puppet 3.2 through 3.8, set:
-
-        PuppetSyntax.future_parser = true
-
 * To configure specific paths for the Hiera syntax check, specify `hieradata_paths`. This is useful if you use Hiera data inside your module.
 
         PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]

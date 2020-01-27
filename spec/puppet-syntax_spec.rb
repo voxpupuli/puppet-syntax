@@ -19,11 +19,6 @@ describe PuppetSyntax do
     expect(PuppetSyntax.exclude_paths).to eq(["foo"])
   end
 
-  it 'should support future parser setting' do
-    PuppetSyntax.future_parser = true
-    expect(PuppetSyntax.future_parser).to eq(true)
-  end
-
   it 'should support a fail_on_deprecation_notices setting' do
     PuppetSyntax.fail_on_deprecation_notices = false
     expect(PuppetSyntax.fail_on_deprecation_notices).to eq(false)

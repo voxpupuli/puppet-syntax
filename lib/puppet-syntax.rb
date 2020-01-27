@@ -6,7 +6,6 @@ require "puppet/version"
 
 module PuppetSyntax
   @exclude_paths = []
-  @future_parser = false
   @hieradata_paths = [
     "**/data/**/*.*{yaml,yml}",
     "hieradata/**/*.*{yaml,yml}",
@@ -24,7 +23,6 @@ module PuppetSyntax
 
   class << self
     attr_accessor :exclude_paths,
-                  :future_parser,
                   :hieradata_paths,
                   :manifests_paths,
                   :templates_paths,
