@@ -52,12 +52,6 @@ To configure Puppet::Syntax, add any of the following settings to your `Rakefile
         PuppetSyntax.manifests_paths = ["**/environments/future/*.pp"]
         PuppetSyntax.templates_paths = ["**/modules/**/templates/*.erb"]
 
-* To validate the syntax of code written for application orchestration, enable `app_management`:
-
-        PuppetSyntax.app_management = true
-
-  The `app_management` setting is supported with Puppet 4.3 or greater and is off by default. In Puppet 5, app_management is always enabled.
-
 * To ignore deprecation warnings, disable `fail_on_deprecation_notices`. By default, `puppet-syntax` fails if it encounters Puppet deprecation notices. If you are working with a legacy code base and want to ignore such non-fatal warnings, you might want to override the default behavior.
 
         PuppetSyntax.fail_on_deprecation_notices = false

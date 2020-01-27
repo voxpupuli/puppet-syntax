@@ -41,12 +41,6 @@ module PuppetSyntax
 'true'. The `future_parser setting will be ignored.
             EOS
           end
-          if Puppet::Util::Package.versioncmp(Puppet.version, '4.3.0') < 0 and PuppetSyntax.app_management
-            $stderr.puts <<-EOS
-[WARNING] Puppet `app_management` has been detected but the Puppet
-version is less then 4.3.  The `app_management` setting will be ignored.
-            EOS
-          end
 
           $stderr.puts "---> #{t.name}"
 
