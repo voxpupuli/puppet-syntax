@@ -8,9 +8,7 @@ module PuppetSyntax
 
       output = []
 
-      if Puppet::Test::TestHelper.respond_to?(:initialize) # 3.1+
-        Puppet::Test::TestHelper.initialize
-      end
+      Puppet::Test::TestHelper.initialize
       Puppet::Test::TestHelper.before_all_tests
       called_before_all_tests = true
 

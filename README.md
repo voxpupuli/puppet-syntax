@@ -10,8 +10,8 @@ Puppet::Syntax checks for correct syntax in Puppet manifests, templates, and Hie
 
 Puppet::Syntax is supported with:
 
-- Puppet >= 2.7 that provides the `validate` face.
-- Ruby >= 1.8 with `erb` from Ruby stdlib.
+- Puppet >= 5.0 that provides the `validate` face.
+- Ruby >= 2.4
 
 For the specific versions that we test against, see the [TravisCI config](.travis.yml).
 
