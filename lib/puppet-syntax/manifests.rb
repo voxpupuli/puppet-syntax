@@ -8,9 +8,7 @@ module PuppetSyntax
 
       output = []
 
-      if Puppet::Test::TestHelper.respond_to?(:initialize) # 3.1+
-        Puppet::Test::TestHelper.initialize
-      end
+      Puppet::Test::TestHelper.initialize
       Puppet::Test::TestHelper.before_all_tests
       called_before_all_tests = true
 
@@ -62,8 +60,6 @@ module PuppetSyntax
 
     private
     def validate_manifest(file)
-      Puppet[:parser] = 'future' if PuppetSyntax.future_parser and Puppet.version.to_i < 4
-      Puppet[:app_management] = true if PuppetSyntax.app_management && (Puppet::Util::Package.versioncmp(Puppet.version, '4.3.0') >= 0 && Puppet.version.to_i < 5)
       Puppet[:tasks] = true if Puppet::Util::Package.versioncmp(Puppet.version, '5.4.0') >= 0 and file.match(/.*plans\/.*\.pp$/)
       Puppet::Face[:parser, :current].validate(file)
     end

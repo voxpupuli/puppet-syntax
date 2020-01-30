@@ -21,13 +21,10 @@ gemspec
 # But only if the environment variable is set
 gem 'puppet', *location_for(ENV['PUPPET_VERSION'] || '>= 5') if ENV['PUPPET_VERSION']
 
-# older version required for ruby 1.9 compat, as it is pulled in as dependency of puppet, this has to be carried by the module
-gem 'json_pure', '<= 2.0.1'
-
 group :test do
   gem 'rspec'
 end
 
 group :release do
-  gem 'github_changelog_generator',  :require => false, :git => 'https://github.com/github-changelog-generator/github-changelog-generator' if RUBY_VERSION >= '2.2.2'
+  gem 'github_changelog_generator',  :require => false, :git => 'https://github.com/github-changelog-generator/github-changelog-generator'
 end

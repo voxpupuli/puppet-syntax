@@ -10,14 +10,10 @@ Puppet::Syntax checks for correct syntax in Puppet manifests, templates, and Hie
 
 Puppet::Syntax is supported with:
 
-- Puppet >= 2.7 that provides the `validate` face.
-- Ruby >= 1.8 with `erb` from Ruby stdlib.
+- Puppet >= 5.0 that provides the `validate` face.
+- Ruby >= 2.4
 
 For the specific versions that we test against, see the [TravisCI config](.travis.yml).
-
-If you're using `puppetlabs_spec_helper/rake_tasks` and getting unexpected non-zero exit codes, upgrade to [puppetlabs_spec_helper][psh] version 0.8.0 or greater. Versions of `puppetlabs_spec_helper` prior to 0.8.0 conflicted with Puppet::Syntax.
-
-[psh]: https://github.com/puppetlabs/puppetlabs_spec_helper
 
 ## Installation
 
@@ -43,10 +39,6 @@ To configure Puppet::Syntax, add any of the following settings to your `Rakefile
 
         PuppetSyntax.exclude_paths = ["vendor/**/*"]
 
-* To use the Puppet 4 ("future") parser in Puppet 3.2 through 3.8, set:
-
-        PuppetSyntax.future_parser = true
-
 * To configure specific paths for the Hiera syntax check, specify `hieradata_paths`. This is useful if you use Hiera data inside your module.
 
         PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
@@ -55,12 +47,6 @@ To configure Puppet::Syntax, add any of the following settings to your `Rakefile
 
         PuppetSyntax.manifests_paths = ["**/environments/future/*.pp"]
         PuppetSyntax.templates_paths = ["**/modules/**/templates/*.erb"]
-
-* To validate the syntax of code written for application orchestration, enable `app_management`:
-
-        PuppetSyntax.app_management = true
-
-  The `app_management` setting is supported with Puppet 4.3 or greater and is off by default. In Puppet 5, app_management is always enabled.
 
 * To ignore deprecation warnings, disable `fail_on_deprecation_notices`. By default, `puppet-syntax` fails if it encounters Puppet deprecation notices. If you are working with a legacy code base and want to ignore such non-fatal warnings, you might want to override the default behavior.
 
