@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.0.0) (2020-05-09)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.6.1...v3.0.0)
+
+**Breaking changes:**
+
+- Drop legacy code to support Puppet \< 5 and Ruby \< 2.4 [\#120](https://github.com/voxpupuli/puppet-syntax/pull/120) ([ekohl](https://github.com/ekohl))
+
+**Implemented enhancements:**
+
+- Migrate Changelog to GCG [\#93](https://github.com/voxpupuli/puppet-syntax/issues/93)
+
+**Merged pull requests:**
+
+- cleanup README.md / fix markdown linter warnings [\#119](https://github.com/voxpupuli/puppet-syntax/pull/119) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v2.6.1](https://github.com/voxpupuli/puppet-syntax/tree/v2.6.1) (2020-01-11)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.6.0...v2.6.1)
@@ -26,7 +42,6 @@ All notable changes to this project will be documented in this file.
 
 **Merged pull requests:**
 
-- Test on ruby 2.6 [\#111](https://github.com/voxpupuli/puppet-syntax/pull/111) ([alexjfisher](https://github.com/alexjfisher))
 - Adding KMS tags to allowed EYAML methods [\#105](https://github.com/voxpupuli/puppet-syntax/pull/105) ([craigwatson](https://github.com/craigwatson))
 
 ## [v2.5.0](https://github.com/voxpupuli/puppet-syntax/tree/v2.5.0) (2019-07-07)
