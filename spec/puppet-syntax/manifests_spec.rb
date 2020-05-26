@@ -24,6 +24,14 @@ describe PuppetSyntax::Manifests do
     expect(has_errors).to eq(false)
   end
 
+  it 'should return nothing from a valid file with a class using schedule parameter' do
+    files = fixture_manifests('schedule_notice.pp')
+    output, has_errors = subject.check(files)
+
+    expect(output).to eq([])
+    expect(has_errors).to eq(false)
+  end
+
   it 'should return an error from an invalid file' do
     files = fixture_manifests('fail_error.pp')
     output, has_errors = subject.check(files)
