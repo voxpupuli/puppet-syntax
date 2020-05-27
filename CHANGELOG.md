@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.0.1](https://github.com/voxpupuli/puppet-syntax/tree/v3.0.1) (2020-05-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.0.0...v3.0.1)
+
+**Merged pull requests:**
+
+- Avoid failure on schedule metaparameter warning [\#122](https://github.com/voxpupuli/puppet-syntax/pull/122) ([ffapitalle](https://github.com/ffapitalle))
+
 ## [v3.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.0.0) (2020-05-09)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v2.6.1...v3.0.0)
@@ -42,6 +50,7 @@ All notable changes to this project will be documented in this file.
 
 **Merged pull requests:**
 
+- Test on ruby 2.6 [\#111](https://github.com/voxpupuli/puppet-syntax/pull/111) ([alexjfisher](https://github.com/alexjfisher))
 - Adding KMS tags to allowed EYAML methods [\#105](https://github.com/voxpupuli/puppet-syntax/pull/105) ([craigwatson](https://github.com/craigwatson))
 
 ## [v2.5.0](https://github.com/voxpupuli/puppet-syntax/tree/v2.5.0) (2019-07-07)
