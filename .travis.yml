@@ -9,14 +9,16 @@ rvm:
   - 2.4.4
   - 2.5.1
   - 2.6.5
+  - 2.7
 env:
   - PUPPET_VERSION="~> 5.5.10"
-  - PUPPET_VERSION="~> 6.1.0"
-  - PUPPET_VERSION="~> 6.2.0"
-  - PUPPET_VERSION="~> 6.5.0"
+  - PUPPET_VERSION="~> 6.5"
   - PUPPET_VERSION=">= 0"
   - PUPPET_VERSION="git://github.com/puppetlabs/puppet.git#master"
 matrix:
+  exclude:
+    - rvm: 2.7
+      env: PUPPET_VERSION="~> 5.5.10"
   allow_failures:
     - env: PUPPET_VERSION=">= 0"
     - env: PUPPET_VERSION="git://github.com/puppetlabs/puppet.git#master"
