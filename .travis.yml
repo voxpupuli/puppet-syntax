@@ -1,4 +1,5 @@
 ---
+os: linux
 dist: bionic
 language: ruby
 # Workaround https://github.com/bundler/bundler/issues/3558
@@ -15,7 +16,7 @@ env:
   - PUPPET_VERSION="~> 6.5"
   - PUPPET_VERSION=">= 0"
   - PUPPET_VERSION="git://github.com/puppetlabs/puppet.git#master"
-matrix:
+jobs:
   exclude:
     - rvm: 2.7
       env: PUPPET_VERSION="~> 5.5.10"
