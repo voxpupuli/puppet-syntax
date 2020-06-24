@@ -48,9 +48,16 @@ module PuppetSyntax
           $stderr.puts "---> #{t.name}"
 
           c = PuppetSyntax::Templates.new
-          errors = c.check(filelist_templates)
-          $stdout.puts "#{errors.join("\n")}\n" unless errors.empty?
-          exit 1 unless errors.empty?
+          result = c.check(filelist_templates)
+          unless result[:warnings].empty?
+            $stdout.puts "WARNINGS:"
+            $stdout.puts result[:warnings].join("\n")
+          end
+          unless result[:errors].empty?
+            $stderr.puts "ERRORS:"
+            $stderr.puts result[:errors].join("\n")
+            exit 1
+          end
         end
 
         desc 'Syntax check Hiera config files'
