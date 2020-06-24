@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.1.0) (2020-06-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.0.1...v3.1.0)
+
+**Implemented enhancements:**
+
+- print actual template errors on $stderr [\#125](https://github.com/voxpupuli/puppet-syntax/pull/125) ([foxxx0](https://github.com/foxxx0))
+
+**Merged pull requests:**
+
+- Add ruby2.7 testing, replacing multiple obsolete puppet6 versions [\#124](https://github.com/voxpupuli/puppet-syntax/pull/124) ([DavidS](https://github.com/DavidS))
+
 ## [v3.0.1](https://github.com/voxpupuli/puppet-syntax/tree/v3.0.1) (2020-05-27)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.0.0...v3.0.1)
