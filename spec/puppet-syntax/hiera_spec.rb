@@ -13,6 +13,13 @@ describe PuppetSyntax::Hiera do
     expect(res).to be == []
   end
 
+  it "should return nothing from valid EYAML" do
+    files = fixture_hiera('hiera_good.eyaml')
+    res = subject.check(files)
+    expect(res).to be == []
+  end
+
+
   it "should return an error from invalid YAML" do
     hiera_yaml = RUBY_VERSION =~ /1.8/ ? 'hiera_bad_18.yaml' : 'hiera_bad.yaml'
     files = fixture_hiera(hiera_yaml)
@@ -45,7 +52,7 @@ describe PuppetSyntax::Hiera do
 
     it "should return warnings for bad eyaml values" do
       hiera_yaml = 'hiera_bad.eyaml'
-      examples = 6
+      examples = 7
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
@@ -53,11 +60,12 @@ describe PuppetSyntax::Hiera do
       end
       expect(res.size).to be == examples
       expect(res[0]).to match('Key acme::warning1 has unknown eyaml method unknown-method')
-      expect(res[1]).to match('Key acme::warning2 has unterminated eyaml value')
+      expect(res[1]).to match('Key acme::warning2 has unpadded or truncated base64 data')
       expect(res[2]).to match('Key acme::warning3 has unpadded or truncated base64 data')
       expect(res[3]).to match('Key acme::warning4 has corrupt base64 data')
       expect(res[4]).to match('Key acme::warning5\[\'key2\'\] has corrupt base64 data')
       expect(res[5]).to match('Key acme::warning6\[\'hash_key\'\]\[2\] has corrupt base64 data')
+      expect(res[6]).to match('Key acme::warning7 has invalid eyaml encoded format')
     end
 
     it "should handle empty files" do

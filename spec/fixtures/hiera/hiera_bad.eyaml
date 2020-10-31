@@ -1,11 +1,11 @@
 ---
-acme::warning1: ENC[unknown-method,aGVsbG8sIHdvcmxk]
-acme::warning2: ENC[PKCS7,aGVsbG8sIHdvcmxk
-acme::warning3: ENC[PKCS7,aGVsbG8sIHdvcmxk==]
-acme::warning4: ENC[PKCS7,aGVs!!!!bG8sIHdvcmxk]
+acme::warning1: ENC[unknown-method,aGVsbG8sIHdvcmxk] # unknown method
+acme::warning2: ENC[PKCS7,aGV&&&sbG8sIHdvcmxk] # unpadded or truncated base64 data
+acme::warning3: ENC[PKCS7,aGVsbG8sIHdvcmxk==] # unpadded or truncated base64 data
+acme::warning4: ENC[PKCS7,aGVsbG8sf&IHdvcmxk==] # corrupt base64 data
 acme::warning5:
   key1: foo
-  key2: ENC[PKCS7,aGVs!!!!bG8sIHdvcmxk]
+  key2: ENC[PKCS7,aGVs!!!!bG8sIHdvcmxk] # corrupt base64 data
 acme::warning6:
   hash_key:
     - element1
@@ -17,8 +17,5 @@ acme::warning6:
       ENC[PKCS7,
           aGVs!!!!bG8sIHdvcmxk
       ]
-acme::good1: >
-   ENC[PKCS7,
-     aGVsbG8sIHdvcmxk]
-acme::good2: ENC[GPG,aGVsbG8sIHdvcmxkIQ==]
-acme::good3: ENC[GPG,aGVsbG8sIHdvcmxkISE=]
+    # corrupt base64 data
+acme::warning7: ENC[KMSaGVsbG8sIdGHdvcmxk==] # has invalid eyaml encoded format
