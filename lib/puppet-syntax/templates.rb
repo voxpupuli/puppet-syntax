@@ -69,7 +69,7 @@ module PuppetSyntax
       result = { warnings: [], errors: [] }
 
       begin
-        erb = ERB.new(File.read(filename), nil, '-')
+        erb = ERB.new(File.read(filename), trim_mode: '-')
         erb.filename = filename
         erb.result
       rescue NameError => error
