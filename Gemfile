@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # `git://somewhere.git#branch`. You can also use a file source location, which
 # is specified as `file://some/location/on/disk`.
 def location_for(place_or_version, fake_version = nil)
-  if place_or_version =~ /^(git[:@][^#]*)#(.*)/
+  if place_or_version =~ /^(https[:@][^#]*)#(.*)/
     [fake_version, { :git => $1, :branch => $2, :require => false }].compact
   elsif place_or_version =~ /^file:\/\/(.*)/
     ['>= 0', { :path => File.expand_path($1), :require => false }]
@@ -19,12 +19,12 @@ gemspec
 
 # Override gemspec for CI matrix builds.
 # But only if the environment variable is set
-gem 'puppet', *location_for(ENV['PUPPET_VERSION'] || '>= 5') if ENV['PUPPET_VERSION']
+gem 'puppet', *location_for(ENV['PUPPET_VERSION']) if ENV['PUPPET_VERSION']
 
 group :test do
   gem 'rspec'
 end
 
 group :release do
-  gem 'github_changelog_generator',  :require => false, :git => 'https://github.com/github-changelog-generator/github-changelog-generator'
+  gem 'github_changelog_generator', require: false
 end
