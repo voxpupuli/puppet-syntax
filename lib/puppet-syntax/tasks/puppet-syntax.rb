@@ -7,6 +7,7 @@ module PuppetSyntax
     def filelist(paths)
       excludes = PuppetSyntax.exclude_paths
       excludes.push('pkg/**/*')
+      excludes.push('vendor/**/*')
       files = FileList[paths]
       files.reject! { |f| File.directory?(f) }
       files.exclude(*excludes)

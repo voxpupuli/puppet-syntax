@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-syntax.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-syntax)
+TODO: [![Build Status](https://travis-ci.org/voxpupuli/puppet-syntax.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-syntax)
 [![Gem Version](https://img.shields.io/gem/v/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
 [![Gem Downloads](https://img.shields.io/gem/dt/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
 
@@ -14,7 +14,7 @@ Puppet::Syntax is supported with:
 - Puppet >= 5.0 that provides the `validate` face.
 - Ruby >= 2.4
 
-For the specific versions that we test against, see the [TravisCI config](.travis.yml).
+For the specific versions that we test against, see the [GitHub Actions workflow](.github/workflows/test.yml).
 
 ## Installation
 
