@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 - Remove AppVeyor testing [\#94](https://github.com/voxpupuli/puppet-syntax/issues/94)
 - Convert from Travis CI to GitHub Actions [\#130](https://github.com/voxpupuli/puppet-syntax/pull/130) ([ekohl](https://github.com/ekohl))
 
+**Fixed bugs:**
+
+- Add missing `$` in github action [\#132](https://github.com/voxpupuli/puppet-syntax/pull/132) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v3.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.1.0) (2020-06-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.0.1...v3.1.0)
