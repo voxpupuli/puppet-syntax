@@ -25,5 +25,4 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rb-readline"
-  spec.add_development_dependency "gem_publisher", "~> 1.3"
 end

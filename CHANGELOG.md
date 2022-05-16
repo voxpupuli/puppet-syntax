@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.2.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.2.0) (2022-05-16)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.1.0...v3.2.0)
+
+**Implemented enhancements:**
+
+- Remove AppVeyor testing [\#94](https://github.com/voxpupuli/puppet-syntax/issues/94)
+- Convert from Travis CI to GitHub Actions [\#130](https://github.com/voxpupuli/puppet-syntax/pull/130) ([ekohl](https://github.com/ekohl))
+
 ## [v3.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.1.0) (2020-06-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.0.1...v3.1.0)

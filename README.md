@@ -1,6 +1,9 @@
-TODO: [![Build Status](https://travis-ci.org/voxpupuli/puppet-syntax.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-syntax)
-[![Gem Version](https://img.shields.io/gem/v/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
-[![Gem Downloads](https://img.shields.io/gem/dt/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
+# puppet-syntax
+
+[![License](https://img.shields.io/github/license/voxpupuli/puppet-syntax.svg)](https://github.com/voxpupuli/puppet-syntax/blob/master/LICENSE.txt)
+[![Release](https://github.com/voxpupuli/puppet-syntax/actions/workflows/syntax.yml/badge.svg)](https://github.com/voxpupuli/puppet-syntax/actions/workflows/syntax.yml)
+[![RubyGem Version](https://img.shields.io/gem/v/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
+[![RubyGem Downloads](https://img.shields.io/gem/dt/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
 
 # Puppet::Syntax
 
@@ -159,3 +162,12 @@ parser enabled.
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin my-new-feature`).
 5. Create new Pull Request.
+
+## Making a new Release
+
+* Update version in `lib/puppet-syntax/version.rb`
+* Run the changelog rake task (bundle exec rake changelog)
+* Create a PR
+* Get it reviewed and merged
+* update the local repo, create a signed git tag, prefixed with a v, matching the new version (git tag -s v1.2.3)
+* GitHub action will publish to GitHub Packages and Rubygems
