@@ -162,3 +162,12 @@ parser enabled.
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin my-new-feature`).
 5. Create new Pull Request.
+
+## Making a new Release
+
+* Update version in `lib/puppet-syntax/version.rb`
+* Run the changelog rake task (bundle exec rake changelog)
+* Create a PR
+* Get it reviewed and merged
+* update the local repo, create a signed git tag, prefixed with a v, matching the new version (git tag -s v1.2.3)
+* GitHub action will publish to GitHub Packages and Rubygems
