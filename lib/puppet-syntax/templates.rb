@@ -1,5 +1,4 @@
 require 'erb'
-require 'puppet'
 require 'stringio'
 
 module PuppetSyntax
@@ -30,6 +29,7 @@ module PuppetSyntax
     end
 
     def validate_epp(filename)
+      require 'puppet/error'
       require 'puppet/pops'
       result = { warnings: [], errors: [] }
       formatter = Puppet::Pops::Validation::DiagnosticFormatterPuppetStyle.new

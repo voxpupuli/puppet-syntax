@@ -3,6 +3,7 @@ module PuppetSyntax
     def check(filelist)
       raise "Expected an array of files" unless filelist.is_a?(Array)
       require 'puppet'
+      require 'puppet/version'
       require 'puppet/face'
       require 'puppet/test/test_helper'
 

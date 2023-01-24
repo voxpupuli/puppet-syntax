@@ -1,10 +1,10 @@
 require "puppet-syntax/version"
-require "puppet-syntax/manifests"
-require "puppet-syntax/templates"
-require "puppet-syntax/hiera"
-require "puppet/version"
 
 module PuppetSyntax
+  autoload :Hiera, 'puppet-syntax/hiera'
+  autoload :Manifests, 'puppet-syntax/manifests'
+  autoload :Templates, 'puppet-syntax/templates'
+
   @exclude_paths = []
   @hieradata_paths = [
     "**/data/**/*.*{yaml,yml}",
