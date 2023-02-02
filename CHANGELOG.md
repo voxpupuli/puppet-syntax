@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.3.0) (2023-02-08)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.2.1...v3.3.0)
+
+**Implemented enhancements:**
+
+- Lazy load required classes [\#134](https://github.com/voxpupuli/puppet-syntax/pull/134) ([ekohl](https://github.com/ekohl))
+
+**Merged pull requests:**
+
+- Pull in Puppet 6.29 in CI [\#135](https://github.com/voxpupuli/puppet-syntax/pull/135) ([ekohl](https://github.com/ekohl))
+
+## [v3.2.1](https://github.com/voxpupuli/puppet-syntax/tree/v3.2.1) (2022-05-16)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.2.0...v3.2.1)
+
 ## [v3.2.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.2.0) (2022-05-16)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.1.0...v3.2.0)
