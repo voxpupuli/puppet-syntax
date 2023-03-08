@@ -42,30 +42,28 @@ module PuppetSyntax
     end
 
     def check_eyaml_blob(val)
-      return unless val =~ /^ENC\[/
-
-      val.sub!('ENC[', '')
+      # strip newlines and extra spaces
+      val.gsub!(/\n/, '')
       val.gsub!(/\s+/, '')
-      if val !~ /\]$/
-        return "has unterminated eyaml value"
-      else
-        val.sub!(/\]$/, '')
-        method, base64 = val.split(/,/)
-        if base64 == nil
-          base64 = method
-          method = 'PKCS7'
+      
+      encodes = val.scan(/ENC\[.*?\]/)
+
+      # Return if there's no encoded material
+      return if encodes.length == 0
+
+      encodes.each do |n|
+        match = n.match(/ENC\[(.+),(.+)\]/)
+        if match == nil
+          return "has invalid eyaml encoded format"
         end
 
-        return "has unknown eyaml method #{method}" unless ['PKCS7','GPG','GKMS','KMS'].include? method
-        return "has unpadded or truncated base64 data" unless base64.length % 4 == 0
+        return "has unknown eyaml method #{match[1]}" unless ['PKCS7','GPG','GKMS','KMS'].include? match[1]
 
-        # Base64#decode64 will silently ignore characters outside the alphabet,
-        # so we check resulting length of binary data instead
-        pad_length = base64.gsub(/[^=]/, '').length
-        if Base64.decode64(base64).length != base64.length * 3/4 - pad_length
-          return "has corrupt base64 data"
-        end
+        return "has unpadded or truncated base64 data" unless match[2].length % 4 == 0
+
+        return "has corrupt base64 data" unless match[2].match?(/^[a-zA-Z0-9+\/=]+$/)
       end
+      return
     end
 
     def check(filelist)

@@ -1,0 +1,9 @@
+---
+acme::good1: ENC[KMS,aGVsbG8sIdGHdvcmxk==]
+acme::good2: ENC[PKCS7,aGVsbG8sf3IHdvcmxk==]
+acme::good3: ENC[KMS,aGVsbG8sIdGHdvcmxk==]ENC[KMS,aGVsbG8sIdGHdvcmxk==]
+acme::good4: >
+   ENC[PKCS7,
+     aGVsbG8sIHdvcmxk]
+acme::good5: ENC[GPG,aGVsbG8sIHdvcmxkIQ==]
+acme::good6: ENC[GPG,aGVsbG8sIHdvcmxkISE=]
