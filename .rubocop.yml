@@ -1,0 +1,22 @@
+---
+inherit_from: .rubocop_todo.yml
+
+require:
+- rubocop-performance
+- rubocop-rake
+- rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: '2.4'
+  Exclude:
+  - vendor/**/*
+
+Metrics:
+  Enabled: false
+
+Style:
+  Enabled: false
+
+Layout:
+  Enabled: false
