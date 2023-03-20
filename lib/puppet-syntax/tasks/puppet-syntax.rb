@@ -41,7 +41,7 @@ module PuppetSyntax
           c = PuppetSyntax::Manifests.new
           output, has_errors = c.check(filelist_manifests)
           $stdout.puts "#{output.join("\n")}\n" unless output.empty?
-          exit 1 if has_errors || ( output.any? && PuppetSyntax.fail_on_deprecation_notices )
+          exit 1 if has_errors || (output.any? && PuppetSyntax.fail_on_deprecation_notices)
         end
 
         desc 'Syntax check Puppet templates'
