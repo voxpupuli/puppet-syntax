@@ -66,6 +66,5 @@ describe PuppetSyntax::Hiera do
       res = subject.check(files)
       expect(res).to be_empty
     end
-
   end
 end

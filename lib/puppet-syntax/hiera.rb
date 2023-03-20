@@ -3,7 +3,6 @@ require 'base64'
 
 module PuppetSyntax
   class Hiera
-
     def check_hiera_key(key)
       if key.is_a? Symbol
         if key.to_s.start_with?(':')

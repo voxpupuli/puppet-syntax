@@ -2,6 +2,7 @@ module PuppetSyntax
   class Manifests
     def check(filelist)
       raise "Expected an array of files" unless filelist.is_a?(Array)
+
       require 'puppet'
       require 'puppet/version'
       require 'puppet/face'
@@ -60,6 +61,7 @@ module PuppetSyntax
     end
 
     private
+
     def validate_manifest(file)
       Puppet[:tasks] = true if Puppet::Util::Package.versioncmp(Puppet.version, '5.4.0') >= 0 and file.match(/.*plans\/.*\.pp$/)
       Puppet::Face[:parser, :current].validate(file)
