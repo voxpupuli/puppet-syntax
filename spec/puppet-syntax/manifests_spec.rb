@@ -58,7 +58,6 @@ describe PuppetSyntax::Manifests do
 
     expect(output).to eq([])
     expect(has_errors).to eq(false)
-
   end
 
   it 'should read more than one valid file' do

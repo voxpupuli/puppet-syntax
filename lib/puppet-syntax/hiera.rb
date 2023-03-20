@@ -3,7 +3,6 @@ require 'base64'
 
 module PuppetSyntax
   class Hiera
-
     def check_hiera_key(key)
       if key.is_a? Symbol
         if key.to_s.start_with?(':')
@@ -33,7 +32,7 @@ module PuppetSyntax
           break if error
         end
       elsif val.is_a? Hash
-        val.each do |k,v|
+        val.each do |k, v|
           error = check_eyaml_data("#{name}['#{k}']", v)
           break if error
         end
@@ -56,13 +55,13 @@ module PuppetSyntax
           method = 'PKCS7'
         end
 
-        return "has unknown eyaml method #{method}" unless ['PKCS7','GPG','GKMS','KMS'].include? method
+        return "has unknown eyaml method #{method}" unless ['PKCS7', 'GPG', 'GKMS', 'KMS'].include? method
         return "has unpadded or truncated base64 data" unless base64.length % 4 == 0
 
         # Base64#decode64 will silently ignore characters outside the alphabet,
         # so we check resulting length of binary data instead
         pad_length = base64.gsub(/[^=]/, '').length
-        if Base64.decode64(base64).length != base64.length * 3/4 - pad_length
+        if Base64.decode64(base64).length != base64.length * 3 / 4 - pad_length
           return "has corrupt base64 data"
         end
       end
@@ -81,7 +80,7 @@ module PuppetSyntax
           next
         end
         if yamldata
-          yamldata.each do |k,v|
+          yamldata.each do |k, v|
             if PuppetSyntax.check_hiera_keys
               key_msg = check_hiera_key(k)
               errors << "WARNING: #{hiera_file}: Key :#{k}: #{key_msg}" if key_msg
