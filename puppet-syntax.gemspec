@@ -25,4 +25,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rb-readline"
+
+  spec.add_development_dependency 'rubocop', '~> 1.12.0'
+  spec.add_development_dependency 'rubocop-performance', '~> 1.10'
+  spec.add_development_dependency 'rubocop-rake', '~> 0.2'
+  spec.add_development_dependency 'rubocop-rspec', '>= 1.44'
 end
