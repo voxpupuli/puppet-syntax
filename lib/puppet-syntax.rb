@@ -9,14 +9,14 @@ module PuppetSyntax
   @hieradata_paths = [
     "**/data/**/*.*{yaml,yml}",
     "hieradata/**/*.*{yaml,yml}",
-    "hiera*.*{yaml,yml}"
+    "hiera*.*{yaml,yml}",
   ]
   @manifests_paths = [
-    '**/*.pp'
+    '**/*.pp',
   ]
   @templates_paths = [
     '**/templates/**/*.erb',
-    '**/templates/**/*.epp'
+    '**/templates/**/*.epp',
   ]
   @fail_on_deprecation_notices = true
   @check_hiera_keys = false
