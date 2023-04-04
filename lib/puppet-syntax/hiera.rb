@@ -20,6 +20,16 @@ module PuppetSyntax
       end
     end
 
+    def check_hiera_data(_key, value)
+      # using filter_map to remove nil values
+      # there will be nil values if check_broken_function_call didn't return a string
+      # this is a shorthand for filter.compact
+      # https://blog.saeloun.com/2019/05/25/ruby-2-7-enumerable-filter-map/
+      keys_and_values(value).filter_map do |element|
+        check_broken_function_call(element)
+      end
+    end
+
     # Recurse through complex data structures.  Return on first error.
     def check_eyaml_data(name, val)
       error = nil
@@ -87,6 +97,11 @@ module PuppetSyntax
             key_msg = check_hiera_key(k)
             errors << "WARNING: #{hiera_file}: Key :#{k}: #{key_msg}" if key_msg
           end
+          if PuppetSyntax.check_hiera_data
+            check_hiera_data(k, v).each do |value_msg|
+              errors << "WARNING: #{hiera_file}: Key :#{k}: #{value_msg}"
+            end
+          end
           eyaml_msg = check_eyaml_data(k, v)
           errors << "WARNING: #{hiera_file}: #{eyaml_msg}" if eyaml_msg
         end
@@ -95,6 +110,52 @@ module PuppetSyntax
       errors.map! { |e| e.to_s }
 
       errors
+    end
+
+    private
+
+    # you can call functions in hiera, like this:
+    # "%{lookup('this_is_ok')}"
+    # you can do this in everywhere in a hiera value
+    # you cannot do string concatenation within {}:
+    # "%{lookup('this_is_ok'):3306}"
+    # You can do string concatenation outside of {}:
+    # "%{lookup('this_is_ok')}:3306"
+    def check_broken_function_call(element)
+      'string after a function call but before `}` in the value' if element.is_a?(String) && /%{.+\('.*'\).+}/.match?(element)
+    end
+
+    # gets a hash or array, returns all keys + values as array
+    def flatten_data(data, parent_key = [])
+      if data.is_a?(Hash)
+        data.flat_map do |key, value|
+          current_key = parent_key + [key.to_s]
+          if value.is_a?(Hash) || value.is_a?(Array)
+            flatten_data(value, current_key)
+          else
+            [current_key.join('.'), value]
+          end
+        end
+      elsif data.is_a?(Array) && !data.empty?
+        data.flat_map do |value|
+          if value.is_a?(Hash) || value.is_a?(Array)
+            flatten_data(value, parent_key)
+          else
+            [parent_key.join('.'), value]
+          end
+        end
+      else
+        [parent_key.join('.')]
+      end
+    end
+
+    # gets a string, hash or array, returns all keys + values as flattened + unique array
+    def keys_and_values(value)
+      if value.is_a?(Hash) || value.is_a?(Array)
+        flatten_data(value).flatten.uniq
+      else
+        [value]
+      end
     end
   end
 end

@@ -9,3 +9,9 @@ typical:typo::warning1:   true
 noCamelCase::warning3:    true
 no-hyphens::warning4:     true
 :picky::warning5:         true
+this_is::warning6:
+  "%{lookup('foobar'):3306}": []
+this_is::warning7:
+  - "%{lookup('foobar'):3306}"
+this_is::warning8:
+  foo: "%{lookup('foobar'):3306}"
