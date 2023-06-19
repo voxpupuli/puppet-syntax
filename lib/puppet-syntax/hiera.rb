@@ -74,7 +74,8 @@ module PuppetSyntax
 
       filelist.each do |hiera_file|
         begin
-          yamldata = YAML.load_file(hiera_file, aliases: true)
+          yamlargs = RUBY_VERSION >= '3.1' ? { aliases: true } : {}
+          yamldata = YAML.load_file(hiera_file, **yamlargs)
         rescue Exception => error
           errors << "ERROR: Failed to parse #{hiera_file}: #{error}"
           next
