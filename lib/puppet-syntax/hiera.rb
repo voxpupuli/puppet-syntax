@@ -74,7 +74,7 @@ module PuppetSyntax
 
       filelist.each do |hiera_file|
         begin
-          yamldata = YAML.load_file(hiera_file)
+          yamldata = YAML.load_file(hiera_file, aliases: true)
         rescue Exception => error
           errors << "ERROR: Failed to parse #{hiera_file}: #{error}"
           next
