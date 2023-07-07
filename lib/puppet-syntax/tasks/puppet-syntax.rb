@@ -25,9 +25,9 @@ module PuppetSyntax
       filelist(PuppetSyntax.hieradata_paths)
     end
 
-    def initialize(*args)
+    def initialize(*_args)
       desc 'Syntax check Puppet manifests and templates'
-      task :syntax => [
+      task syntax: [
         'syntax:manifests',
         'syntax:templates',
         'syntax:hiera',
@@ -36,7 +36,7 @@ module PuppetSyntax
       namespace :syntax do
         desc 'Syntax check Puppet manifests'
         task :manifests do |t|
-          $stderr.puts "---> #{t.name}"
+          warn "---> #{t.name}"
 
           c = PuppetSyntax::Manifests.new
           output, has_errors = c.check(filelist_manifests)
@@ -46,29 +46,29 @@ module PuppetSyntax
 
         desc 'Syntax check Puppet templates'
         task :templates do |t|
-          $stderr.puts "---> #{t.name}"
+          warn "---> #{t.name}"
 
           c = PuppetSyntax::Templates.new
           result = c.check(filelist_templates)
           unless result[:warnings].empty?
-            $stdout.puts "WARNINGS:"
+            $stdout.puts 'WARNINGS:'
             $stdout.puts result[:warnings].join("\n")
           end
           unless result[:errors].empty?
-            $stderr.puts "ERRORS:"
-            $stderr.puts result[:errors].join("\n")
+            warn 'ERRORS:'
+            warn result[:errors].join("\n")
             exit 1
           end
         end
 
         desc 'Syntax check Hiera config files'
-        task :hiera => [
+        task hiera: [
           'syntax:hiera:yaml',
         ]
 
         namespace :hiera do
           task :yaml do |t|
-            $stderr.puts "---> #{t.name}"
+            warn "---> #{t.name}"
             c = PuppetSyntax::Hiera.new
             errors = c.check(filelist_hiera_yaml)
             $stdout.puts "#{errors.join("\n")}\n" unless errors.empty?

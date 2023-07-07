@@ -3,17 +3,17 @@ require 'spec_helper'
 describe PuppetSyntax::Hiera do
   let(:subject) { PuppetSyntax::Hiera.new }
 
-  it 'should expect an array of files' do
+  it 'expects an array of files' do
     expect { subject.check(nil) }.to raise_error(/Expected an array of files/)
   end
 
-  it "should return nothing from valid YAML" do
+  it 'returns nothing from valid YAML' do
     files = fixture_hiera('hiera_good.yaml')
     res = subject.check(files)
     expect(res).to be == []
   end
 
-  it "should return an error from invalid YAML" do
+  it 'returns an error from invalid YAML' do
     files = fixture_hiera('hiera_bad.yaml')
     expected = /ERROR: Failed to parse #{files[0]}:/
     res = subject.check(files)
@@ -22,11 +22,11 @@ describe PuppetSyntax::Hiera do
   end
 
   context 'check_hiera_keys = true' do
-    before(:each) {
+    before do
       PuppetSyntax.check_hiera_keys = true
-    }
+    end
 
-    it "should return warnings for invalid keys" do
+    it 'returns warnings for invalid keys' do
       hiera_yaml = 'hiera_badkey.yaml'
       examples = 5
       files = fixture_hiera(hiera_yaml)
@@ -42,7 +42,7 @@ describe PuppetSyntax::Hiera do
       expect(res[4]).to match('Key :picky::warning5: Puppet automatic lookup will not look up symbols')
     end
 
-    it "should return warnings for bad eyaml values" do
+    it 'returns warnings for bad eyaml values' do
       hiera_yaml = 'hiera_bad.eyaml'
       examples = 6
       files = fixture_hiera(hiera_yaml)
@@ -59,7 +59,7 @@ describe PuppetSyntax::Hiera do
       expect(res[5]).to match('Key acme::warning6\[\'hash_key\'\]\[2\] has corrupt base64 data')
     end
 
-    it "should handle empty files" do
+    it 'handles empty files' do
       hiera_yaml = 'hiera_key_empty.yaml'
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
