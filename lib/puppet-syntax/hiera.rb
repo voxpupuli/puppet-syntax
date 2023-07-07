@@ -72,9 +72,11 @@ module PuppetSyntax
 
       errors = []
 
+      yamlargs = Psych::VERSION >= '4.0' ? { aliases: true } : {}
+
       filelist.each do |hiera_file|
         begin
-          yamldata = YAML.load_file(hiera_file)
+          yamldata = YAML.load_file(hiera_file, **yamlargs)
         rescue Exception => error
           errors << "ERROR: Failed to parse #{hiera_file}: #{error}"
           next
