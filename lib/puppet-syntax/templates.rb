@@ -73,7 +73,7 @@ module PuppetSyntax
         erb = if RUBY_VERSION >= '2.6'
                 ERB.new(template, trim_mode: '-')
               else
-                ERB.new(template, nil, '-')
+                ERB.new(template, trim_mode: '-')
               end
         erb.filename = filename
         erb.result
