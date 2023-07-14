@@ -70,7 +70,7 @@ module PuppetSyntax
 
       errors = []
 
-      yamlargs = Psych::VERSION >= '4.0' ? { aliases: true } : {}
+      yamlargs = (Psych::VERSION >= '4.0') ? { aliases: true } : {}
 
       filelist.each do |hiera_file|
         begin
