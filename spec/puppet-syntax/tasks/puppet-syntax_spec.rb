@@ -9,25 +9,25 @@ known_yaml_subdir = 'spec/fixtures/hiera/data/test/hiera_3.yaml'
 known_eyaml_subdir = 'spec/fixtures/hiera/data/test/hiera_4.eyaml'
 
 describe 'PuppetSyntax rake tasks' do
-  it 'should filter directories' do
+  it 'filters directories' do
     list = PuppetSyntax::RakeTask.new.filelist(['**/lib', known_pp])
     expect(list.count).to eq 1
     expect(list).to include(known_pp)
   end
 
-  it 'should generate FileList of manifests relative to Rakefile' do
+  it 'generates FileList of manifests relative to Rakefile' do
     list = PuppetSyntax::RakeTask.new.filelist_manifests
     expect(list).to include(known_pp)
     expect(list.count).to eq 9
   end
 
-  it 'should generate FileList of templates relative to Rakefile' do
+  it 'generates FileList of templates relative to Rakefile' do
     list = PuppetSyntax::RakeTask.new.filelist_templates
     expect(list).to include(known_erb)
     expect(list.count).to eq 9
   end
 
-  it 'should generate FileList of Hiera yaml files relative to Rakefile' do
+  it 'generates FileList of Hiera yaml files relative to Rakefile' do
     list = PuppetSyntax::RakeTask.new.filelist_hiera_yaml
     expect(list).to include(known_yaml)
     expect(list).to include(known_eyaml)

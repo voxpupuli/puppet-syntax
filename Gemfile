@@ -6,11 +6,11 @@ source 'https://rubygems.org'
 # is specified as `file://some/location/on/disk`.
 def location_for(place_or_version, fake_version = nil)
   if place_or_version =~ /^(https[:@][^#]*)#(.*)/
-    [fake_version, { :git => $1, :branch => $2, :require => false }].compact
-  elsif place_or_version =~ /^file:\/\/(.*)/
-    ['>= 0', { :path => File.expand_path($1), :require => false }]
+    [fake_version, { git: Regexp.last_match(1), branch: Regexp.last_match(2), require: false }].compact
+  elsif place_or_version =~ %r{^file://(.*)}
+    ['>= 0', { path: File.expand_path(Regexp.last_match(1)), require: false }]
   else
-    [place_or_version, { :require => false }]
+    [place_or_version, { require: false }]
   end
 end
 

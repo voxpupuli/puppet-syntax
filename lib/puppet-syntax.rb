@@ -1,4 +1,4 @@
-require "puppet-syntax/version"
+require 'puppet-syntax/version'
 
 module PuppetSyntax
   autoload :Hiera, 'puppet-syntax/hiera'
@@ -7,9 +7,9 @@ module PuppetSyntax
 
   @exclude_paths = []
   @hieradata_paths = [
-    "**/data/**/*.*{yaml,yml}",
-    "hieradata/**/*.*{yaml,yml}",
-    "hiera*.*{yaml,yml}",
+    '**/data/**/*.*{yaml,yml}',
+    'hieradata/**/*.*{yaml,yml}',
+    'hiera*.*{yaml,yml}',
   ]
   @manifests_paths = [
     '**/*.pp',

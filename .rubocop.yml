@@ -1,34 +1,8 @@
 ---
 inherit_from: .rubocop_todo.yml
 
-require:
-- rubocop-performance
-- rubocop-rake
-- rubocop-rspec
-
-AllCops:
-  NewCops: enable
-  TargetRubyVersion: '2.7'
-  Exclude:
-  - vendor/**/*
-
-Style/TrailingCommaInHashLiteral:
-  Enabled: True
-  EnforcedStyleForMultiline: consistent_comma
-
-Style/TrailingCommaInArrayLiteral:
-  Enabled: True
-  EnforcedStyleForMultiline: consistent_comma
-
-Style/TrailingCommaInArguments:
-  Enabled: True
-  EnforcedStyleForMultiline: comma
+inherit_gem:
+  voxpupuli-rubocop: rubocop.yml
 
 Metrics:
-  Enabled: false
-
-Style:
-  Enabled: false
-
-Layout:
   Enabled: false

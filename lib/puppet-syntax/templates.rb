@@ -4,10 +4,10 @@ require 'stringio'
 module PuppetSyntax
   class Templates
     def check(filelist)
-      raise "Expected an array of files" unless filelist.is_a?(Array)
+      raise 'Expected an array of files' unless filelist.is_a?(Array)
 
       # We now have to redirect STDERR in order to capture warnings.
-      $stderr = warnings = StringIO.new()
+      $stderr = warnings = StringIO.new
       result = { warnings: [], errors: [] }
 
       filelist.each do |file|
@@ -16,7 +16,7 @@ module PuppetSyntax
         elsif File.extname(file) == '.erb'
           tmp = validate_erb(file)
         end
-        result.merge!(tmp) { |k, a, b| a.concat(b) } unless tmp.nil?
+        result.merge!(tmp) { |_k, a, b| a.concat(b) } unless tmp.nil?
       end
 
       $stderr = STDERR
@@ -33,8 +33,8 @@ module PuppetSyntax
       require 'puppet/pops'
       result = { warnings: [], errors: [] }
       formatter = Puppet::Pops::Validation::DiagnosticFormatterPuppetStyle.new
-      evaluating_parser = Puppet::Pops::Parser::EvaluatingParser::EvaluatingEppParser.new()
-      parser = evaluating_parser.parser()
+      evaluating_parser = Puppet::Pops::Parser::EvaluatingParser::EvaluatingEppParser.new
+      parser = evaluating_parser.parser
       begin
         parse_result = parser.parse_file(filename)
         validation_result = evaluating_parser.validate(parse_result.model)
@@ -56,10 +56,10 @@ module PuppetSyntax
           column = err.source_pos.pos
           result[:errors] << "#{file}:#{line}:#{column}: #{message}"
         end
-      rescue Puppet::ParseError, SyntaxError => exc
-        result[:errors] << exc
-      rescue => exc
-        result[:errors] << exc
+      rescue Puppet::ParseError, SyntaxError => e
+        result[:errors] << e
+      rescue StandardError => e
+        result[:errors] << e
       end
 
       result
@@ -77,14 +77,14 @@ module PuppetSyntax
               end
         erb.filename = filename
         erb.result
-      rescue NameError => error
+      rescue NameError => e
         # This is normal because we don't have the variables that would
         # ordinarily be bound by the parent Puppet manifest.
       rescue TypeError
         # This is normal because we don't have the variables that would
         # ordinarily be bound by the parent Puppet manifest.
-      rescue SyntaxError => error
-        result[:errors] << error
+      rescue SyntaxError => e
+        result[:errors] << e
       end
 
       result
