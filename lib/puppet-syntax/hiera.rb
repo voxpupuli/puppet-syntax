@@ -54,7 +54,8 @@ module PuppetSyntax
         method = 'PKCS7'
       end
 
-      return "has unknown eyaml method #{method}" unless %w[PKCS7 GPG GKMS KMS].include? method
+      known_methods = %w[PKCS7 GPG GKMS KMS TWOFAC SecretBox VAULT GCPKMS RSA SSHAGENT VAULT_RS cli]
+      return "has unknown eyaml method #{method}" unless known_methods.include? method
       return 'has unpadded or truncated base64 data' unless base64.length % 4 == 0
 
       # Base64#decode64 will silently ignore characters outside the alphabet,
