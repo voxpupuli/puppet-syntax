@@ -29,8 +29,7 @@ module PuppetSyntax
     end
 
     def validate_epp(filename)
-      require 'puppet/error'
-      require 'puppet/pops'
+      require 'puppet'
       result = { warnings: [], errors: [] }
       formatter = Puppet::Pops::Validation::DiagnosticFormatterPuppetStyle.new
       evaluating_parser = Puppet::Pops::Parser::EvaluatingParser::EvaluatingEppParser.new
