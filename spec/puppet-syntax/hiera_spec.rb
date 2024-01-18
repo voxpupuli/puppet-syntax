@@ -10,14 +10,14 @@ describe PuppetSyntax::Hiera do
   it 'returns nothing from valid YAML' do
     files = fixture_hiera('hiera_good.yaml')
     res = subject.check(files)
-    expect(res).to be == []
+    expect(res).to eq []
   end
 
   it 'returns an error from invalid YAML' do
     files = fixture_hiera('hiera_bad.yaml')
     expected = /ERROR: Failed to parse #{files[0]}:/
     res = subject.check(files)
-    expect(res.size).to be == 1
+    expect(res.size).to eq 1
     expect(res.first).to match(expected)
   end
 
@@ -34,7 +34,7 @@ describe PuppetSyntax::Hiera do
       (1..examples).each do |n|
         expect(res).to include(/::warning#{n}/)
       end
-      expect(res.size).to be == examples
+      expect(res.size).to eq examples
       expect(res[0]).to match('Key :typical:typo::warning1: Looks like a missing colon')
       expect(res[1]).to match('Key ::notsotypical::warning2: Puppet automatic lookup will not use leading \'::\'')
       expect(res[2]).to match('Key :noCamelCase::warning3: Not a valid Puppet variable name for automatic lookup')
@@ -50,7 +50,7 @@ describe PuppetSyntax::Hiera do
       (1..examples).each do |n|
         expect(res).to include(/::warning#{n}/)
       end
-      expect(res.size).to be == examples
+      expect(res.size).to eq examples
       expect(res[0]).to match('Key acme::warning1 has unknown eyaml method unknown-method')
       expect(res[1]).to match('Key acme::warning2 has unterminated eyaml value')
       expect(res[2]).to match('Key acme::warning3 has unpadded or truncated base64 data')
