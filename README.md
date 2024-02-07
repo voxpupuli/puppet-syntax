@@ -1,7 +1,8 @@
 # puppet-syntax
 
 [![License](https://img.shields.io/github/license/voxpupuli/puppet-syntax.svg)](https://github.com/voxpupuli/puppet-syntax/blob/master/LICENSE.txt)
-[![Release](https://github.com/voxpupuli/puppet-syntax/actions/workflows/syntax.yml/badge.svg)](https://github.com/voxpupuli/puppet-syntax/actions/workflows/syntax.yml)
+[![Release](https://github.com/voxpupuli/puppet-syntax/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/puppet-syntax/actions/workflows/release.yml)
+[![Test](https://github.com/voxpupuli/puppet-syntax/actions/workflows/test.yml/badge.svg)](https://github.com/voxpupuli/puppet-syntax/actions/workflows/test.yml)
 [![RubyGem Version](https://img.shields.io/gem/v/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
 [![RubyGem Downloads](https://img.shields.io/gem/dt/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
 
