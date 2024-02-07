@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v4.0.0) (2024-02-07)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.3.0...v4.0.0)
+
+**Breaking changes:**
+
+- Drop Ruby 2.4/2.5/2.6 & Puppet 5/6 support [\#145](https://github.com/voxpupuli/puppet-syntax/pull/145) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add Ruby 3.2 / Puppet 8 support [\#147](https://github.com/voxpupuli/puppet-syntax/pull/147) ([bastelfreak](https://github.com/bastelfreak))
+- support aliases in hiera yaml [\#144](https://github.com/voxpupuli/puppet-syntax/pull/144) ([akerl](https://github.com/akerl))
+- Implement RuboCop [\#137](https://github.com/voxpupuli/puppet-syntax/pull/137) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- fix "NameError: uninitialized constant Puppet::Util"  [\#155](https://github.com/voxpupuli/puppet-syntax/pull/155) ([mxey](https://github.com/mxey))
+- add all known hiera-eyaml methods [\#154](https://github.com/voxpupuli/puppet-syntax/pull/154) ([mxey](https://github.com/mxey))
+
+**Merged pull requests:**
+
+- README.md: Fix badges [\#161](https://github.com/voxpupuli/puppet-syntax/pull/161) ([bastelfreak](https://github.com/bastelfreak))
+- gemspec: Add version requirements & CI: Build Gems ins strict & verbose mode [\#160](https://github.com/voxpupuli/puppet-syntax/pull/160) ([bastelfreak](https://github.com/bastelfreak))
+- Update voxpupuli-rubocop requirement from ~\> 2.0.0 to ~\> 2.4.0 [\#159](https://github.com/voxpupuli/puppet-syntax/pull/159) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update voxpupuli-rubocop requirement from ~\> 1.4.0 to ~\> 2.0.0 [\#152](https://github.com/voxpupuli/puppet-syntax/pull/152) ([dependabot[bot]](https://github.com/apps/dependabot))
+- GCG: Add faraday-retry dep [\#149](https://github.com/voxpupuli/puppet-syntax/pull/149) ([bastelfreak](https://github.com/bastelfreak))
+- Switch to voxpupuli-rubocop [\#148](https://github.com/voxpupuli/puppet-syntax/pull/148) ([bastelfreak](https://github.com/bastelfreak))
+- CI: add dummy job to depend on [\#146](https://github.com/voxpupuli/puppet-syntax/pull/146) ([bastelfreak](https://github.com/bastelfreak))
+- Drop Ruby 1.8 testcode [\#142](https://github.com/voxpupuli/puppet-syntax/pull/142) ([bastelfreak](https://github.com/bastelfreak))
+- rubocop: fix whitespace and newline warnings [\#141](https://github.com/voxpupuli/puppet-syntax/pull/141) ([bastelfreak](https://github.com/bastelfreak))
+- rubocop: fix trailing comma [\#140](https://github.com/voxpupuli/puppet-syntax/pull/140) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v3.3.0](https://github.com/voxpupuli/puppet-syntax/tree/v3.3.0) (2023-02-08)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.2.1...v3.3.0)
