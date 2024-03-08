@@ -15,8 +15,8 @@ Hiera YAML.
 
 Puppet::Syntax is supported with:
 
-- Puppet >= 5.0 that provides the `validate` face.
-- Ruby >= 2.4
+- Puppet >= 7.0
+- Ruby >= 2.7
 
 For the specific versions that we test against, see the [GitHub Actions workflow](.github/workflows/test.yml).
 
