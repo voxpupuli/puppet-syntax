@@ -61,7 +61,7 @@ module PuppetSyntax
     private
 
     def validate_manifest(file)
-      Puppet[:tasks] = true if Puppet::Util::Package.versioncmp(Puppet.version, '5.4.0') >= 0 and file.match(%r{.*plans/.*\.pp$})
+      Puppet[:tasks] = true if %r{.*plans/.*\.pp$}.match?(file)
       Puppet::Face[:parser, :current].validate(file)
     end
   end
