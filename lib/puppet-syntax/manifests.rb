@@ -61,7 +61,7 @@ module PuppetSyntax
     private
 
     def validate_manifest(file)
-      Puppet[:tasks] = true if file.match(%r{.*plans/.*\.pp$})
+      Puppet[:tasks] = true if %r{.*plans/.*\.pp$}.match?(file)
       Puppet::Face[:parser, :current].validate(file)
     end
   end
