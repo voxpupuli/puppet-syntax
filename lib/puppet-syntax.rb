@@ -19,8 +19,8 @@ module PuppetSyntax
     '**/templates/**/*.epp',
   ]
   @fail_on_deprecation_notices = true
-  @check_hiera_keys = false
-  @check_hiera_data = false
+  @check_hiera_keys = true
+  @check_hiera_data = true
 
   class << self
     attr_accessor :exclude_paths,
