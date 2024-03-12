@@ -26,7 +26,7 @@ module PuppetSyntax
     end
 
     def initialize(*_args)
-      desc 'Syntax check Puppet manifests and templates'
+      desc 'Syntax check for Puppet manifests, templates and Hiera'
       task syntax: [
         'syntax:manifests',
         'syntax:templates',
@@ -69,6 +69,7 @@ module PuppetSyntax
         namespace :hiera do
           task :yaml do |t|
             warn "---> #{t.name}"
+            warn "#{t.name} was called, but PuppetSyntax.check_hiera_keys is false. hiera syntax won't be checked" unless PuppetSyntax.check_hiera_keys
             c = PuppetSyntax::Hiera.new
             errors = c.check(filelist_hiera_yaml)
             $stdout.puts "#{errors.join("\n")}\n" unless errors.empty?
