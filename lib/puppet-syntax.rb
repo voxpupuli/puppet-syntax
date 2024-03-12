@@ -20,6 +20,7 @@ module PuppetSyntax
   ]
   @fail_on_deprecation_notices = true
   @check_hiera_keys = false
+  @check_hiera_data = false
 
   class << self
     attr_accessor :exclude_paths,
@@ -28,6 +29,7 @@ module PuppetSyntax
                   :templates_paths,
                   :fail_on_deprecation_notices,
                   :epp_only,
-                  :check_hiera_keys
+                  :check_hiera_keys,
+                  :check_hiera_data
   end
 end

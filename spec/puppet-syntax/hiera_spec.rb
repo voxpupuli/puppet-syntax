@@ -24,11 +24,12 @@ describe PuppetSyntax::Hiera do
   context 'check_hiera_keys = true' do
     before do
       PuppetSyntax.check_hiera_keys = true
+      PuppetSyntax.check_hiera_data = true
     end
 
     it 'returns warnings for invalid keys' do
       hiera_yaml = 'hiera_badkey.yaml'
-      examples = 5
+      examples = 8
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
@@ -40,6 +41,9 @@ describe PuppetSyntax::Hiera do
       expect(res[2]).to match('Key :noCamelCase::warning3: Not a valid Puppet variable name for automatic lookup')
       expect(res[3]).to match('Key :no-hyphens::warning4: Not a valid Puppet variable name for automatic lookup')
       expect(res[4]).to match('Key :picky::warning5: Puppet automatic lookup will not look up symbols')
+      expect(res[5]).to match('Key :this_is::warning6: string after a function call but before `}` in the value')
+      expect(res[6]).to match('Key :this_is::warning7: string after a function call but before `}` in the value')
+      expect(res[7]).to match('Key :this_is::warning8: string after a function call but before `}` in the value')
     end
 
     it 'returns warnings for bad eyaml values' do

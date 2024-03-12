@@ -85,6 +85,13 @@ This reports common mistakes in key names in Hiera files, such as:
 * Invalid camel casing, such as: `noCamelCase::warning3: true`.
 * Use of hyphens, such as: `no-hyphens::warning4: true`.
 
+
+* To enable a syntax check on Hiera values, set:
+
+```ruby
+PuppetSyntax.check_hiera_data = true
+```
+
 ## Usage
 
 * To enable Puppet::Syntax, include the following in your module's `Rakefile`:
@@ -138,6 +145,21 @@ By default, this rake task looks for all `.yaml` files in a single module under:
 * `**/data/**/*.yaml`
 * `hieradata/**/*.yaml`
 * `hiera*.yaml`
+
+It will validate the syntax of each Hiera *key*. for values, it will check if
+the interpolation function syntax is correct. Wrong:
+
+```
+foo:
+  "%{lookup('baz'):3306}": []
+```
+
+correct would be:
+
+```
+foo:
+  "%{lookup('baz')}:3306": []
+```
 
 ### manifests
 
