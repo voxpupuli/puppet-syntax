@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.0.1](https://github.com/voxpupuli/puppet-syntax/tree/v4.0.1) (2024-03-12)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v4.0.0...v4.0.1)
+
+**Fixed bugs:**
+
+- Raise warning if hiera check is called but disabled [\#165](https://github.com/voxpupuli/puppet-syntax/pull/165) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- Drop Puppet 5.4 check [\#166](https://github.com/voxpupuli/puppet-syntax/pull/166) ([bastelfreak](https://github.com/bastelfreak))
+- README.md: Update required Puppet/Ruby versions [\#164](https://github.com/voxpupuli/puppet-syntax/pull/164) ([bastelfreak](https://github.com/bastelfreak))
+- Update voxpupuli-rubocop requirement from ~\> 2.4.0 to ~\> 2.5.0 [\#163](https://github.com/voxpupuli/puppet-syntax/pull/163) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v4.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v4.0.0) (2024-02-07)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v3.3.0...v4.0.0)
