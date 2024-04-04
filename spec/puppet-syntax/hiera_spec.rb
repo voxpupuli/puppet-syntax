@@ -29,7 +29,7 @@ describe PuppetSyntax::Hiera do
 
     it 'returns warnings for invalid keys' do
       hiera_yaml = 'hiera_badkey.yaml'
-      examples = 8
+      examples = 9
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
@@ -44,6 +44,7 @@ describe PuppetSyntax::Hiera do
       expect(res[5]).to match('Key :this_is::warning6: string after a function call but before `}` in the value')
       expect(res[6]).to match('Key :this_is::warning7: string after a function call but before `}` in the value')
       expect(res[7]).to match('Key :this_is::warning8: string after a function call but before `}` in the value')
+      expect(res[8]).to match('Key :this_is::warning9: string after a function call but before `}` in the value')
     end
 
     it 'returns warnings for bad eyaml values' do

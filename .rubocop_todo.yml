@@ -86,7 +86,7 @@ RSpec/DescribedClass:
 # Offense count: 7
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:
-  Max: 16
+  Max: 17
 
 # Offense count: 4
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
@@ -100,7 +100,7 @@ RSpec/FilePath:
 
 # Offense count: 29
 RSpec/MultipleExpectations:
-  Max: 10
+  Max: 11
 
 # Offense count: 30
 # Configuration parameters: EnforcedStyle, IgnoreSharedExamples.
