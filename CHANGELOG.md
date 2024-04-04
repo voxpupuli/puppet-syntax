@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.1.1](https://github.com/voxpupuli/puppet-syntax/tree/v4.1.1) (2024-04-04)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v4.1.0...v4.1.1)
+
+**Fixed bugs:**
+
+- fix too greedy regular expression [\#171](https://github.com/voxpupuli/puppet-syntax/pull/171) ([tmu-sprd](https://github.com/tmu-sprd))
+
 ## [v4.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v4.1.0) (2024-03-12)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v4.0.1...v4.1.0)
