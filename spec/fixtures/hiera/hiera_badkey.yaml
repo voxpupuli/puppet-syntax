@@ -3,6 +3,7 @@ this_is_ok: 0
 this_is_ok::too: 0
 th1s_is_ok::two3: 0
 :eventhis: 0
+this_is_ok::concat_func: "%{lookup('foo')}%{lookup('bar')}"
 
 typical:typo::warning1:   true
 ::notsotypical::warning2: true
@@ -15,3 +16,4 @@ this_is::warning7:
   - "%{lookup('foobar'):3306}"
 this_is::warning8:
   foo: "%{lookup('foobar'):3306}"
+this_is::warning9: "%{lookup('foo'):3306}%{lookup('bar')}"
