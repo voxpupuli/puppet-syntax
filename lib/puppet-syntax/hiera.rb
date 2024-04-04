@@ -122,7 +122,7 @@ module PuppetSyntax
     # You can do string concatenation outside of {}:
     # "%{lookup('this_is_ok')}:3306"
     def check_broken_function_call(element)
-      'string after a function call but before `}` in the value' if element.is_a?(String) && /%{.+\('.*'\).+}/.match?(element)
+      'string after a function call but before `}` in the value' if element.is_a?(String) && /%{[^}]+\('[^}]*'\)[^}\s]+}/.match?(element)
     end
 
     # gets a hash or array, returns all keys + values as array
