@@ -1,12 +1,6 @@
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new('spec')
 
-task :publish_gem do
-  require 'gem_publisher'
-  gem = GemPublisher.publish_if_updated('puppet-syntax.gemspec', :rubygems)
-  puts "Published #{gem}" if gem
-end
-
 task default: [:spec]
 begin
   require 'github_changelog_generator/task'
@@ -23,12 +17,7 @@ rescue LoadError
 end
 
 begin
-  require 'rubocop/rake_task'
+  require 'voxpupuli/rubocop/rake'
 rescue LoadError
-  # RuboCop is an optional group
-else
-  RuboCop::RakeTask.new(:rubocop) do |task|
-    # These make the rubocop experience maybe slightly less terrible
-    task.options = ['--display-cop-names', '--display-style-guide', '--extra-details']
-  end
+  # the voxpupuli-rubocop gem is optional
 end
