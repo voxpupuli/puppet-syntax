@@ -76,7 +76,7 @@ module PuppetSyntax
               end
         erb.filename = filename
         erb.result
-      rescue NameError => e
+      rescue NameError
         # This is normal because we don't have the variables that would
         # ordinarily be bound by the parent Puppet manifest.
       rescue TypeError
