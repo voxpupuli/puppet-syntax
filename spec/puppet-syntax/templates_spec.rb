@@ -3,11 +3,7 @@ require 'spec_helper'
 describe PuppetSyntax::Templates do
   let(:subject) { PuppetSyntax::Templates.new }
   let(:conditional_warning_regex) do
-    if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.6.0')
-      /2: warning: found `= literal' in conditional/
-    else
-      /2: warning: found = in conditional/
-    end
+    /2: warning: found `= literal' in conditional/
   end
 
   it 'expects an array of files' do
