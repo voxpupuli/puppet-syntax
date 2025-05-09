@@ -5,7 +5,12 @@ module PuppetSyntax
   autoload :Manifests, 'puppet-syntax/manifests'
   autoload :Templates, 'puppet-syntax/templates'
 
-  @exclude_paths = []
+  @exclude_paths = [
+    'spec/fixtures/**/*',
+    'pkg/**/*',
+    'vendor/**/*',
+    '.vendor/**/*',
+  ]
   @hieradata_paths = [
     '**/data/**/*.*{yaml,yml}',
     'hieradata/**/*.*{yaml,yml}',
