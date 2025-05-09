@@ -3,7 +3,8 @@ require 'spec_helper'
 describe PuppetSyntax::Templates do
   let(:subject) { PuppetSyntax::Templates.new }
   let(:conditional_warning_regex) do
-    /2: warning: found `= literal' in conditional/
+    # ruby 3.4 uses '= ,ruby 2.6 to 3.3 uses `=
+    /2: warning: found [`']= literal' in conditional/
   end
 
   it 'expects an array of files' do
@@ -31,7 +32,7 @@ describe PuppetSyntax::Templates do
     res = subject.check(files)
 
     expect(res[:errors].size).to eq(1)
-    expect(res[:errors][0]).to match(/2: syntax error, unexpected/)
+    expect(res[:errors][0]).to match(/2: syntax error/)
   end
 
   it 'catches Ruby warnings' do
@@ -56,7 +57,7 @@ describe PuppetSyntax::Templates do
 
     expect(res[:warnings].size).to eq(1)
     expect(res[:errors].size).to eq(1)
-    expect(res[:errors][0]).to match(/2: syntax error, unexpected/)
+    expect(res[:errors][0]).to match(/2: syntax error/)
     expect(res[:warnings][0]).to match(conditional_warning_regex)
   end
 
