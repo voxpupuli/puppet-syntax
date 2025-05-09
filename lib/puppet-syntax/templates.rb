@@ -69,11 +69,7 @@ module PuppetSyntax
 
       begin
         template = File.read(filename)
-        erb = if RUBY_VERSION >= '2.6'
-                ERB.new(template, trim_mode: '-')
-              else
-                ERB.new(template, trim_mode: '-')
-              end
+        erb = ERB.new(template, trim_mode: '-')
         erb.filename = filename
         erb.result
       rescue NameError
