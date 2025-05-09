@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'puppet', '>= 7', '< 9'
   spec.add_dependency 'rake', '~> 13.1'
 
-  spec.add_development_dependency 'voxpupuli-rubocop', '~> 3.0.0'
+  spec.add_development_dependency 'voxpupuli-rubocop', '~> 3.1.0'
 end
