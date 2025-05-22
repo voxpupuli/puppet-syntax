@@ -1,0 +1,2 @@
+prometheus::initstyle:sysv
+prometheus::node_exporter::init_style:sysv

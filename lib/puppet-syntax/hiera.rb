@@ -92,6 +92,11 @@ module PuppetSyntax
         end
         next unless yamldata
 
+        unless yamldata.is_a?(Hash)
+          errors << "ERROR: #{hiera_file} doesn't contain a valid Hash, datatype is #{yamldata.class}"
+          next
+        end
+
         yamldata.each do |k, v|
           if PuppetSyntax.check_hiera_keys
             key_msg = check_hiera_key(k)

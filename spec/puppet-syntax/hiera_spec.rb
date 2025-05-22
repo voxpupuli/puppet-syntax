@@ -21,6 +21,14 @@ describe PuppetSyntax::Hiera do
     expect(res.first).to match(expected)
   end
 
+  it 'returns warnings on malformed keys' do
+    files = fixture_hiera('hiera_key_no_value.yaml')
+    expected = /ERROR: #{files[0]} doesn't contain a valid Hash, datatype is/
+    res = subject.check(files)
+    expect(res.size).to eq 1
+    expect(res.first).to match(expected)
+  end
+
   context 'check_hiera_keys = true' do
     before do
       PuppetSyntax.check_hiera_keys = true
