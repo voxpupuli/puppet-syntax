@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v5.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v5.0.0) (2025-05-23)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v4.1.1...v5.0.0)
+
+**Breaking changes:**
+
+- Set default exclude paths [\#181](https://github.com/voxpupuli/puppet-syntax/pull/181) ([bastelfreak](https://github.com/bastelfreak))
+- Enable Hiera syntax check [\#167](https://github.com/voxpupuli/puppet-syntax/pull/167) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Detect Hiera files that are not valid hashes [\#184](https://github.com/voxpupuli/puppet-syntax/pull/184) ([bastelfreak](https://github.com/bastelfreak))
+- CI: Switch to voxpupuli/ruby-version@v1 & Add Ruby 3.4 support [\#180](https://github.com/voxpupuli/puppet-syntax/pull/180) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- Drop unused pry & rb-readline dev dependencies [\#182](https://github.com/voxpupuli/puppet-syntax/pull/182) ([bastelfreak](https://github.com/bastelfreak))
+- Cleanup Rakefile; remove legacy tasks [\#173](https://github.com/voxpupuli/puppet-syntax/pull/173) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v4.1.1](https://github.com/voxpupuli/puppet-syntax/tree/v4.1.1) (2024-04-04)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v4.1.0...v4.1.1)
