@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe PuppetSyntax::Templates do
-  let(:subject) { PuppetSyntax::Templates.new }
+  let(:subject) { described_class.new }
   let(:conditional_warning_regex) do
     # ruby 3.4 uses '= ,ruby 2.6 to 3.3 uses `=
     /2: warning: found [`']= literal' in conditional/
