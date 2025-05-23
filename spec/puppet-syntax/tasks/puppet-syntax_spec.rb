@@ -9,30 +9,45 @@ known_yaml_subdir = 'spec/fixtures/hiera/data/test/hiera_3.yaml'
 known_eyaml_subdir = 'spec/fixtures/hiera/data/test/hiera_4.eyaml'
 
 describe 'PuppetSyntax rake tasks' do
-  it 'filters directories' do
-    list = PuppetSyntax::RakeTask.new.filelist(['**/lib', known_pp])
-    expect(list.count).to eq 1
-    expect(list).to include(known_pp)
+  describe 'with default excludes' do
+    it 'filters directories' do
+      list = PuppetSyntax::RakeTask.new.filelist(['**/lib', known_pp])
+      expect(list.count).to eq 0
+      expect(list).not_to include(known_pp)
+    end
   end
 
-  it 'generates FileList of manifests relative to Rakefile' do
-    list = PuppetSyntax::RakeTask.new.filelist_manifests
-    expect(list).to include(known_pp)
-    expect(list.count).to eq 9
-  end
+  describe 'with custom excludes' do
+    before do
+      list = PuppetSyntax.exclude_paths
+      PuppetSyntax.exclude_paths = list - ['spec/fixtures/**/*']
+    end
 
-  it 'generates FileList of templates relative to Rakefile' do
-    list = PuppetSyntax::RakeTask.new.filelist_templates
-    expect(list).to include(known_erb)
-    expect(list.count).to eq 9
-  end
+    it 'filters directories' do
+      list = PuppetSyntax::RakeTask.new.filelist(['**/lib', known_pp])
+      expect(list.count).to eq 1
+      expect(list).to include(known_pp)
+    end
 
-  it 'generates FileList of Hiera yaml files relative to Rakefile' do
-    list = PuppetSyntax::RakeTask.new.filelist_hiera_yaml
-    expect(list).to include(known_yaml)
-    expect(list).to include(known_eyaml)
-    expect(list).to include(known_yaml_subdir)
-    expect(list).to include(known_eyaml_subdir)
-    expect(list.count).to eq 4
+    it 'generates FileList of manifests relative to Rakefile' do
+      list = PuppetSyntax::RakeTask.new.filelist_manifests
+      expect(list).to include(known_pp)
+      expect(list.count).to eq 9
+    end
+
+    it 'generates FileList of templates relative to Rakefile' do
+      list = PuppetSyntax::RakeTask.new.filelist_templates
+      expect(list).to include(known_erb)
+      expect(list.count).to eq 9
+    end
+
+    it 'generates FileList of Hiera yaml files relative to Rakefile' do
+      list = PuppetSyntax::RakeTask.new.filelist_hiera_yaml
+      expect(list).to include(known_yaml)
+      expect(list).to include(known_eyaml)
+      expect(list).to include(known_yaml_subdir)
+      expect(list).to include(known_eyaml_subdir)
+      expect(list.count).to eq 4
+    end
   end
 end
