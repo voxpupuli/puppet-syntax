@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'puppet-syntax'
 require 'rake'
 require 'rake/tasklib'
