@@ -36,17 +36,7 @@ jobs:
         ruby: ${{ fromJSON(needs.rubocop_and_matrix.outputs.ruby) }}
         puppet:
           - "~> 8.0"
-          - "~> 7.0"
-          - "https://github.com/puppetlabs/puppet.git#main"
-        exclude:
-          - ruby: "3.0"
-            puppet: "~> 8.0"
-          - ruby: "2.7"
-            puppet: "~> 8.0"
-          - ruby: "3.0"
-            puppet: "https://github.com/puppetlabs/puppet.git#main"
-          - ruby: "2.7"
-            puppet: "https://github.com/puppetlabs/puppet.git#main"
+          - "https://github.com/OpenVoxProject/puppet.git#main"
     name: "Ruby ${{ matrix.ruby }} - Puppet ${{ matrix.puppet }}"
     env:
       PUPPET_VERSION: ${{ matrix.puppet }}
