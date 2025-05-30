@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'puppet'
 
 describe PuppetSyntax::Manifests do
-  let(:subject) { PuppetSyntax::Manifests.new }
+  let(:subject) { described_class.new }
 
   it 'expects an array of files' do
     expect { subject.check(nil) }.to raise_error(/Expected an array of files/)
@@ -13,7 +15,7 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(output).to eq([])
-    expect(has_errors).to eq(false)
+    expect(has_errors).to be(false)
   end
 
   it 'returns nothing from a valid file with a class using tag parameter' do
@@ -21,7 +23,7 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(output).to eq([])
-    expect(has_errors).to eq(false)
+    expect(has_errors).to be(false)
   end
 
   it 'returns nothing from a valid file with a class using schedule parameter' do
@@ -29,7 +31,7 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(output).to eq([])
-    expect(has_errors).to eq(false)
+    expect(has_errors).to be(false)
   end
 
   it 'returns an error from an invalid file' do
@@ -38,7 +40,7 @@ describe PuppetSyntax::Manifests do
 
     expect(output.size).to eq(3)
     expect(output[2]).to match(/2 errors. Giving up/)
-    expect(has_errors).to eq(true)
+    expect(has_errors).to be(true)
   end
 
   it 'returns a warning from an invalid file' do
@@ -46,7 +48,7 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(output.size).to eq(2)
-    expect(has_errors).to eq(true)
+    expect(has_errors).to be(true)
 
     expect(output[0]).to match(/Unrecogni(s|z)ed escape sequence '\\\['/)
     expect(output[1]).to match(/Unrecogni(s|z)ed escape sequence '\\\]'/)
@@ -57,7 +59,7 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(output).to eq([])
-    expect(has_errors).to eq(false)
+    expect(has_errors).to be(false)
   end
 
   it 'reads more than one valid file' do
@@ -65,14 +67,14 @@ describe PuppetSyntax::Manifests do
     output, has_errors = subject.check(files)
 
     expect(output).to eq([])
-    expect(has_errors).to eq(false)
+    expect(has_errors).to be(false)
   end
 
   it 'continues after finding an error in the first file' do
     files = fixture_manifests(['fail_error.pp', 'fail_warning.pp'])
     output, has_errors = subject.check(files)
 
-    expect(has_errors).to eq(true)
+    expect(has_errors).to be(true)
     expect(output.size).to eq(5)
     expect(output[0]).to match(%r{This Name has no effect. A Host Class Definition can not end with a value-producing expression without other effect \(file: \S*/fail_error.pp, line: 2, column: 32\)$})
     expect(output[1]).to match(%r{This Name has no effect. A value was produced and then forgotten \(one or more preceding expressions may have the wrong form\) \(file: \S*/fail_error.pp, line: 2, column: 3\)$})
@@ -86,7 +88,7 @@ describe PuppetSyntax::Manifests do
       files = fixture_manifests('deprecation_notice.pp')
       output, has_errors = subject.check(files)
 
-      expect(has_errors).to eq(true)
+      expect(has_errors).to be(true)
       expect(output.size).to eq(1)
       expect(output[0]).to match(/Node inheritance is not supported in Puppet >= 4.0.0/)
     end
