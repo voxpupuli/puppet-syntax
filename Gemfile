@@ -19,11 +19,8 @@ gemspec
 
 # Override gemspec for CI matrix builds.
 # But only if the environment variable is set
-gem 'puppet', *location_for(ENV['PUPPET_VERSION']) if ENV['PUPPET_VERSION']
+gem 'openvox', *location_for(ENV['PUPPET_VERSION']) if ENV['PUPPET_VERSION']
 # Puppet on Ruby 3.3 / 3.4 has some missing dependencies
-gem 'base64', '~> 0.2' if RUBY_VERSION >= '3.4'
-gem 'getoptlong', '~> 0.2' if RUBY_VERSION >= '3.4'
-gem 'racc', '~> 1.8' if RUBY_VERSION >= '3.3'
 gem 'syslog', '~> 0.3' if RUBY_VERSION >= '3.4'
 
 group :test do
