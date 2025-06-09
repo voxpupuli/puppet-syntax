@@ -9,6 +9,9 @@ on:
 env:
   BUNDLE_WITHOUT: development:release
 
+permissions:
+  contents: read
+
 jobs:
   rubocop_and_matrix:
     env:
