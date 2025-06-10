@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v6.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v6.0.0) (2025-06-10)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v5.0.0...v6.0.0)
+
+**Breaking changes:**
+
+- Switch from puppet to openvox [\#189](https://github.com/voxpupuli/puppet-syntax/pull/189) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v5.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v5.0.0) (2025-05-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v4.1.1...v5.0.0)
