@@ -12,7 +12,7 @@ jobs:
     environment: release
     if: github.repository_owner == 'voxpupuli'
 
-    # required permissionss to make a GitHub release and push to the GitHub Gem Registry
+    # required permissions to make a GitHub release and push to the GitHub Gem Registry
     permissions:
       id-token: write
       contents: write
