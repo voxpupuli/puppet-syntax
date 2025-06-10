@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe PuppetSyntax::Hiera do
-  let(:subject) { PuppetSyntax::Hiera.new }
+  let(:subject) { described_class.new }
 
   it 'expects an array of files' do
     expect { subject.check(nil) }.to raise_error(/Expected an array of files/)
