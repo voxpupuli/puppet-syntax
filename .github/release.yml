@@ -25,6 +25,7 @@ changelog:
     - title: Bug Fixes 🐛
       labels:
         - bug
+        - bugfix
 
     - title: Documentation Updates 📚
       labels:
