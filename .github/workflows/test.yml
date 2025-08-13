@@ -24,7 +24,7 @@ jobs:
       - name: Install Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.1"
+          ruby-version: "3.4"
           bundler-cache: true
       - name: Run Rubocop
         run: bundle exec rake rubocop
@@ -40,21 +40,7 @@ jobs:
         ruby: ${{ fromJSON(needs.rubocop_and_matrix.outputs.ruby) }}
         puppet:
           - "~> 8.0"
-          - "~> 7.0"
           - "https://github.com/OpenVoxProject/puppet.git#main"
-        exclude:
-          - ruby: '3.3'
-            puppet: '~> 7.0'
-          - ruby: '3.4'
-            puppet: '~> 7.0'
-          - ruby: "3.0"
-            puppet: "~> 8.0"
-          - ruby: "2.7"
-            puppet: "~> 8.0"
-          - ruby: "3.0"
-            puppet: "https://github.com/OpenVoxProject/puppet.git#main"
-          - ruby: "2.7"
-            puppet: "https://github.com/OpenVoxProject/puppet.git#main"
     name: "Ruby ${{ matrix.ruby }} - OpenVox ${{ matrix.puppet }}"
     env:
       PUPPET_VERSION: ${{ matrix.puppet }}
