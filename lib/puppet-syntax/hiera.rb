@@ -12,7 +12,7 @@ module PuppetSyntax
         elsif !/^[a-z]+$/.match?(key) # we allow Hiera's own configuration
           'Puppet automatic lookup will not look up symbols'
         end
-      elsif !/^[a-z][a-z0-9_]+(::[a-z][a-z0-9_]+)*$/.match?(key)
+      elsif !/^([a-z][a-z0-9_]+::)*[a-z0-9_][a-zA-Z0-9_]+$/.match?(key) # adapted from Puppet docs combining namespaced and un-namespace regex
         return 'Looks like a missing colon' if /[^:]:[^:]/.match?(key)
 
         # be extra helpful
