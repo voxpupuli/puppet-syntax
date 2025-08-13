@@ -5,3 +5,6 @@
   :datadir: './hieradata/good'
 :hierarchy:
   - common
+
+good::value_with_CAPS: true
+rootValueWithCaps3:    true
