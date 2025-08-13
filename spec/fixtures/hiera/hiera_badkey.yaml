@@ -3,17 +3,16 @@ this_is_ok: 0
 this_is_ok::too: 0
 th1s_is_ok::two3: 0
 :eventhis: 0
-this_is_ok::concat_func: "%{lookup('foo')}%{lookup('bar')}"
+good::value_with_CAPS: true
+rootValueWithCaps3:    true
 
-typical:typo::warning1:   true
-::notsotypical::warning2: true
-noCamelCase::warning3:    true
-no-hyphens::warning4:     true
-:picky::warning5:         true
-this_is::warning6:
+typical:typo::warning1:      true
+::notsotypical::warning2:    true
+noCamelCase::warning3:       true
+root::noCamelCase::warning4: true
+Leading_caps_warning5:       true
+namespace::Leading_warning6: true
+no-hyphens::warning7:        true
+:picky::warning8:            true
+this_is::warning9:
   "%{lookup('foobar'):3306}": []
-this_is::warning7:
-  - "%{lookup('foobar'):3306}"
-this_is::warning8:
-  foo: "%{lookup('foobar'):3306}"
-this_is::warning9: "%{lookup('foo'):3306}%{lookup('bar')}"
