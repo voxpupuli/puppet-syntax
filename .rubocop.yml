@@ -6,3 +6,6 @@ inherit_gem:
 
 Metrics:
   Enabled: false
+
+AllCops:
+  TargetRubyVersion: 3.2
