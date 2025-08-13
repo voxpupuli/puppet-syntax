@@ -43,14 +43,14 @@ describe PuppetSyntax::Hiera do
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
-        expect(res).to include(/::warning#{n}/)
+        expect(res).to include(/warning#{n}:/)
       end
       expect(res.size).to eq examples
       expect(res[0]).to match('Key :typical:typo::warning1: Looks like a missing colon')
       expect(res[1]).to match('Key ::notsotypical::warning2: Puppet automatic lookup will not use leading \'::\'')
       expect(res[2]).to match('Key :noCamelCase::warning3: Not a valid Puppet variable name for automatic lookup')
       expect(res[3]).to match('Key :root::noCamelCase::warning4: Not a valid Puppet variable name for automatic lookup')
-      expect(res[4]).to match('Key :Leading_warning5: Not a valid Puppet variable name for automatic lookup')
+      expect(res[4]).to match('Key :Leading_caps_warning5: Not a valid Puppet variable name for automatic lookup')
       expect(res[5]).to match('Key :namespace::Leading_warning6: Not a valid Puppet variable name for automatic lookup')
       expect(res[6]).to match('Key :no-hyphens::warning7: Not a valid Puppet variable name for automatic lookup')
       expect(res[7]).to match('Key :picky::warning8: Puppet automatic lookup will not look up symbols')
@@ -63,7 +63,7 @@ describe PuppetSyntax::Hiera do
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
-        expect(res).to include(/::warning#{n}/)
+        expect(res).to include(/warning#{n}:/)
       end
       expect(res.size).to eq examples
       expect(res[0]).to match('Key :this_is::warning1: string after a function call but before `}` in the value')
