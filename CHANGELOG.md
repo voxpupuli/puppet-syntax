@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.0.0) (2025-08-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v6.0.0...v7.0.0)
+
+**Breaking changes:**
+
+- Require Ruby 3.2 / OpenVox 8 [\#195](https://github.com/voxpupuli/puppet-syntax/pull/195) ([bastelfreak](https://github.com/bastelfreak))
+- Require Ruby \>= 3.1 [\#186](https://github.com/voxpupuli/puppet-syntax/pull/186) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- CI: Use Vox Pupuli release defaults [\#194](https://github.com/voxpupuli/puppet-syntax/pull/194) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v6.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v6.0.0) (2025-06-10)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v5.0.0...v6.0.0)
@@ -35,7 +48,7 @@ All notable changes to this project will be documented in this file.
 
 **Fixed bugs:**
 
-- fix too greedy regular expression [\#171](https://github.com/voxpupuli/puppet-syntax/pull/171) ([tmu-sprd](https://github.com/tmu-sprd))
+- fix too greedy regular expression [\#171](https://github.com/voxpupuli/puppet-syntax/pull/171) ([sprd-tmu](https://github.com/sprd-tmu))
 
 ## [v4.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v4.1.0) (2024-03-12)
 
