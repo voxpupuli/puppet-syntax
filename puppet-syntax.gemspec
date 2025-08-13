@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'puppet-syntax/version'
@@ -16,10 +18,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.7'
+  spec.required_ruby_version = '>= 3.1'
 
   spec.add_dependency 'openvox', '>= 7', '< 9'
   spec.add_dependency 'rake', '~> 13.1'
 
-  spec.add_development_dependency 'voxpupuli-rubocop', '~> 3.1.0'
+  spec.add_development_dependency 'voxpupuli-rubocop', '~> 4.0.0'
 end
