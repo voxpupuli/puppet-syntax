@@ -1,0 +1,8 @@
+---
+this_is_ok::concat_func: "%{lookup('foo')}%{lookup('bar')}"
+
+this_is::warning1:
+  - "%{lookup('foobar'):3306}"
+this_is::warning2:
+  foo: "%{lookup('foobar'):3306}"
+this_is::warning3: "%{lookup('foo'):3306}%{lookup('bar')}"

@@ -43,18 +43,32 @@ describe PuppetSyntax::Hiera do
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
-        expect(res).to include(/::warning#{n}/)
+        expect(res).to include(/warning#{n}:/)
       end
       expect(res.size).to eq examples
       expect(res[0]).to match('Key :typical:typo::warning1: Looks like a missing colon')
       expect(res[1]).to match('Key ::notsotypical::warning2: Puppet automatic lookup will not use leading \'::\'')
       expect(res[2]).to match('Key :noCamelCase::warning3: Not a valid Puppet variable name for automatic lookup')
-      expect(res[3]).to match('Key :no-hyphens::warning4: Not a valid Puppet variable name for automatic lookup')
-      expect(res[4]).to match('Key :picky::warning5: Puppet automatic lookup will not look up symbols')
-      expect(res[5]).to match('Key :this_is::warning6: string after a function call but before `}` in the value')
-      expect(res[6]).to match('Key :this_is::warning7: string after a function call but before `}` in the value')
-      expect(res[7]).to match('Key :this_is::warning8: string after a function call but before `}` in the value')
+      expect(res[3]).to match('Key :root::noCamelCase::warning4: Not a valid Puppet variable name for automatic lookup')
+      expect(res[4]).to match('Key :Leading_caps_warning5: Not a valid Puppet variable name for automatic lookup')
+      expect(res[5]).to match('Key :namespace::Leading_warning6: Not a valid Puppet variable name for automatic lookup')
+      expect(res[6]).to match('Key :no-hyphens::warning7: Not a valid Puppet variable name for automatic lookup')
+      expect(res[7]).to match('Key :picky::warning8: Puppet automatic lookup will not look up symbols')
       expect(res[8]).to match('Key :this_is::warning9: string after a function call but before `}` in the value')
+    end
+
+    it 'returns warnings for invalid values' do
+      hiera_yaml = 'hiera_badvalue.yaml'
+      examples = 3
+      files = fixture_hiera(hiera_yaml)
+      res = subject.check(files)
+      (1..examples).each do |n|
+        expect(res).to include(/warning#{n}:/)
+      end
+      expect(res.size).to eq examples
+      expect(res[0]).to match('Key :this_is::warning1: string after a function call but before `}` in the value')
+      expect(res[1]).to match('Key :this_is::warning2: string after a function call but before `}` in the value')
+      expect(res[2]).to match('Key :this_is::warning3: string after a function call but before `}` in the value')
     end
 
     it 'returns warnings for bad eyaml values' do
