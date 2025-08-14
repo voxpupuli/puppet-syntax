@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.1](https://github.com/voxpupuli/puppet-syntax/tree/v7.0.1) (2025-08-14)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.0.0...v7.0.1)
+
+**Fixed bugs:**
+
+- Update Hiera key regex to Puppet supported values [\#197](https://github.com/voxpupuli/puppet-syntax/pull/197) ([rridge532](https://github.com/rridge532))
+
 ## [v7.0.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.0.0) (2025-08-13)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v6.0.0...v7.0.0)
