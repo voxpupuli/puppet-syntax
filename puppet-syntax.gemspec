@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'openvox', '>= 8', '< 9'
   spec.add_dependency 'rake', '~> 13.1'
 
-  spec.add_development_dependency 'voxpupuli-rubocop', '~> 4.2.0'
+  spec.add_development_dependency 'voxpupuli-rubocop', '~> 5.0.0'
 end
