@@ -15,10 +15,10 @@ Hiera YAML.
 
 Puppet::Syntax is supported with:
 
-- Puppet >= 7.0
-- Ruby >= 2.7
+- OpenVox >= 8.0
+- Ruby >= 3.2
 
-For the specific versions that we test against, see the [GitHub Actions workflow](.github/workflows/test.yml).
+For the specific versions that we test against, see the [GitHub Actions workflow](.github/workflows/test.yml) or the [Gem spec](puppet-syntax.gemspec).
 
 ## Installation
 
@@ -31,7 +31,7 @@ the gem manually.
 gem 'puppet-syntax'
 ```
 
-  And then execute:
+And then execute:
 
 ```sh
 bundle install
@@ -113,7 +113,7 @@ task :test => [
 
 * To test all manifests and templates, relative to the location of the `Rakefile`, run:
 
-```
+```shell
 $ bundle exec rake syntax
 ---> syntax:manifests
 ---> syntax:templates
@@ -122,7 +122,7 @@ $ bundle exec rake syntax
 
 * To return a non-zero exit code and an error message on any failures, run:
 
-```
+```shell
 $ bundle exec rake syntax
 ---> syntax:manifests
 rake aborted!
@@ -149,14 +149,14 @@ By default, this rake task looks for all `.yaml` files in a single module under:
 It will validate the syntax of each Hiera *key*. for values, it will check if
 the interpolation function syntax is correct. Wrong:
 
-```
+```yaml
 foo:
   "%{lookup('baz'):3306}": []
 ```
 
 correct would be:
 
-```
+```yaml
 foo:
   "%{lookup('baz')}:3306": []
 ```
