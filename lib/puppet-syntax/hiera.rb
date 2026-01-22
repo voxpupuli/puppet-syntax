@@ -53,29 +53,37 @@ module PuppetSyntax
     end
 
     def check_eyaml_blob(val)
-      return unless /^ENC\[/.match?(val)
-
-      val.sub!('ENC[', '')
+      # strip newlines and extra spaces
       val.gsub!(/\s+/, '')
-      return 'has unterminated eyaml value' unless /\]$/.match?(val)
 
-      val.sub!(/\]$/, '')
-      method, base64 = val.split(',')
-      if base64.nil?
-        base64 = method
-        method = 'PKCS7'
-      end
+      encodes_length = val.scan('ENC[').length
+
+      # Return if there's no encoded material
+      return if encodes_length == 0
+
+      found_encodes = val.scan(/ENC\[([^,\]]+,)?([^\]]+)?\]/)
+
+      return 'has unterminated eyaml value' unless found_encodes.length == encodes_length
 
       known_methods = %w[PKCS7 GPG GKMS KMS TWOFAC SecretBox VAULT GCPKMS RSA SSHAGENT VAULT_RS cli]
-      return "has unknown eyaml method #{method}" unless known_methods.include? method
-      return 'has unpadded or truncated base64 data' unless base64.length % 4 == 0
 
-      # Base64#decode64 will silently ignore characters outside the alphabet,
-      # so we check resulting length of binary data instead
-      pad_length = base64.gsub(/[^=]/, '').length
-      return unless Base64.decode64(base64).length != (base64.length * 3 / 4) - pad_length
+      found_encodes.each do |match|
+        # if no method is found we use the default PKCS7 method
+        method = match[0]
+        method = +'PKCS7' if method.nil?
+        method.delete_suffix!(',')
+        base64 = match[1]
 
-      'has corrupt base64 data'
+        return 'has invalid eyaml encoded format' if base64.nil?
+
+        return "has unknown eyaml method #{method}" unless known_methods.include? method
+
+        return 'has unpadded or truncated base64 data' unless base64.length % 4 == 0
+
+        return 'has corrupt base64 data' unless base64.match?(%r{^[a-zA-Z0-9+/=]+$})
+      end
+      # all good
+      nil
     end
 
     def check(filelist)
