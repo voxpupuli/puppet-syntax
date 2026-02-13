@@ -71,9 +71,15 @@ describe PuppetSyntax::Hiera do
       expect(res[2]).to match('Key :this_is::warning3: string after a function call but before `}` in the value')
     end
 
+    it 'returns nothing for good eyaml' do
+      files = fixture_hiera('hiera_good.eyaml')
+      res = subject.check(files)
+      expect(res).to eq []
+    end
+
     it 'returns warnings for bad eyaml values' do
       hiera_yaml = 'hiera_bad.eyaml'
-      examples = 6
+      examples = 9
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
@@ -86,6 +92,9 @@ describe PuppetSyntax::Hiera do
       expect(res[3]).to match('Key acme::warning4 has corrupt base64 data')
       expect(res[4]).to match('Key acme::warning5\[\'key2\'\] has corrupt base64 data')
       expect(res[5]).to match('Key acme::warning6\[\'hash_key\'\]\[2\] has corrupt base64 data')
+      expect(res[6]).to match('Key acme::warning7 has invalid eyaml encoded format')
+      expect(res[7]).to match('Key acme::warning8 has unpadded or truncated base64 data')
+      expect(res[8]).to match('Key acme::warning9 has unterminated eyaml value')
     end
 
     it 'handles empty files' do
