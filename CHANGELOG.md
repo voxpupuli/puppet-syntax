@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.1.0) (2026-02-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.0.1...v7.1.0)
+
+**Implemented enhancements:**
+
+- feature: add support for multiple encoded blocks [\#209](https://github.com/voxpupuli/puppet-syntax/pull/209) ([aba-lrettler](https://github.com/aba-lrettler))
+
 ## [v7.0.1](https://github.com/voxpupuli/puppet-syntax/tree/v7.0.1) (2025-08-14)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.0.0...v7.0.1)
