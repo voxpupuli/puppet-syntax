@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.2.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.2.0) (2026-02-20)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.1.0...v7.2.0)
+
+**Implemented enhancements:**
+
+- Add Ruby 4.0 support [\#208](https://github.com/voxpupuli/puppet-syntax/pull/208) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v7.1.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.1.0) (2026-02-13)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.0.1...v7.1.0)
