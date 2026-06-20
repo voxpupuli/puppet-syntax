@@ -136,8 +136,15 @@ module PuppetSyntax
     # "%{lookup('this_is_ok'):3306}"
     # You can do string concatenation outside of {}:
     # "%{lookup('this_is_ok')}:3306"
+    #
+    # missing closing brace:
+    #   "%{lookup('this_is_ok')"
+    # with closing brace:
+    #   "%{lookup('this_is_ok')}"
     def check_broken_function_call(element)
-      'string after a function call but before `}` in the value' if element.is_a?(String) && /%{[^}]+\('[^}]*'\)[^}\s]+}/.match?(element)
+      return 'string after a function call but before `}` in the value' if element.is_a?(String) && /%{[^}]+\('[^}]*'\)[^}\s]+}/.match?(element)
+
+      'has an unterminated interpolation token (missing closing `}`)' if element.is_a?(String) && /%{/.match?(element) && !element.end_with?('}')
     end
 
     # gets a hash or array, returns all keys + values as array
