@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.2'
 
-  spec.add_dependency 'openvox', '>= 8', '< 9'
+  spec.add_dependency 'openvox', '>= 8', '< 10'
   spec.add_dependency 'rake', '~> 13.1'
 
   spec.add_development_dependency 'voxpupuli-rubocop', '~> 5.2.0'
