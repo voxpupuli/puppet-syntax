@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.3.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.3.0) (2026-10-02)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.2.0...v7.3.0)
+
+**Fixed bugs:**
+
+- Faulty basic system flavour detection without 'syslog' gem [\#218](https://github.com/voxpupuli/puppet-syntax/issues/218)
+
+**Merged pull requests:**
+
+- Allow OpenVox 9 [\#223](https://github.com/voxpupuli/puppet-syntax/pull/223) ([silug](https://github.com/silug))
+- Update github\_changelog\_generator requirement from ~\> 1.17.0 to ~\> 1.18.0 [\#217](https://github.com/voxpupuli/puppet-syntax/pull/217) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update voxpupuli-rubocop requirement from ~\> 5.1.0 to ~\> 5.2.0 [\#216](https://github.com/voxpupuli/puppet-syntax/pull/216) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update github\_changelog\_generator requirement from ~\> 1.16.4 to ~\> 1.17.0 [\#215](https://github.com/voxpupuli/puppet-syntax/pull/215) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v7.2.0](https://github.com/voxpupuli/puppet-syntax/tree/v7.2.0) (2026-02-20)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.1.0...v7.2.0)
