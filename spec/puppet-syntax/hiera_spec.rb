@@ -59,7 +59,7 @@ describe PuppetSyntax::Hiera do
 
     it 'returns warnings for invalid values' do
       hiera_yaml = 'hiera_badvalue.yaml'
-      examples = 3
+      examples = 4
       files = fixture_hiera(hiera_yaml)
       res = subject.check(files)
       (1..examples).each do |n|
@@ -69,6 +69,7 @@ describe PuppetSyntax::Hiera do
       expect(res[0]).to match('Key :this_is::warning1: string after a function call but before `}` in the value')
       expect(res[1]).to match('Key :this_is::warning2: string after a function call but before `}` in the value')
       expect(res[2]).to match('Key :this_is::warning3: string after a function call but before `}` in the value')
+      expect(res[3]).to match('Key :this_is::warning4: has an unterminated interpolation token (missing closing `}`)')
     end
 
     it 'returns nothing for good eyaml' do
